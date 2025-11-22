@@ -35,9 +35,8 @@ IS_LOCAL_ENV = os.environ.get("ENV", "").lower() == "local"
 
 # ===================== CONFIG =====================
 
-# Prefer taking from env; you can still hard-code if you want
-ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")  # or "YOUR_ACCESS_TOKEN"
-USER_EMAIL = os.environ.get("USER_EMAIL")      # or "xyz@contoso.com"
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+USER_EMAIL = os.environ.get("USER_EMAIL")
 
 if not ACCESS_TOKEN:
     raise RuntimeError("ACCESS_TOKEN is not set. Please set it in .env or code.")
@@ -49,7 +48,6 @@ headers = {
     "Prefer": 'outlook.body-content-type="html"'
 }
 
-# Create output directory only for local environment
 OUTPUT_DIR = "email_extracts"
 if IS_LOCAL_ENV and not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
@@ -63,14 +61,11 @@ def sanitize_filename(filename: str) -> str:
 def convert_to_ist_format(utc_datetime_str: str) -> str:
     """Convert UTC datetime string to IST format like in mod.json."""
     try:
-        # Parse the UTC datetime
         utc_dt = datetime.fromisoformat(utc_datetime_str.replace('Z', '+00:00'))
-        # Convert to IST (UTC+5:30)
         ist_offset = timezone(timedelta(hours=5, minutes=30))
         ist_dt = utc_dt.astimezone(ist_offset)
         return ist_dt.strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
     except Exception:
-        # Fallback to current IST time if parsing fails
         ist_offset = timezone(timedelta(hours=5, minutes=30))
         return datetime.now(ist_offset).strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
 
@@ -80,9 +75,6 @@ def extract_tables_from_html_body(html_content: str):
     """
     Extract all table data from HTML body content.
     Returns list of dicts: {table_index, headers, data}
-    where:
-      headers = [header_text, ...]
-      data    = [ {header_text: cell_value, ...}, ... ]
     """
     if not html_content or not html_content.strip():
         return []
@@ -96,7 +88,7 @@ def extract_tables_from_html_body(html_content: str):
 
     for table_idx, table in enumerate(tables):
         table_rows = table.find_all("tr")
-        if len(table_rows) < 2:  # Need at least header + 1 data row
+        if len(table_rows) < 2:
             continue
 
         header_row = None
@@ -117,7 +109,6 @@ def extract_tables_from_html_body(html_content: str):
         if header_row and data_rows:
             table_data = []
             for row in data_rows:
-                # Ensure row has same number of columns as header
                 while len(row) < len(header_row):
                     row.append("")
                 row_dict = {}
@@ -135,17 +126,19 @@ def extract_tables_from_html_body(html_content: str):
 
     return extracted_tables
 
+
 def check_mandatory_fields_in_html(html_content: str):
     """
-    Check mandatory fields based on TABLE HEADERS, not raw text.
-    Returns a list of missing conceptual fields (empty list => all present).
-
-    Conceptual mandatory fields:
-      - station
-      - weatherPhenomenon
-      - operationProbability
-      - advisoryTimePeriodStartUTC
-      - advisoryTimePeriodEndUTC
+    Check that the HTML body conceptually contains all 5 mandatory fields.
+    We detect them robustly from the TEXT (supports:
+    - 'Weather Phenomenon'
+    - 'Weather\nphenomenon'
+    - 'weatherPhenomenon'
+    - 'Operational Probability', 'Operation Probability', 'Operational Probab...'
+    - 'Advisory TimePeriodStart UTC', 'Advisory Time Period Start (UTC)',
+      'advisoryTimePeriodStartUTC', etc.
+    )
+    Returns list of missing conceptual fields (empty list => all present).
     """
     required_keys = {
         "station",
@@ -158,45 +151,64 @@ def check_mandatory_fields_in_html(html_content: str):
     if not html_content or not html_content.strip():
         return list(required_keys)
 
-    tables = extract_tables_from_html_body(html_content)
-    if not tables:
-        return list(required_keys)
+    html_lower = html_content.lower()
+    # simple = continuous letters+digits (good for camelCase / no-space)
+    simple = re.sub(r'[^a-z0-9]', '', html_lower)
 
-    present_keys = set()
+    present = set()
 
-    for table in tables:
-        headers = table.get("headers", [])
-        for h in headers:
-            h_lower = h.lower().strip()
+    # --- station ---
+    if 'station' in html_lower or 'station' in simple:
+        present.add("station")
 
-            # station
-            if "station" in h_lower:
-                present_keys.add("station")
+    # --- weatherPhenomenon (or similar) ---
+    cond_weather = (
+        ('weather' in html_lower and ('phenomenon' in html_lower or 'phenom' in html_lower))
+        or 'weatherphenomenon' in simple
+        or 'weatherphenom' in simple
+    )
+    if cond_weather:
+        present.add("weatherPhenomenon")
 
-            # weather phenomenon
-            if "weather" in h_lower and "phenomenon" in h_lower:
-                present_keys.add("weatherPhenomenon")
+    # --- operationProbability / operationalProbability ---
+    cond_op_prob = (
+        (( 'operation' in html_lower or 'operational' in html_lower )
+         and ('probability' in html_lower or 'probab' in html_lower))
+        or 'operationprobability' in simple
+        or 'operationalprobability' in simple
+        or 'operationprobab' in simple
+    )
+    if cond_op_prob:
+        present.add("operationProbability")
 
-            # operational / operation probability
-            if ("operation" in h_lower or "operational" in h_lower) and "probability" in h_lower:
-                present_keys.add("operationProbability")
+    # --- advisoryTimePeriodStartUTC ---
+    cond_start_utc = (
+        ('advisory' in html_lower and 'start' in html_lower and 'utc' in html_lower)
+        or 'advisorytimeperiodstartutc' in simple
+        or 'timeperiodstartutc' in simple
+        or 'periodstartutc' in simple
+    )
+    if cond_start_utc:
+        present.add("advisoryTimePeriodStartUTC")
 
-            # advisory time period start utc
-            if "advisory" in h_lower and "start" in h_lower and "utc" in h_lower:
-                present_keys.add("advisoryTimePeriodStartUTC")
+    # --- advisoryTimePeriodEndUTC ---
+    cond_end_utc = (
+        ('advisory' in html_lower and 'end' in html_lower and 'utc' in html_lower)
+        or 'advisorytimeperiodendutc' in simple
+        or 'timeperiodendutc' in simple
+        or 'periodendutc' in simple
+    )
+    if cond_end_utc:
+        present.add("advisoryTimePeriodEndUTC")
 
-            # advisory time period end utc
-            if "advisory" in h_lower and "end" in h_lower and "utc" in h_lower:
-                present_keys.add("advisoryTimePeriodEndUTC")
-
-    missing = [key for key in required_keys if key not in present_keys]
+    missing = [k for k in required_keys if k not in present]
     return missing
+
 
 def extract_weather_stations_from_tables(tables):
     """
     Extract weather station data from tables with original values.
-    Only returns station entries where all 5 mandatory fields
-    are present (no dummy values).
+    Only returns rows where ALL 5 mandatory fields have non-empty values.
     """
     stations = []
 
@@ -206,36 +218,58 @@ def extract_weather_stations_from_tables(tables):
         if not headers or not table_data:
             continue
 
-        # Map headers -> conceptual fields (same logic as check_mandatory_fields_in_html)
+        # --- robust header mapping (supports spaces, newlines, camelCase, typos like probab/phenom) ---
         header_mapping = {}
         for i, header in enumerate(headers):
             h_lower = header.lower().strip()
+            h_simple = re.sub(r'[^a-z0-9]', '', h_lower)
 
-            if "station" in h_lower:
+            # station
+            if "station" in h_lower or "station" in h_simple:
                 header_mapping["station"] = i
 
-            if "weather" in h_lower and "phenomenon" in h_lower:
+            # weather phenomenon
+            if (("weather" in h_lower and ("phenomenon" in h_lower or "phenom" in h_lower)) or
+                "weatherphenomenon" in h_simple or "weatherphenom" in h_simple):
                 header_mapping["weatherPhenomenon"] = i
 
-            if ("operation" in h_lower or "operational" in h_lower) and "probability" in h_lower:
+            # operational / operation probability
+            if (
+                (("operation" in h_lower or "operational" in h_lower) and ("probability" in h_lower or "probab" in h_lower))
+                or "operationprobability" in h_simple
+                or "operationalprobability" in h_simple
+                or "operationprobab" in h_simple
+            ):
                 header_mapping["operationProbability"] = i
 
-            if "advisory" in h_lower and "start" in h_lower and "utc" in h_lower:
+            # advisory start utc
+            if (
+                ("advisory" in h_lower and "start" in h_lower and "utc" in h_lower)
+                or "advisorytimeperiodstartutc" in h_simple
+                or "timeperiodstartutc" in h_simple
+                or "periodstartutc" in h_simple
+            ):
                 header_mapping["advisoryTimePeriodStartUTC"] = i
 
-            if "advisory" in h_lower and "end" in h_lower and "utc" in h_lower:
+            # advisory end utc
+            if (
+                ("advisory" in h_lower and "end" in h_lower and "utc" in h_lower)
+                or "advisorytimeperiodendutc" in h_simple
+                or "timeperiodendutc" in h_simple
+                or "periodendutc" in h_simple
+            ):
                 header_mapping["advisoryTimePeriodEndUTC"] = i
 
+            # optional LT headers
             if "advisory" in h_lower and "start" in h_lower and ("lt" in h_lower or "local" in h_lower):
                 header_mapping["advisoryTimePeriodStartLT"] = i
-
             if "advisory" in h_lower and "end" in h_lower and ("lt" in h_lower or "local" in h_lower):
                 header_mapping["advisoryTimePeriodEndLT"] = i
 
         if not header_mapping:
             continue
 
-        # Extract row-wise
+        # --- row extraction ---
         for row_dict in table_data:
             station_entry = {}
 
@@ -247,27 +281,23 @@ def extract_weather_stations_from_tables(tables):
                     value = ""
 
                 if not value:
-                    # Don't fill dummy values; just skip empty
+                    # no dummy values
                     continue
 
                 if field_name == "station":
-                    # Validate station: 3 uppercase letters
+                    # station = 3-letter uppercase code
                     if len(value) == 3 and value.isalpha() and value.isupper():
                         station_entry[field_name] = value
                     else:
-                        # Invalid station → this row is probably not a proper station entry
                         continue
                 elif field_name == "operationProbability":
                     try:
                         station_entry[field_name] = int(float(value))
                     except (ValueError, TypeError):
-                        # Bad probability → don't add dummy; skip
                         continue
                 else:
-                    # Use exact original text
                     station_entry[field_name] = value
 
-            # Check that ALL 5 mandatory conceptual fields are present
             mandatory_fields = {
                 "station",
                 "weatherPhenomenon",
@@ -284,10 +314,6 @@ def extract_weather_stations_from_tables(tables):
 # ===================== GRAPH API EMAIL FUNCTIONS =====================
 
 def get_all_messages(page_size: int = 50, max_pages: int = None):
-    """
-    Get all messages from the mailbox with pagination.
-    Returns a list of message objects with basic info.
-    """
     url = (
         f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages"
         f"?$top={page_size}"
@@ -313,19 +339,15 @@ def get_all_messages(page_size: int = 50, max_pages: int = None):
 
         print(f"Retrieved {len(messages)} messages from page {page_count + 1}")
 
-        # Next page
         url = data.get("@odata.nextLink")
         page_count += 1
-
         time.sleep(0.5)
 
     print(f"Total messages retrieved: {len(all_messages)}")
     return all_messages
 
+
 def get_message_body_html(message_id: str) -> str:
-    """
-    Fetch full message body (HTML) for given message_id.
-    """
     url = (
         f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages/{message_id}"
         "?$select=subject,body"
@@ -346,7 +368,6 @@ def get_message_body_html(message_id: str) -> str:
 def process_single_email(message):
     """
     Process a single email and extract weather advisory data if valid.
-    Returns weather advisory dict or None if invalid/skip.
     """
     try:
         body_html = get_message_body_html(message["id"])
@@ -354,53 +375,47 @@ def process_single_email(message):
             print("   ❌ No HTML body found – Skipping this email.")
             return None
 
-        # 1) Check mandatory fields based on headers
+        # STEP 1: check mandatory fields in text
         missing_fields = check_mandatory_fields_in_html(body_html)
         if missing_fields:
-            print(f"   ❌ Missing mandatory field(s) in table headers: {', '.join(missing_fields)} – Skipping this email.")
+            print(f"   ❌ Missing mandatory field(s) in mail body: {', '.join(missing_fields)} – Skipping this email.")
             return None
 
-        print("   ✅ All mandatory fields present in headers – Extracting tables...")
+        print("   ✅ All 5 mandatory field labels found in body – trying to extract tables...")
 
-        # 2) Extract tables
+        # STEP 2: extract tables
         tables = extract_tables_from_html_body(body_html)
         if not tables:
-            print("   ❌ No tables found in HTML – Skipping this email.")
+            print("   ❌ No HTML tables found – cannot extract rows, skipping this email.")
             return None
 
-        # 3) Extract stations
+        # STEP 3: extract stations from tables
         stations = extract_weather_stations_from_tables(tables)
         if not stations:
             print("   ❌ No valid station rows with all 5 fields – Skipping this email.")
             return None
 
-        # 4) Build advisory JSON (original values only)
         weather_advisory = {
             "createdAt": convert_to_ist_format(message.get("receivedDateTime", "")),
             "stations": stations
         }
-
         return weather_advisory
 
     except Exception as e:
         print(f"   ❌ Error processing email: {e}")
         return None
 
+
 def process_all_emails():
-    """
-    Process all emails and extract weather advisory data.
-    Only processes emails with all 5 mandatory fields present in table headers.
-    """
     if not IS_LOCAL_ENV:
         print("❌ File creation only available in local environment (ENV=local)")
         return 0, 0
 
     print("=" * 60)
-    print("🌤️  WEATHER ADVISORY EMAIL PROCESSOR V2")
+    print("🌤️  WEATHER ADVISORY EMAIL PROCESSOR – ROBUST VERSION")
     print("=" * 60)
-    print("🔍 HTML Table Header Validation Enabled")
-    print("📋 Mandatory fields (from headers): station, weatherPhenomenon, operationProbability, advisoryTimePeriodStartUTC, advisoryTimePeriodEndUTC")
-    print("🚫 No artificial defaults: only original email values are used\n")
+    print("🔍 Robust detection of: station, weatherPhenomenon, operationProbability, advisoryTimePeriodStartUTC, advisoryTimePeriodEndUTC")
+    print("🚫 No artificial defaults – only values present in mail are used\n")
 
     all_messages = get_all_messages(page_size=50)
     successful_extractions = 0
@@ -423,7 +438,7 @@ def process_all_emails():
                     json.dump(weather_advisory, f, indent=2, ensure_ascii=False)
 
                 station_count = len(weather_advisory["stations"])
-                print(f"   ✅ Extracted {station_count} valid station(s) – Saved to {filename}")
+                print(f"   ✅ Extracted {station_count} station(s) – Saved to {filename}")
 
             successful_extractions += 1
         else:
@@ -441,6 +456,7 @@ def process_all_emails():
 
     return len(all_messages), successful_extractions
 
+
 def main():
     try:
         process_all_emails()
@@ -448,6 +464,7 @@ def main():
         print(f"❌ HTTP Error: {e}")
     except Exception as e:
         print(f"❌ Error: {e}")
+
 
 if __name__ == "__main__":
     main()
