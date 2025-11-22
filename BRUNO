@@ -1,5 +1,4 @@
 import requests
-import pandas as pd
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime, timezone, timedelta
@@ -66,159 +65,14 @@ def convert_to_ist_format(utc_datetime_str: str) -> str:
         ist_offset = timezone(timedelta(hours=5, minutes=30))
         return datetime.now(ist_offset).strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
 
-# ===================== HTML TABLE PARSING (FALLBACK) =====================
-
-def extract_tables_from_html_body(html_content: str):
-    """
-    Extract all table data from HTML body content.
-    Returns list of dicts: {table_index, headers, data}
-    """
-    if not html_content or not html_content.strip():
-        return []
-
-    soup = BeautifulSoup(html_content, "html.parser")
-    tables = soup.find_all("table")
-    if not tables:
-        return []
-
-    extracted_tables = []
-
-    for table_idx, table in enumerate(tables):
-        table_rows = table.find_all("tr")
-        if len(table_rows) < 2:
-            continue
-
-        header_row = None
-        data_rows = []
-
-        for row in table_rows:
-            cells = row.find_all(["td", "th"])
-            if not cells:
-                continue
-
-            cell_texts = [cell.get_text(strip=True) for cell in cells]
-
-            if header_row is None:
-                header_row = cell_texts
-            else:
-                data_rows.append(cell_texts)
-
-        if header_row and data_rows:
-            table_data = []
-            for row in data_rows:
-                while len(row) < len(header_row):
-                    row.append("")
-                row_dict = {}
-                for i, header in enumerate(header_row):
-                    key = header.strip() if header else f"Column_{i+1}"
-                    row_dict[key] = row[i].strip() if i < len(row) else ""
-                table_data.append(row_dict)
-
-            extracted_tables.append({
-                "table_index": table_idx,
-                "headers": header_row,
-                "data": table_data
-            })
-
-    return extracted_tables
-
-
-def extract_weather_stations_from_tables(tables):
-    """
-    Simple horizontal table parsing (for your own test tables).
-    """
-    stations = []
-    mandatory_fields = {
-        "station",
-        "weatherPhenomenon",
-        "operationProbability",
-        "advisoryTimePeriodStartUTC",
-        "advisoryTimePeriodEndUTC",
-    }
-
-    for table in tables:
-        headers = table.get("headers", [])
-        table_data = table.get("data", [])
-        if not headers or not table_data:
-            continue
-
-        header_mapping = {}
-        for i, header in enumerate(headers):
-            h_lower = header.lower().strip()
-            h_simple = re.sub(r'[^a-z0-9]', '', h_lower)
-
-            if "station" in h_lower or h_simple == "station":
-                header_mapping["station"] = i
-
-            if (("weather" in h_lower and ("phenomenon" in h_lower or "phenom" in h_lower)) or
-                "weatherphenomenon" in h_simple or "weatherphenom" in h_simple):
-                header_mapping["weatherPhenomenon"] = i
-
-            if (
-                (("operation" in h_lower or "operational" in h_lower) and ("probability" in h_lower or "probab" in h_lower))
-                or "operationprobability" in h_simple
-                or "operationalprobability" in h_simple
-                or "operationprobab" in h_simple
-            ):
-                header_mapping["operationProbability"] = i
-
-            if (
-                ("advisory" in h_lower and "start" in h_lower and "utc" in h_lower)
-                or "advisorytimeperiodstartutc" in h_simple
-                or "timeperiodstartutc" in h_simple
-                or "periodstartutc" in h_simple
-            ):
-                header_mapping["advisoryTimePeriodStartUTC"] = i
-
-            if (
-                ("advisory" in h_lower and "end" in h_lower and "utc" in h_lower)
-                or "advisorytimeperiodendutc" in h_simple
-                or "timeperiodendutc" in h_simple
-                or "periodendutc" in h_simple
-            ):
-                header_mapping["advisoryTimePeriodEndUTC"] = i
-
-        if not header_mapping:
-            continue
-
-        for row_dict in table_data:
-            station_entry = {}
-
-            for field_name, header_idx in header_mapping.items():
-                if header_idx < len(headers):
-                    header_name = headers[header_idx]
-                    value = row_dict.get(header_name, "").strip()
-                else:
-                    value = ""
-
-                if not value:
-                    continue
-
-                if field_name == "station":
-                    if len(value) == 3 and value.isalpha() and value.isupper():
-                        station_entry[field_name] = value
-                    else:
-                        continue
-                elif field_name == "operationProbability":
-                    try:
-                        station_entry[field_name] = int(float(value))
-                    except (ValueError, TypeError):
-                        continue
-                else:
-                    station_entry[field_name] = value
-
-            if mandatory_fields.issubset(station_entry.keys()):
-                stations.append(station_entry)
-
-    return stations
-
-# ===================== TEXT-BASED LABEL / VALUE PARSING =====================
+# ===================== FIELD LABEL CHECK =====================
 
 def check_mandatory_fields_in_html(html_content: str):
     """
     Check that the HTML body conceptually contains 5 labels:
       station, weatherPhenomenon, operationProbability,
       advisoryTimePeriodStartUTC, advisoryTimePeriodEndUTC
+    (only label presence check, values later NLP se nikalenge)
     """
     required_keys = {
         "station",
@@ -283,132 +137,79 @@ def check_mandatory_fields_in_html(html_content: str):
     missing = [k for k in required_keys if k not in present]
     return missing
 
+# ===================== NLP-STYLE EXTRACTION =====================
 
-def extract_weather_stations_from_text_block(html_content: str):
+def extract_weather_stations_nlp(html_content: str):
     """
-    Pure text-based parser for Lamba / Dipanjan style mails:
-    Header labels in separate lines, then values in same order, repeated per station.
+    NLP-style extractor:
+    - HTML -> plain text -> lines
+    - Find station lines (3-letter uppercase)
+    - For each station, look in next few lines for:
+      weatherPhenomenon, operationProbability, advisoryTimePeriodStartUTC, advisoryTimePeriodEndUTC
+    Returns: list of station dicts (each with all 5 mandatory fields, no dummy values).
     """
     soup = BeautifulSoup(html_content, "html.parser")
     text = soup.get_text("\n", strip=True)
     lines = [l.strip() for l in text.splitlines() if l.strip()]
 
-    if not lines:
-        return []
-
-    # 1) Detect header labels and their order
-    header_order = []       # list of canonical field keys in the order they appear
-    header_positions = {}   # field_key -> line index
-
-    def add_header(field_key, idx):
-        if field_key not in header_positions:
-            header_positions[field_key] = idx
-            header_order.append(field_key)
-
-    for idx, line in enumerate(lines):
-        lower = line.lower().strip()
-        simple = re.sub(r'[^a-z0-9]', '', lower)
-
-        # exact "station"
-        if simple == "station":
-            add_header("station", idx)
-            continue
-
-        # advisory start utc
-        if ("advisory" in lower and "start" in lower and "utc" in lower) or \
-           "advisorytimeperiodstartutc" in simple or "timeperiodstartutc" in simple or "periodstartutc" in simple:
-            add_header("advisoryTimePeriodStartUTC", idx)
-            continue
-
-        # advisory start LT (optional)
-        if ("advisory" in lower and "start" in lower and ("lt" in lower or "local" in lower)):
-            add_header("advisoryTimePeriodStartLT", idx)
-            continue
-
-        # advisory end utc
-        if ("advisory" in lower and "end" in lower and "utc" in lower) or \
-           "advisorytimeperiodendutc" in simple or "timeperiodendutc" in simple or "periodendutc" in simple:
-            add_header("advisoryTimePeriodEndUTC", idx)
-            continue
-
-        # advisory end LT (optional)
-        if ("advisory" in lower and "end" in lower and ("lt" in lower or "local" in lower)):
-            add_header("advisoryTimePeriodEndLT", idx)
-            continue
-
-        # weather phenomenon
-        if ( "weather" in lower and ("phenomenon" in lower or "phenom" in lower) ) or \
-           "weatherphenomenon" in simple or "weatherphenom" in simple:
-            add_header("weatherPhenomenon", idx)
-            continue
-
-        # operation / operational probability
-        if (
-            (("operation" in lower or "operational" in lower) and ("probability" in lower or "probab" in lower))
-            or "operationprobability" in simple
-            or "operationalprobability" in simple
-            or "operationprobab" in simple
-        ):
-            add_header("operationProbability", idx)
-            continue
-
-    # We need at least mandatory fields in headers
-    mandatory_header_keys = {
-        "station",
-        "weatherPhenomenon",
-        "operationProbability",
-        "advisoryTimePeriodStartUTC",
-        "advisoryTimePeriodEndUTC",
-    }
-
-    if not mandatory_header_keys.issubset(set(header_order)):
-        # header detection failed – nothing to parse
-        return []
-
-    # Data region starts after the last label line
-    last_header_idx = max(header_positions.values())
-    data_lines = lines[last_header_idx + 1:]
-    if not data_lines:
-        return []
-
-    row_width = len(header_order)
     stations = []
-
-    # 2) Group data_lines in chunks of row_width
+    n = len(lines)
     i = 0
-    while i + row_width <= len(data_lines):
-        group = data_lines[i:i + row_width]
-        entry = {}
 
-        # Map each header field_key -> value at same index
-        for pos, field_key in enumerate(header_order):
-            value = group[pos].strip()
-            if not value:
-                continue
+    while i < n:
+        line = lines[i]
 
-            if field_key == "station":
-                # strictly 3-letter uppercase
-                if len(value) == 3 and value.isalpha() and value.isupper():
-                    entry["station"] = value
-            elif field_key == "operationProbability":
-                try:
-                    entry["operationProbability"] = int(float(value))
-                except (ValueError, TypeError):
-                    pass
-            elif field_key in {
+        # Station code = exactly 3 uppercase letters
+        if re.fullmatch(r"[A-Z]{3}", line):
+            station_code = line
+            entry = {"station": station_code}
+
+            # Look ahead in a window after this station
+            window = lines[i+1 : i+15]  # next up to 14 lines
+
+            # ---- Find operationProbability (0–100) ----
+            for w in window:
+                m = re.search(r"\b([0-9]{1,3})\b", w)
+                if m:
+                    val = int(m.group(1))
+                    if 0 <= val <= 100:
+                        entry["operationProbability"] = val
+                        break
+
+            # ---- Find weatherPhenomenon (short uppercase word) ----
+            for w in window:
+                # pure uppercase 2–6 letters, not same as station, not just digits
+                if re.fullmatch(r"[A-Z]{2,6}", w) and w != station_code:
+                    entry["weatherPhenomenon"] = w
+                    break
+
+            # ---- Find time-like strings (for StartUTC and EndUTC) ----
+            time_candidates = []
+            for w in window:
+                # covers: 2025-11-21T16:00:00Z  OR  1500/23 Nov  OR  16:00
+                if (
+                    re.search(r"\d{4}-\d{2}-\d{2}", w) or           # 2025-11-21
+                    re.search(r"\d{2}:\d{2}", w) or                 # 16:00
+                    re.search(r"\d{3,4}/\d{1,2}\s*[A-Za-z]{3}", w)  # 1500/23 Nov
+                ):
+                    time_candidates.append(w)
+
+            if len(time_candidates) >= 2:
+                entry["advisoryTimePeriodStartUTC"] = time_candidates[0]
+                entry["advisoryTimePeriodEndUTC"] = time_candidates[1]
+
+            # ---- Check all 5 mandatory fields ----
+            mandatory = [
+                "station",
                 "weatherPhenomenon",
+                "operationProbability",
                 "advisoryTimePeriodStartUTC",
                 "advisoryTimePeriodEndUTC",
-                "advisoryTimePeriodStartLT",
-                "advisoryTimePeriodEndLT",
-            }:
-                entry[field_key] = value
+            ]
+            if all(k in entry for k in mandatory):
+                stations.append(entry)
 
-        # Only accept rows with all mandatory fields
-        if mandatory_header_keys.issubset(entry.keys()):
-            stations.append(entry)
-
-        i += row_width
+        i += 1
 
     return stations
 
@@ -479,18 +280,12 @@ def process_single_email(message):
             print(f"   ❌ Missing mandatory field(s) in mail body: {', '.join(missing_fields)} – Skipping this email.")
             return None
 
-        print("   ✅ All 5 mandatory field labels found in body – trying to extract...")
+        print("   ✅ All 5 mandatory field labels found in body – running NLP extractor...")
 
-        # 2) Try table-based extraction first (for your test mails)
-        tables = extract_tables_from_html_body(body_html)
-        stations = extract_weather_stations_from_tables(tables) if tables else []
-
-        # 3) If table-based fails, fall back to text-based block parsing (for Lamba / Dipanjan)
-        if not stations:
-            stations = extract_weather_stations_from_text_block(body_html)
+        stations = extract_weather_stations_nlp(body_html)
 
         if not stations:
-            print("   ❌ No valid station rows with all 5 fields – Skipping this email.")
+            print("   ❌ NLP extractor could not find any complete stations – Skipping this email.")
             return None
 
         weather_advisory = {
@@ -510,9 +305,9 @@ def process_all_emails():
         return 0, 0
 
     print("=" * 60)
-    print("🌤️  WEATHER ADVISORY EMAIL PROCESSOR – TEXT+TABLE")
+    print("🌤️  WEATHER ADVISORY EMAIL PROCESSOR – NLP VERSION")
     print("=" * 60)
-    print("🔍 Uses label detection + text-block parsing, with table fallback.")
+    print("🔍 Uses label detection + NLP-style window parsing around station codes.")
     print("🚫 No artificial defaults – only values present in mail are used\n")
 
     all_messages = get_all_messages(page_size=50)
