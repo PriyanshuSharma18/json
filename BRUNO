@@ -1,0 +1,340 @@
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+import json
+from datetime import datetime, timezone, timedelta
+import time
+import os
+import re
+
+# Load environment variables
+def load_env(path: str = ".env") -> None:
+    """Minimal .env loader (no external dependency)."""
+    if not os.path.exists(path):
+        return
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if '=' in line:
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip().strip('"\'')
+                if key not in os.environ:
+                    os.environ[key] = value
+
+# Load .env early
+load_env()
+
+# Check environment
+IS_LOCAL_ENV = os.environ.get("ENV", "").lower() == "local"
+
+# ------------- CONFIG -------------
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+USER_EMAIL = os.environ.get("USER_EMAIL")
+
+headers = {
+    "Authorization": f"Bearer {ACCESS_TOKEN}",
+    "Prefer": 'outlook.body-content-type="html"'
+}
+
+# Create output directory only for local environment
+OUTPUT_DIR = "email_extracts"
+if IS_LOCAL_ENV and not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
+
+def sanitize_filename(filename):
+    """Remove invalid characters from filename."""
+    return re.sub(r'[<>:"/\\|?*]', '_', filename)
+
+def convert_to_ist_format(utc_datetime_str):
+    """Convert UTC datetime string to IST format like in mod.json."""
+    try:
+        # Parse the UTC datetime
+        utc_dt = datetime.fromisoformat(utc_datetime_str.replace('Z', '+00:00'))
+        # Convert to IST (UTC+5:30)
+        ist_offset = timezone(timedelta(hours=5, minutes=30))
+        ist_dt = utc_dt.astimezone(ist_offset)
+        return ist_dt.strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+    except Exception:
+        # Fallback to current time in IST format if parsing fails
+        return datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+
+# ------------- HTML PARSING AND VALIDATION FUNCTIONS -------------
+
+def extract_tables_from_html_body(html_content):
+    """
+    Extract all table data from HTML body content.
+    Returns structured table data with headers and rows.
+    """
+    if not html_content or not html_content.strip():
+        return []
+    soup = BeautifulSoup(html_content, "html.parser")
+    tables = soup.find_all("table")
+    if not tables:
+        return []
+    extracted_tables = []
+    for table_idx, table in enumerate(tables):
+        rows = table.find_all("tr")
+        if len(rows) < 2:  # Need at least header + 1 data row
+            continue
+        header_row = None
+        data_rows = []
+        for row in rows:
+            cells = row.find_all(["td", "th"])
+            if not cells:
+                continue
+            cell_texts = [cell.get_text(strip=True) for cell in cells]
+            if header_row is None:
+                header_row = cell_texts
+            else:
+                data_rows.append(cell_texts)
+        # Convert to structured format (list of dicts)
+        if header_row and data_rows:
+            table_data = []
+            for row in data_rows:
+                # Ensure row has same number of columns as header
+                while len(row) < len(header_row):
+                    row.append("")
+                row_dict = {}
+                for i, header in enumerate(header_row):
+                    header_name = header.strip() if header else f"Column_{i+1}"
+                    # Use the exact text as key for mapping row values
+                    row_dict[header_name] = row[i].strip() if i < len(row) else ""
+                table_data.append(row_dict)
+            if table_data:
+                extracted_tables.append({
+                    "table_index": table_idx,
+                    "headers": header_row,
+                    "data": table_data
+                })
+    return extracted_tables
+
+def check_mandatory_fields_in_html(html_content):
+    """
+    Verify that HTML body content contains all 5 mandatory fields (as text).
+    Returns a list of missing fields (empty list if all are present).
+    Mandatory fields (case-insensitive match in content):
+      - station
+      - weather phenomenon
+      - operation probability
+      - advisory time period start utc
+      - advisory time period end utc
+    """
+    required_phrases = [
+        "station",
+        "weather phenomenon",
+        "operation probability",
+        "advisory time period start utc",
+        "advisory time period end utc"
+    ]
+    if not html_content or not html_content.strip():
+        # If content is empty or None, all required fields are "missing"
+        return required_phrases.copy()
+    html_lower = html_content.lower()
+    missing_fields = []
+    for phrase in required_phrases:
+        if phrase not in html_lower:
+            missing_fields.append(phrase)
+    return missing_fields
+
+def extract_weather_stations_from_tables(tables):
+    """
+    Extract weather station data from tables using only the original values from email.
+    Only returns stations that have all mandatory fields.
+    """
+    stations = []
+    for table in tables:
+        headers = table.get("headers", [])
+        data_rows = table.get("data", [])
+        if not headers or not data_rows:
+            continue
+        # Map header index positions for required fields
+        header_index = {}
+        for i, header_text in enumerate(headers):
+            header_lower = header_text.lower().strip()
+            if header_lower == "station" or header_lower.startswith("station"):
+                header_index["station"] = i
+            elif header_lower == "weather phenomenon" or ("weather" in header_lower and "phenomenon" in header_lower):
+                header_index["weatherPhenomenon"] = i
+            elif header_lower == "operation probability" or ("operation" in header_lower and "probability" in header_lower):
+                header_index["operationProbability"] = i
+            elif header_lower == "advisory time period start utc" or ("start" in header_lower and "utc" in header_lower and "start" in header_lower):
+                header_index["advisoryTimePeriodStartUTC"] = i
+            elif header_lower == "advisory time period end utc" or ("end" in header_lower and "utc" in header_lower and "end" in header_lower):
+                header_index["advisoryTimePeriodEndUTC"] = i
+            elif "start" in header_lower and ("lt" in header_lower or "local" in header_lower):
+                header_index["advisoryTimePeriodStartLT"] = i
+            elif "end" in header_lower and ("lt" in header_lower or "local" in header_lower):
+                header_index["advisoryTimePeriodEndLT"] = i
+        # Extract each row's data for required fields
+        for row in data_rows:
+            station_entry = {}
+            # For each required field, get value from the row if available
+            for field, idx in header_index.items():
+                if idx < len(headers):
+                    header_name = headers[idx]
+                    value = row.get(header_name, "").strip()
+                    if value == "":
+                        continue  # Skip empty values
+                    if field == "station":
+                        # Only accept station code if it appears valid (3 uppercase letters)
+                        if len(value) == 3 and value.isalpha() and value.isupper():
+                            station_entry[field] = value
+                        else:
+                            continue  # Invalid station code format, skip this entry
+                    elif field == "operationProbability":
+                        # Convert probability to integer if possible (e.g., "80" or "80.0" -> 80)
+                        try:
+                            station_entry[field] = int(float(value))
+                        except ValueError:
+                            continue  # Skip if not a number
+                    else:
+                        # Use the exact text value for other fields
+                        station_entry[field] = value
+            # Add station entry only if all five mandatory fields are present
+            mandatory_keys = {"station", "weatherPhenomenon", "operationProbability",
+                              "advisoryTimePeriodStartUTC", "advisoryTimePeriodEndUTC"}
+            if mandatory_keys.issubset(station_entry.keys()):
+                stations.append(station_entry)
+    return stations
+
+# ------------- EMAIL PROCESSING FUNCTIONS -------------
+
+def get_all_messages(page_size: int = 50, max_pages: int = None):
+    """
+    Retrieve all messages from the mailbox with pagination.
+    Returns a list of message metadata (id, subject, receivedDateTime, from).
+    """
+    url = (
+        f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages"
+        f"?$top={page_size}"
+        "&$orderby=receivedDateTime desc"
+        "&$select=id,subject,receivedDateTime,from"
+    )
+    all_messages = []
+    page_count = 0
+    while url and (max_pages is None or page_count < max_pages):
+        print(f"Fetching page {page_count + 1}...")
+        resp = requests.get(url, headers=headers)
+        if resp.status_code != 200:
+            print(f"Error fetching messages: {resp.status_code}")
+            print("Response:", resp.text)
+            break
+        data = resp.json()
+        messages = data.get("value", [])
+        all_messages.extend(messages)
+        print(f"Retrieved {len(messages)} messages from page {page_count + 1}")
+        # Check for next page link
+        url = data.get("@odata.nextLink")
+        page_count += 1
+        time.sleep(0.5)  # Small delay to avoid rate limiting
+    print(f"Total messages retrieved: {len(all_messages)}")
+    return all_messages
+
+def get_message_body_html(message_id: str) -> str:
+    """
+    Fetch the full message body (HTML content) for the given message ID.
+    """
+    url = (
+        f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages/{message_id}"
+        "?$select=subject,body"
+    )
+    resp = requests.get(url, headers=headers)
+    if resp.status_code != 200:
+        print(f"Error fetching message body for {message_id}: {resp.status_code}")
+        return ""
+    data = resp.json()
+    body = data.get("body", {})
+    return body.get("content", "")
+
+def process_single_email(message):
+    """
+    Process a single email and extract weather advisory data if it contains all mandatory fields.
+    Returns a weather advisory dict or None if the email is skipped.
+    """
+    try:
+        # Get the email's HTML body content
+        body_html = get_message_body_html(message["id"])
+        if not body_html:
+            return None
+        # Mandatory fields presence check
+        missing_fields = check_mandatory_fields_in_html(body_html)
+        if missing_fields:
+            # Log exactly which field(s) are missing and skip this email
+            print(f"   ❌ Missing mandatory field(s) in HTML body: {', '.join(missing_fields)} – Skipping this email.")
+            return None
+        else:
+            print("   ✅ All mandatory fields found in HTML – processing this email...")
+        # Extract tables and then station data from the tables
+        tables = extract_tables_from_html_body(body_html)
+        if not tables:
+            print("   ❌ No tables found in email content – Skipping this email.")
+            return None
+        stations = extract_weather_stations_from_tables(tables)
+        if not stations:
+            print("   ❌ No valid station data extracted – Skipping this email.")
+            return None
+        # Construct the weather advisory JSON object with original values
+        weather_advisory = {
+            "createdAt": convert_to_ist_format(message.get("receivedDateTime", "")),
+            "stations": stations
+        }
+        return weather_advisory
+    except Exception as e:
+        print(f"   ❌ Error processing email (ID: {message.get('id', '')}): {e}")
+        return None
+
+def process_all_emails():
+    """
+    Process all emails in the mailbox and extract weather advisory data for those that have all mandatory fields.
+    Saves each valid advisory to a JSON file (local environment only).
+    """
+    if not IS_LOCAL_ENV:
+        print("❌ File creation is only available in a local environment (ENV=local).")
+        return 0, 0
+    print("="*60)
+    print("🌤️  WEATHER ADVISORY EMAIL PROCESSOR V2")
+    print("="*60)
+    print("🔍 Starting email processing with HTML body validation...")
+    print("📋 Required fields (must be present in email content): station, weather phenomenon, operation probability, advisory time period start UTC, advisory time period end UTC")
+    print("🚫 No artificial defaults: Only original email values will be used")
+    print("🎯 Emails missing any mandatory field will be skipped\n")
+    # Retrieve all emails
+    all_messages = get_all_messages(page_size=50)
+    successful_extractions = 0
+    skipped_emails = 0
+    for idx, message in enumerate(all_messages, start=1):
+        subject_preview = message.get('subject', 'No Subject')[:50]
+        print(f"Processing email {idx}/{len(all_messages)}: \"{subject_preview}\"")
+        result = process_single_email(message)
+        if result:
+            # Save the result as a JSON file (in local environment)
+            if IS_LOCAL_ENV:
+                subject_clean = sanitize_filename(message.get("subject", "No_Subject")[:30])
+                date_clean = message.get("receivedDateTime", "")[:10].replace("-", "_")
+                filename = f"{idx:03d}_{date_clean}_{subject_clean}.json"
+                filepath = os.path.join(OUTPUT_DIR, filename)
+                with open(filepath, "w", encoding="utf-8") as f:
+                    json.dump(result, f, indent=2, ensure_ascii=False)
+                station_count = len(result["stations"])
+                print(f"   ✅ Extracted {station_count} station(s) data – saved to {filename}")
+            successful_extractions += 1
+        else:
+            # Email was skipped due to missing fields or other issues
+            skipped_emails += 1
+        time.sleep(0.2)  # small delay to avoid hitting rate limits
+    # Summary log
+    print("\n" + "="*60)
+    print("🎯 EMAIL PROCESSING SUMMARY")
+    print("="*60)
+    print(f"📧 Total emails processed: {len(all_messages)}")
+    print(f"✅ Successful extractions: {successful_extractions}")
+    print(f"⏭️  Skipped emails (missing fields/invalid data): {skipped_emails}")
+    print(f"📁 Output files saved in: {OUTPUT_DIR}/")
+    return len(all_messages), successful_extractions
+
+# Run the processing function (if needed)
+if __name__ == "__main__":
+    process_all_emails()
