@@ -34,9 +34,9 @@ IS_LOCAL_ENV = (ENV == "local")
 
 # ===================== CONFIG =====================
 
-# 🔒 Better: read from env, don't hardcode token
-ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
-USER_EMAIL = os.environ.get("USER_EMAIL", "metstratosphere@goIndiGo.in")
+# NOTE: better to read from env, but keeping your current hardcoded token for now
+ACCESS_TOKEN = "eyJ0eXAiOiJKV1QiLCJub25jZSI6InN1QmV0emQwYW1VS1poVTlRaU83LS1jZjVLdGRsS2JmMFZTYk56Y1UxUzgiLCJhbGciOiJSUzI1NiIsIng1dCI6InJ0c0ZULWItN0x1WTdEVlllU05LY0lKN1ZuYyIsImtpZCI6InJ0c0ZULWItN0x1WTdEVlllU05LY0lKN1ZuYyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83M2YyZTcxNC1hMzJlLTQ2OTctOTQ0OS1kZmZlMWRmOGE1ZDUvIiwiaWF0IjoxNzYzODc1MTQ3LCJuYmYiOjE3NjM4NzUxNDcsImV4cCI6MTc2Mzg3OTA0NywiYWlvIjoiazJKZ1lHZ3lQN0hCTUhWbjc2WnBxdzZzNHRiZEF3QT0iLCJhcHBfZGlzcGxheW5hbWUiOiJPQ0Mgb25lIGFwcCAtIFBPQyIsImFwcGlkIjoiMzhhZTcyYjUtNzMxNi00YzkxLTk4ZjgtMDEzZTQ2MjcyMjA5IiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvNzNmMmU3MTQtYTMyZS00Njk3LTk0NDktZGZmZTFkZjhhNWQ1LyIsImlkdHlwIjoiYXBwIiwib2lkIjoiMDRhYWRlZmMtNGI2Zi00OGQxLWE5OTEtOTFjMDFkM2M0NTg0IiwicmgiOiIxLkFWTUFGT2Z5Y3k2amwwYVVTZF8tSGZpbDFRTUFBQUFBQUFBQXdBQUFBQUFBQUFERkFBQlRBQS4iLCJyb2xlcyI6WyJQcmVzZW5jZS5SZWFkLkFsbCIsIk1haWwuUmVhZEJhc2ljLkFsbCIsIlVzZXIuUmVhZC5BbGwiLCJNYWlsLlJlYWQiXSwic3ViIjoiMDRhYWRlZmMtNGI2Zi00OGQxLWE5OTEtOTFjMDFkM2M0NTg0IiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkFTIiwidGlkIjoiNzNmMmU3MTQtYTMyZS00Njk3LTk0NDktZGZmZTFkZjhhNWQ1IiwidXRpIjoiSmNZSl9MdWNOVUdnajB3Z0VQWTVBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiMDk5N2ExZDAtMGQxZC00YWNiLWI0MDgtZDVjYTczMTIxZTkwIl0sInhtc19hY2QiOjE3NDAxMTA2MTQsInhtc19hY3RfZmN0IjoiMyA5IiwieG1zX2Z0ZCI6IkloMkV4MEVEV0YwaUFfeWlJenBFQWp3X2w4bVNSRTlVbWc1alNEWVVlT1lCYW1Gd1lXNWxZWE4wTFdSemJYTSIsInhtc19pZHJlbCI6IjQgNyIsInhtc19yZCI6IjAuNDJMbFlCSmlEQllTNFdBWEVyaHBFaDlYTm51Rzl6YkRPTS1vUk52clFGRk9JWUZUc19MWUpRT2RQRFpmTFdvNm1hUTFEU2pLSVNUQXpBQUJCNkEwQUEiLCJ4bXNfc3ViX2ZjdCI6IjkgMyIsInhtc190Y2R0IjoxNTEwODIxNDQ3LCJ4bXNfdG50X2ZjdCI6IjEyIDMifQ.Pa0r8n09EX65PIDE4aBl97JKQ9e0JH97HmBm7dbrM2FSRT6zBo1FxffBkiIWT7lGN8O3ETYaynNJuWTgfG7S1gr-kdLbCKJA_dSJ41VxlrS-veyV-dX78sv4Vs6kjwlGaEk8xAPEGJRZ-96A5_4kTRkcnKHLaGc7ANKEgTZTaRI6aaSWTG9C3Yb4tF2VQwpWuxu3eCYQI1jiuRFBaFh5x-A0-65qxEn2KZ01rX9gpWauaqFT2emX8LSQoz_hT2ur35s9v5CYn-M24_GGGzXoRztZTZV3BD_45rOBWQd4L1_VQRkeqdKuolNB2LWlXU5lHKt-FXpgyZFje9Vq1S6pCw"
+USER_EMAIL = "metstratosphere@goIndiGo.in"
 
 if not ACCESS_TOKEN:
     raise RuntimeError("ACCESS_TOKEN is not set. Please set it in .env or code.")
@@ -134,8 +134,6 @@ def parse_advisory_times(window_lines, mail_received_dt_str):
     Window ke andar se advisory ke liye:
       - Start UTC
       - End UTC
-      - Start LT (IST)
-      - End LT (IST)
     nikalta hai.
     Expect format: '1500/23 Nov' etc.
     """
@@ -160,13 +158,8 @@ def parse_advisory_times(window_lines, mail_received_dt_str):
     start_utc_str = start_dt_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
     end_utc_str = end_dt_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    start_lt = start_dt_utc.astimezone(IST_OFFSET)
-    end_lt = end_dt_utc.astimezone(IST_OFFSET)
-
-    start_lt_str = start_lt.isoformat(timespec="seconds")
-    end_lt_str = end_lt.isoformat(timespec="seconds")
-
-    return start_utc_str, end_utc_str, start_lt_str, end_lt_str
+    # ✅ Only return UTC strings (no LT fields)
+    return start_utc_str, end_utc_str
 
 # ===================== FIELD LABEL CHECK =====================
 
@@ -243,6 +236,7 @@ def extract_weather_stations_nlp(html_content: str, mail_received_dt: str = None
     while i < n:
         line = lines[i]
 
+        # Station code = exactly 3 uppercase letters
         if re.fullmatch(r"[A-Z]{3}", line):
             station_code = line
             entry = {"station": station_code}
@@ -264,15 +258,14 @@ def extract_weather_stations_nlp(html_content: str, mail_received_dt: str = None
                     entry["weatherPhenomenon"] = w
                     break
 
-            # advisory times
+            # advisory times (UTC only)
             time_result = parse_advisory_times(window, mail_received_dt)
             if time_result:
-                start_utc_str, end_utc_str, start_lt_str, end_lt_str = time_result
+                start_utc_str, end_utc_str = time_result
                 entry["advisoryTimePeriodStartUTC"] = start_utc_str
                 entry["advisoryTimePeriodEndUTC"] = end_utc_str
-                entry["advisoryTimePeriodStartLT"] = start_lt_str
-                entry["advisoryTimePeriodEndLT"] = end_lt_str
 
+            # Mandatory 5 fields only
             mandatory = [
                 "station",
                 "weatherPhenomenon",
@@ -347,6 +340,7 @@ def process_single_email(message):
             print("   ❌ No HTML body found – Skipping this email.")
             return None
 
+        # 1) Check mandatory field labels
         missing_fields = check_mandatory_fields_in_html(body_html)
         if missing_fields:
             print(f"   ❌ Missing mandatory field(s) in mail body: {', '.join(missing_fields)} – Skipping this email.")
@@ -438,7 +432,8 @@ def process_all_emails(save_files: bool | None = None):
     print("🎯 EMAIL PROCESSING SUMMARY")
     print("=" * 60)
     print(f"📧 Total emails processed: {len(all_messages)}")
-    print(f"✅ Successful extractions: {successful_extractions}")
+    print(f"✅ Successful ex
+tractions: {successful_extractions}")
     print(f"⏭️  Skipped emails: {skipped_emails}")
     if save_files:
         print(f"📁 Files saved in: {OUTPUT_DIR}/")
