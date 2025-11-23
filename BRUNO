@@ -6,23 +6,37 @@ import time
 import os
 import re
 
-# ========= Load Environment ========= #
-def load_env(path: str = ".env"):
+# ===================== ENV LOADING =====================
+def load_env(path: str = ".env") -> None:
     if not os.path.exists(path):
         return
-    with open(path, "r") as f:
+
+    with open(path, "r", encoding="utf-8") as f:
         for line in f:
-            if "=" in line:
-                key, val = line.split("=", 1)
-                os.environ[key.strip()] = val.strip().strip('"\'')
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+
+            if '=' in line:
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip().strip('"\'')
+                if key not in os.environ:
+                    os.environ[key] = value
+
+# Load .env early
 load_env()
 
-ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
-USER_EMAIL = os.getenv("USER_EMAIL")
-IS_LOCAL_ENV = True
+IS_LOCAL_ENV = True # force true for now
 
-if not ACCESS_TOKEN or not USER_EMAIL:
-    raise RuntimeError("ACCESS_TOKEN or USER_EMAIL missing in .env")
+# ===================== CONFIG =====================
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+USER_EMAIL = os.environ.get("USER_EMAIL")
+
+if not ACCESS_TOKEN:
+    raise RuntimeError("ACCESS_TOKEN is not set. Please set it in .env or code.")
+if not USER_EMAIL:
+    raise RuntimeError("USER_EMAIL is not set. Please set it in .env or code.")
 
 headers = {
     "Authorization": f"Bearer {ACCESS_TOKEN}",
@@ -30,186 +44,215 @@ headers = {
 }
 
 OUTPUT_DIR = "email_extracts"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
 
-MONTH = {
-    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
-    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12
+# ===================== TIME HELPERS =====================
+
+MONTH_MAP = {
+    "jan":1, "feb":2, "mar":3, "apr":4, "may":5, "jun":6,
+    "jul":7, "aug":8, "sep":9, "oct":10, "nov":11, "dec":12
 }
-IST = timezone(timedelta(hours=5, minutes=30))
 
-MANDATORY = [
-    "station", "weatherPhenomenon",
-    "operationProbability",
-    "advisoryTimePeriodStartUTC",
-    "advisoryTimePeriodEndUTC"
-]
-
-
-# ========= TIME NORMALIZATION ========= #
-def normalize_time(raw, year):
-    """
-    Convert time formats like:
-    - 1500/23 Nov
-    - 0030/24 Nov
-    - ISO datetime
-    into: YYYY-MM-DDTHH:MM:00Z
-    """
+def normalize_time_to_utc(raw: str, year: int) -> str | None:
     raw = raw.strip()
 
-    # HHMM/DD MON
+    # Format: HHMM/DD Mon
     m = re.match(r"(\d{3,4})/(\d{1,2})\s*([A-Za-z]{3})", raw)
     if m:
         hhmm, day, mon = m.groups()
         hour = int(hhmm[:-2])
         minute = int(hhmm[-2:])
-        month = MONTH.get(mon.lower(), 1)
-        dt_ist = datetime(year, month, int(day), hour, minute, tzinfo=IST)
-        return dt_ist.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        month = MONTH_MAP.get(mon.lower())
+        if month:
+            dt = datetime(year, month, int(day), hour, minute, tzinfo=timezone(timedelta(hours=5, minutes=30)))
+            return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # ISO style
-    try:
-        if "T" in raw:
+    # ISO-like format fallback
+    if "T" in raw:
+        try:
             dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
             return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    except:
-        return None
+        except:
+            return None
+
+    # HH:MM only
+    m = re.match(r"(\d{2}):(\d{2})", raw)
+    if m:
+        hour, minute = map(int, m.groups())
+        # fallback assume same year/month/day as email year
+        dt = datetime(year, datetime.now().month, datetime.now().day,
+                      hour, minute, tzinfo=timezone.utc)
+        return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     return None
 
 
-def utc_to_lt(utc_iso):
+def convert_utc_to_ist(utc_iso: str) -> str:
     try:
         dt = datetime.fromisoformat(utc_iso.replace("Z", "+00:00"))
-        return dt.astimezone(IST).strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+        return dt.astimezone(timezone(timedelta(hours=5, minutes=30))).strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
     except:
         return None
 
 
-# ========= REQUIRED TEXT CHECK ========= #
-def missing_fields(html):
-    html_l = html.lower()
-    checks = {
-        "station": "station" in html_l,
-        "weatherPhenomenon": "weather" in html_l and "phenom" in html_l,
-        "operationProbability": "operat" in html_l and "prob" in html_l,
-        "advisoryTimePeriodStartUTC": "advisory" in html_l and "start" in html_l,
-        "advisoryTimePeriodEndUTC": "advisory" in html_l and "end" in html_l,
+# ===================== UTILS =====================
+
+def sanitize_filename(filename: str) -> str:
+    return re.sub(r'[<>:"/\\|?*]', '_', filename)
+
+def convert_to_ist_format(utc_datetime_str: str) -> str:
+    try:
+        dt = datetime.fromisoformat(utc_datetime_str.replace("Z", "+00:00"))
+        return dt.astimezone(timezone(timedelta(hours=5, 30))).strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+    except:
+        return datetime.now(timezone(timedelta(hours=5, 30))).strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+
+# ===================== FIELD LABEL CHECK =====================
+
+def check_mandatory_fields_in_html(html_content: str):
+    required_keys = {
+        "station", "weatherPhenomenon", "operationProbability",
+        "advisoryTimePeriodStartUTC", "advisoryTimePeriodEndUTC"
     }
-    return [k for k, v in checks.items() if not v]
+
+    if not html_content:
+        return list(required_keys)
+
+    html_lower = html_content.lower()
+    simple = re.sub(r'[^a-z0-9]', '', html_lower)
+    present = set()
+
+    if 'station' in html_lower: present.add("station")
+    if ('weather' in html_lower and 'phenom' in html_lower): present.add("weatherPhenomenon")
+    if ('operat' in html_lower and 'prob' in html_lower): present.add("operationProbability")
+    if ('advisory' in html_lower and 'start' in html_lower): present.add("advisoryTimePeriodStartUTC")
+    if ('advisory' in html_lower and 'end' in html_lower): present.add("advisoryTimePeriodEndUTC")
+
+    missing = [k for k in required_keys if k not in present]
+    return missing
 
 
-# ========= GRAPH API ========= #
-def fetch_body(msg_id):
-    url = f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages/{msg_id}?$select=body"
-    r = requests.get(url, headers=headers)
-    return r.json().get("body", {}).get("content", "") if r.status_code == 200 else ""
+# ===================== NLP-STYLE EXTRACTION =====================
+
+def extract_weather_stations_nlp(html_content: str, email_year: int):
+    soup = BeautifulSoup(html_content, "html.parser")
+    text = soup.get_text("\n", strip=True)
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    stations = []
+    i = 0
+
+    while i < len(lines):
+        if re.fullmatch(r"[A-Z]{3}", lines[i]):
+            station_code = lines[i]
+            entry = {"station": station_code}
+            window = lines[i+1:i+15]
+
+            # Probability
+            for w in window:
+                if re.fullmatch(r"\d{1,3}", w):
+                    val = int(w)
+                    if 0 <= val <= 100:
+                        entry["operationProbability"] = val
+                        break
+
+            # Weather
+            for w in window:
+                if re.fullmatch(r"[A-Z]{2,6}", w) and w != station_code:
+                    entry["weatherPhenomenon"] = w
+                    break
+
+            # Time extraction
+            time_vals = []
+            for w in window:
+                norm = normalize_time_to_utc(w, email_year)
+                if norm:
+                    time_vals.append(norm)
+
+            if len(time_vals) >= 2:
+                entry["advisoryTimePeriodStartUTC"] = time_vals[0]
+                entry["advisoryTimePeriodEndUTC"] = time_vals[1]
+                entry["advisoryTimePeriodStartLT"] = convert_utc_to_ist(time_vals[0])
+                entry["advisoryTimePeriodEndLT"] = convert_utc_to_ist(time_vals[1])
+
+            if all(k in entry for k in [
+                "station", "weatherPhenomenon", "operationProbability",
+                "advisoryTimePeriodStartUTC", "advisoryTimePeriodEndUTC"
+            ]):
+                stations.append(entry)
+
+        i += 1
+
+    return stations
 
 
-# ========= NLP MAIN EXTRACTOR ========= #
-def extract_stations(html, email_year):
-    soup = BeautifulSoup(html, "html.parser")
-    lines = [l.strip() for l in soup.get_text("\n", strip=True).splitlines() if l.strip()]
+# ===================== GRAPH API =====================
 
+def get_all_messages(page_size=50):
+    url = (f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages"
+           f"?$top={page_size}&$orderby=receivedDateTime desc"
+           "&$select=id,subject,receivedDateTime")
     final = []
-    for i, line in enumerate(lines):
-
-        # Station code
-        if re.fullmatch(r"[A-Z]{3}", line):
-            data = {"station": line}
-            window = lines[i+1:i+20]
-
-            # Operation Probability
-            for w in window:
-                if re.fullmatch(r"\d{1,3}", w) and 0 <= int(w) <= 100:
-                    data["operationProbability"] = int(w)
-                    break
-
-            # Weather Phenomenon
-            for w in window:
-                if re.fullmatch(r"[A-Z]{2,6}", w) and w != line:
-                    data["weatherPhenomenon"] = w
-                    break
-
-            # Times
-            times = []
-            lt_times = []
-
-            for w in window:
-                # Direct LT match first
-                if re.search(r"LT|local", w, flags=re.IGNORECASE):
-                    lt_times.append(w)
-
-                # Normalize UTC candidate
-                iso = normalize_time(w, email_year)
-                if iso:
-                    times.append(iso)
-
-            # Assign UTC
-            if len(times) >= 2:
-                data["advisoryTimePeriodStartUTC"] = times[0]
-                data["advisoryTimePeriodEndUTC"] = times[1]
-
-                # LT direct vs fallback conversion
-                data["advisoryTimePeriodStartLT"] = utc_to_lt(times[0])
-                data["advisoryTimePeriodEndLT"] = utc_to_lt(times[1])
-
-            # Validate 5 mandatory keys
-            if all(k in data for k in MANDATORY):
-                final.append(data)
-
+    resp = requests.get(url, headers=headers)
+    if resp.status_code == 200:
+        final.extend(resp.json().get("value", []))
     return final
 
+def get_message_body_html(msg_id):
+    url = f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages/{msg_id}?$select=body"
+    r = requests.get(url, headers=headers)
+    if r.status_code != 200:
+        return ""
+    return r.json().get("body", {}).get("content", "")
 
-# ========= MAIN PROCESSING ========= #
-def process_messages():
-    print("\n📨 Fetching recent emails...")
-    url = f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages?$top=50&$select=id,subject,receivedDateTime"
-    r = requests.get(url, headers=headers).json()
-    msgs = r.get("value", [])
 
+# ===================== MAIN PROCESSING =====================
+
+def process_single_email(message):
+    body_html = get_message_body_html(message["id"])
+    if not body_html:
+        return None
+
+    missing = check_mandatory_fields_in_html(body_html)
+    if missing:
+        return None
+
+    email_year = int(message["receivedDateTime"][:4])
+    stations = extract_weather_stations_nlp(body_html, email_year)
+
+    if not stations:
+        return None
+
+    return {
+        "createdAt": convert_to_ist_format(message.get("receivedDateTime", "")),
+        "stations": stations
+    }
+
+
+def process_all_emails():
+    msgs = get_all_messages()
     extracted = skipped = 0
 
-    for idx, m in enumerate(msgs):
-        print(f"\n📩 #{idx+1}: {m.get('subject')}")
+    for idx, msg in enumerate(msgs):
+        print(f"\n📩 EMAIL {idx+1}: {msg.get('subject')}")
+        result = process_single_email(msg)
 
-        html = fetch_body(m["id"])
-        if not html.strip():
-            print("❌ No HTML body")
+        if result:
+            fname = sanitize_filename(msg.get("subject", "No_Subject")[:30])
+            filename = f"{idx+1:03d}_{fname}.json"
+            with open(os.path.join(OUTPUT_DIR, filename), "w") as f:
+                json.dump(result, f, indent=2)
+            print(f"✔ Saved {filename}")
+            extracted += 1
+        else:
+            print("⚠ Skipped")
             skipped += 1
-            continue
 
-        missing = missing_fields(html)
-        if missing:
-            print(f"⚠ Skip → Missing: {', '.join(missing)}")
-            skipped += 1
-            continue
-
-        email_year = int(m["receivedDateTime"][:4])
-        stations = extract_stations(html, email_year)
-
-        if not stations:
-            print("⚠ Skip → No complete rows found")
-            skipped += 1
-            continue
-
-        payload = {
-            "createdAt": utc_to_lt(m["receivedDateTime"]),
-            "stations": stations
-        }
-
-        fname = f"{idx+1:03d}_{m.get('subject','').replace(' ','_')[:25]}.json"
-        with open(os.path.join(OUTPUT_DIR, fname), "w") as f:
-            json.dump(payload, f, indent=2)
-
-        print(f"✔ Extracted {len(stations)} station(s) → {fname}")
-        extracted += 1
-
-    print("\n====== SUMMARY ======")
-    print(f"✔ Success: {extracted}")
-    print(f"❌ Skipped: {skipped}")
-    print("📁 Saved:", OUTPUT_DIR)
+    print("\n=== SUMMARY ===")
+    print(f"✔ Extracted: {extracted}")
+    print(f"⚠ Skipped: {skipped}")
+    print("📁 Output:", OUTPUT_DIR)
 
 
 if __name__ == "__main__":
-    process_messages()
+    process_all_emails()
