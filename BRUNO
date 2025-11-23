@@ -1,475 +1,380 @@
-import requests
-from bs4 import BeautifulSoup
-import json
-from datetime import datetime, timezone, timedelta
-import time
-import os
-import re
+#!/usr/bin/env python3
+"""
+Azure Event Hubs – Weather Email → Event Pipeline
 
-# ===================== ENV LOADING =====================
+Behavior based on ENV:
+
+  ENV=global
+    - Extract JSON advisory from each relevant email
+    - DO NOT create/store JSON files
+    - Send each advisory as an Event to Azure Event Hub
+
+  ENV=local
+    - Extract JSON advisory from each relevant email
+    - Create & store JSON file per email in OUTPUT_DIR
+    - Send each advisory as an Event to Azure Event Hub
+
+Usage:
+  python src/send_events.py
+
+Required env (.env or environment):
+  EVENTHUB_CONNECTION_STRING
+  EVENTHUB_NAME
+  EVENTHUB_NAMESPACE     (optional, informational)
+  ENV=local | global
+"""
+
+import asyncio
+import json
+import os
+from datetime import datetime
+from typing import Dict, Optional, List
+
+from azure.eventhub import EventData
+from azure.eventhub.aio import EventHubProducerClient
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#  IMPORT YOUR EMAIL-EXTRACTOR LOGIC HERE
+#  Replace `weather_email_processor` with the actual filename (without .py)
+#  This module should contain:
+#    - get_all_messages(page_size: int = 50, max_pages: int = None) -> list[dict]
+#    - process_single_email(message: dict) -> Optional[dict]   (returns weather_advisory)
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+from weather_email_processor import (
+    get_all_messages,
+    process_single_email,
+)
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+# ------------------ Utilities ------------------
 
 def load_env(path: str = ".env") -> None:
-    """Minimal .env loader (no external dependency)."""
+    """Minimal .env loader (no external dependency).
+    Lines in KEY=VALUE format (quotes optional). Ignores comments/blank lines.
+    """
     if not os.path.exists(path):
         return
-
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
+            if '=' not in line:
+                continue
+            key, value = line.split('=', 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            # Do not override an already-set env var
+            os.environ.setdefault(key, value)
 
-            if '=' in line:
-                key, value = line.split('=', 1)
-                key = key.strip()
-                value = value.strip().strip('"\'')
-                if key not in os.environ:
-                    os.environ[key] = value
+
+def sanitize_filename(filename: str) -> str:
+    """Remove characters that are invalid in file names on Windows/Linux."""
+    import re
+    return re.sub(r'[<>:"/\\|?*]', '_', filename)
+
 
 # Load .env early
 load_env()
 
-IS_LOCAL_ENV = os.environ.get("ENV", "").lower() == "local"
+# ------------------ Configuration ------------------
 
-# ===================== CONFIG =====================
+ENV = os.environ.get("ENV", "").lower()  # "local" or "global"
+IS_LOCAL_ENV = (ENV == "local")
 
-ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
-USER_EMAIL = os.environ.get("USER_EMAIL")
+EVENTHUB_NAMESPACE = os.environ.get("EVENTHUB_NAMESPACE")
+EVENTHUB_NAME = os.environ.get("EVENTHUB_NAME")
+CONNECTION_STRING = os.environ.get("EVENTHUB_CONNECTION_STRING")
 
-if not ACCESS_TOKEN:
-    raise RuntimeError("ACCESS_TOKEN is not set. Please set it in .env or code.")
-if not USER_EMAIL:
-    raise RuntimeError("USER_EMAIL is not set. Please set it in .env or code.")
+# Where to store JSON files when ENV=local
+OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "email_extracts")
 
-headers = {
-    "Authorization": f"Bearer {ACCESS_TOKEN}",
-    "Prefer": 'outlook.body-content-type="html"'
-}
-
-OUTPUT_DIR = "email_extracts"
 if IS_LOCAL_ENV and not os.path.exists(OUTPUT_DIR):
-    os.makedirs(OUTPUT_DIR)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-IST_OFFSET = timezone(timedelta(hours=5, minutes=30))
 
-MONTH_MAP = {
-    "jan": 1, "feb": 2, "mar": 3, "apr": 4,
-    "may": 5, "jun": 6, "jul": 7, "aug": 8,
-    "sep": 9, "oct": 10, "nov": 11, "dec": 12
-}
+# Optional older file-based path (still here if you want to reuse it)
+WEATHER_DATA_FILE = os.environ.get("WEATHER_DATA_FILE", "weather_advisories.json")
 
-# ===================== UTILS =====================
 
-def sanitize_filename(filename: str) -> str:
-    return re.sub(r'[<>:"/\\|?*]', '_', filename)
+# ------------------ Optional: file-based reader (legacy) ------------------
 
-def convert_to_ist_format(utc_datetime_str: str) -> str:
+def read_weather_advisories(file_path: Optional[str] = None) -> Dict:
     """
-    Keep as-is (tumhari existing createdAt formatting).
+    (Legacy / optional) Read weather advisory data from a single JSON file.
+
+    Not used in the email→Event pipeline below, but kept if you
+    still want to send from a static JSON file sometimes.
     """
-    try:
-        utc_dt = datetime.fromisoformat(utc_datetime_str.replace('Z', '+00:00'))
-        ist_dt = utc_dt.astimezone(IST_OFFSET)
-        return ist_dt.strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
-    except Exception:
-        ist_dt = datetime.now(IST_OFFSET)
-        return ist_dt.strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+    if file_path is None:
+        file_path = WEATHER_DATA_FILE
 
-def parse_mail_received_datetime(dt_str: str):
-    """
-    Mail ke receivedDateTime ko datetime object me convert karo (UTC aware).
-    """
-    if not dt_str:
-        return None
-    try:
-        # Graph format: 2025-11-22T13:45:10Z
-        return datetime.fromisoformat(dt_str.replace('Z', '+00:00')).astimezone(timezone.utc)
-    except Exception:
-        return None
-
-def build_utc_from_dd_mon_hhmm(match_obj, mail_dt_utc):
-    """
-    '1500/23 Nov' jaisi string se proper UTC datetime banao.
-    Year agar missing hai to mail ke year se lo.
-    """
-    try:
-        hhmm = match_obj.group(1)   # 1500
-        day = int(match_obj.group(2))  # 23
-        mon_abbr = match_obj.group(3).lower()  # nov
-
-        if len(hhmm) == 4:
-            hour = int(hhmm[:2])
-            minute = int(hhmm[2:])
-        elif len(hhmm) == 3:
-            hour = int(hhmm[:1])
-            minute = int(hhmm[1:])
-        else:
-            return None
-
-        month = MONTH_MAP.get(mon_abbr)
-        if not month:
-            return None
-
-        # 1) Default year = mail receive year
-        if mail_dt_utc is None:
-            year = datetime.now(timezone.utc).year
-        else:
-            year = mail_dt_utc.year
-
-            # Optional: agar advisory date mail date se bohot peeche lag rahi ho
-            # to next year assume kar sakte ho (simple rule).
-            if mail_dt_utc.month == 12 and month == 1:
-                # Dec mail, Jan advisory -> next year
-                year += 1
-
-        dt_utc = datetime(year, month, day, hour, minute, 0, tzinfo=timezone.utc)
-        return dt_utc
-    except Exception:
-        return None
-
-def parse_advisory_times(window_lines, mail_received_dt_str):
-    """
-    Window ke andar se advisory ke liye:
-      - Start UTC
-      - End UTC
-      - Start LT (IST)
-      - End LT (IST)
-    nikalta hai.
-
-    Expect format: '1500/23 Nov' etc.
-    """
-    mail_dt_utc = parse_mail_received_datetime(mail_received_dt_str)
-
-    matches = []
-    pattern = re.compile(r'(\d{3,4})/(\d{1,2})\s*([A-Za-z]{3})')
-
-    for line in window_lines:
-        for m in pattern.finditer(line):
-            matches.append(m)
-
-    if len(matches) < 2:
-        # Agar 2 se kam time blocks mile to skip
-        return None
-
-    start_dt_utc = build_utc_from_dd_mon_hhmm(matches[0], mail_dt_utc)
-    end_dt_utc = build_utc_from_dd_mon_hhmm(matches[1], mail_dt_utc)
-
-    if not start_dt_utc or not end_dt_utc:
-        return None
-
-    # Proper ISO 8601 UTC format: 2025-11-22T23:00:00Z
-    start_utc_str = start_dt_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
-    end_utc_str = end_dt_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
-
-    # LT (IST) nikalna (agar mail me LT na mile toh bhi yeh kaafi hai)
-    start_lt = start_dt_utc.astimezone(IST_OFFSET)
-    end_lt = end_dt_utc.astimezone(IST_OFFSET)
-
-    # Example: 2025-11-23T04:30:00+05:30
-    start_lt_str = start_lt.isoformat(timespec="seconds")
-    end_lt_str = end_lt.isoformat(timespec="seconds")
-
-    return start_utc_str, end_utc_str, start_lt_str, end_lt_str
-
-# ===================== FIELD LABEL CHECK =====================
-
-def check_mandatory_fields_in_html(html_content: str):
-    """
-    Check that the HTML body conceptually contains 5 labels:
-      station, weatherPhenomenon, operationProbability,
-      advisoryTimePeriodStartUTC, advisoryTimePeriodEndUTC
-    (only label presence check, values later NLP se nikalenge)
-    """
-    required_keys = {
-        "station",
-        "weatherPhenomenon",
-        "operationProbability",
-        "advisoryTimePeriodStartUTC",
-        "advisoryTimePeriodEndUTC",
-    }
-
-    if not html_content or not html_content.strip():
-        return list(required_keys)
-
-    html_lower = html_content.lower()
-    simple = re.sub(r'[^a-z0-9]', '', html_lower)
-
-    present = set()
-
-    # station
-    if 'station' in html_lower or 'station' in simple:
-        present.add("station")
-
-    # weather phenomenon
-    cond_weather = (
-        ('weather' in html_lower and ('phenomenon' in html_lower or 'phenom' in html_lower))
-        or 'weatherphenomenon' in simple
-        or 'weatherphenom' in simple
-    )
-    if cond_weather:
-        present.add("weatherPhenomenon")
-
-    # operation / operational probability
-    cond_op_prob = (
-        (('operation' in html_lower or 'operational' in html_lower)
-         and ('probability' in html_lower or 'probab' in html_lower))
-        or 'operationprobability' in simple
-        or 'operationalprobability' in simple
-        or 'operationprobab' in simple
-    )
-    if cond_op_prob:
-        present.add("operationProbability")
-
-    # advisory start utc
-    cond_start_utc = (
-        ('advisory' in html_lower and 'start' in html_lower and 'utc' in html_lower)
-        or 'advisorytimeperiodstartutc' in simple
-        or 'timeperiodstartutc' in simple
-        or 'periodstartutc' in simple
-    )
-    if cond_start_utc:
-        present.add("advisoryTimePeriodStartUTC")
-
-    # advisory end utc
-    cond_end_utc = (
-        ('advisory' in html_lower and 'end' in html_lower and 'utc' in html_lower)
-        or 'advisorytimeperiodendutc' in simple
-        or 'timeperiodendutc' in simple
-        or 'periodendutc' in simple
-    )
-    if cond_end_utc:
-        present.add("advisoryTimePeriodEndUTC")
-
-    missing = [k for k in required_keys if k not in present]
-    return missing
-
-# ===================== NLP-STYLE EXTRACTION =====================
-
-def extract_weather_stations_nlp(html_content: str, mail_received_dt: str = None):
-    """
-    NLP-style extractor:
-    - HTML -> plain text -> lines
-    - Find station lines (3-letter uppercase)
-    - For each station, look in next few lines for:
-      weatherPhenomenon, operationProbability,
-      advisoryTimePeriodStartUTC, advisoryTimePeriodEndUTC,
-      + advisoryTimePeriodStartLT, advisoryTimePeriodEndLT (new)
-    Returns: list of station dicts (each with all 5 mandatory fields, plus LT).
-    """
-    soup = BeautifulSoup(html_content, "html.parser")
-    text = soup.get_text("\n", strip=True)
-    lines = [l.strip() for l in text.splitlines() if l.strip()]
-
-    stations = []
-    n = len(lines)
-    i = 0
-
-    while i < n:
-        line = lines[i]
-
-        # Station code = exactly 3 uppercase letters
-        if re.fullmatch(r"[A-Z]{3}", line):
-            station_code = line
-            entry = {"station": station_code}
-
-            # Look ahead in a window after this station
-            window = lines[i+1: i+15]  # next up to 14 lines
-
-            # ---- Find operationProbability (0–100) ----
-            for w in window:
-                m = re.search(r"\b([0-9]{1,3})\b", w)
-                if m:
-                    val = int(m.group(1))
-                    if 0 <= val <= 100:
-                        entry["operationProbability"] = val
-                        break
-
-            # ---- Find weatherPhenomenon (short uppercase word) ----
-            for w in window:
-                # pure uppercase 2–6 letters, not same as station, not just digits
-                if re.fullmatch(r"[A-Z]{2,6}", w) and w != station_code:
-                    entry["weatherPhenomenon"] = w
-                    break
-
-            # ---- Parse advisory time range (UTC + LT) from pattern '1500/23 Nov' ----
-            time_result = parse_advisory_times(window, mail_received_dt)
-            if time_result:
-                (
-                    start_utc_str,
-                    end_utc_str,
-                    start_lt_str,
-                    end_lt_str
-                ) = time_result
-
-                entry["advisoryTimePeriodStartUTC"] = start_utc_str
-                entry["advisoryTimePeriodEndUTC"] = end_utc_str
-
-                # 3) LT bhi print karo (optional field, but ALWAYS output me present)
-                entry["advisoryTimePeriodStartLT"] = start_lt_str
-                entry["advisoryTimePeriodEndLT"] = end_lt_str
-
-            # ---- Check all 5 mandatory fields (station, weatherPhenomenon, operationProbability, UTC start/end) ----
-            mandatory = [
-                "station",
-                "weatherPhenomenon",
-                "operationProbability",
-                "advisoryTimePeriodStartUTC",
-                "advisoryTimePeriodEndUTC",
-            ]
-            if all(k in entry for k in mandatory):
-                stations.append(entry)
-
-        i += 1
-
-    return stations
-
-# ===================== GRAPH API EMAIL FUNCTIONS =====================
-
-def get_all_messages(page_size: int = 50, max_pages: int = None):
-    url = (
-        f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages"
-        f"?$top={page_size}"
-        "&$orderby=receivedDateTime desc"
-        "&$select=id,subject,receivedDateTime,from"
-    )
-
-    all_messages = []
-    page_count = 0
-
-    while url and (max_pages is None or page_count < max_pages):
-        print(f"Fetching page {page_count + 1}...")
-        resp = requests.get(url, headers=headers)
-
-        if resp.status_code != 200:
-            print(f"Error fetching messages: {resp.status_code}")
-            print("Response:", resp.text)
-            break
-
-        data = resp.json()
-        messages = data.get("value", [])
-        all_messages.extend(messages)
-
-        print(f"Retrieved {len(messages)} messages from page {page_count + 1}")
-
-        url = data.get("@odata.nextLink")
-        page_count += 1
-        time.sleep(0.5)
-
-    print(f"Total messages retrieved: {len(all_messages)}")
-    return all_messages
-
-
-def get_message_body_html(message_id: str) -> str:
-    url = (
-        f"https://graph.microsoft.com/v1.0/users/{USER_EMAIL}/messages/{message_id}"
-        "?$select=subject,body"
-    )
-
-    resp = requests.get(url, headers=headers)
-    if resp.status_code != 200:
-        print(f"Error fetching message body for {message_id}: {resp.status_code}")
-        print("Response:", resp.text)
-        return ""
-
-    data = resp.json()
-    body = data.get("body", {})
-    return body.get("content", "")
-
-# ===================== MAIN PROCESSING =====================
-
-def process_single_email(message):
-    try:
-        body_html = get_message_body_html(message["id"])
-        if not body_html:
-            print("   ❌ No HTML body found – Skipping this email.")
-            return None
-
-        # 1) Check mandatory field labels present somewhere in body
-        missing_fields = check_mandatory_fields_in_html(body_html)
-        if missing_fields:
-            print(f"   ❌ Missing mandatory field(s) in mail body: {', '.join(missing_fields)} – Skipping this email.")
-            return None
-
-        print("   ✅ All 5 mandatory field labels found in body – running NLP extractor...")
-
-        stations = extract_weather_stations_nlp(
-            body_html,
-            mail_received_dt=message.get("receivedDateTime", "")
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(
+            f"Weather advisories file not found: {file_path}\n"
+            f"Please run your data creator script first to generate the data file."
         )
 
-        if not stations:
-            print("   ❌ NLP extractor could not find any complete stations – Skipping this email.")
-            return None
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
 
-        weather_advisory = {
-            "createdAt": convert_to_ist_format(message.get("receivedDateTime", "")),
-            "stations": stations
-        }
-        return weather_advisory
+        if not isinstance(data, dict):
+            raise ValueError(f"Expected dictionary in {file_path}, got {type(data)}")
+
+        print(f"✓ Loaded advisory JSON from {file_path}")
+        return data
+
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in {file_path}: {e}")
+    except Exception as e:
+        raise ValueError(f"Error reading {file_path}: {e}")
+
+
+# ------------------ Sample test event factory (unchanged) ------------------
+
+def create_sample_weather_event(event_id: int) -> Dict:
+    """Create a sample weather event payload (for manual testing)."""
+    return {
+        "event_id": event_id,
+        "timestamp": datetime.utcnow().isoformat(),
+        "location": {
+            "latitude": 40.7128 + (event_id * 0.001),
+            "longitude": -74.0060 + (event_id * 0.001),
+            "city": f"Testcity{event_id}",
+            "country": "US",
+        },
+        "weather": {
+            "temperature": 20 + (event_id % 15),
+            "humidity": 60 + (event_id % 30),
+            "pressure": 1013 + (event_id % 10),
+            "wind_speed": 10 + (event_id % 20),
+            "wind_direction": (event_id * 45) % 360,
+            "conditions": ["sunny", "cloudy", "rainy", "stormy"][event_id % 4],
+        },
+        "source": "test-script",
+        "version": "1.0",
+    }
+
+
+# ------------------ EventHub Sender ------------------
+
+async def send_single_event(event_data: Dict) -> None:
+    """Send a single custom event (dict) to Event Hub as JSON."""
+    if not CONNECTION_STRING:
+        raise ValueError(
+            "EVENTHUB_CONNECTION_STRING environment variable not set.\n"
+            "Set it in .env or export it in your shell."
+        )
+
+    if not EVENTHUB_NAME:
+        raise ValueError("EVENTHUB_NAME environment variable not set.")
+
+    print(f"→ Sending single event to EventHub: {EVENTHUB_NAME}")
+
+    producer = EventHubProducerClient.from_connection_string(
+        conn_str=CONNECTION_STRING,
+        eventhub_name=EVENTHUB_NAME,
+    )
+
+    try:
+        async with producer:
+            event_data_batch = await producer.create_batch()
+            event_json = json.dumps(event_data)
+            event_data_batch.add(EventData(event_json))
+            await producer.send_batch(event_data_batch)
+            print("✓ Event sent successfully")
+    except Exception as e:
+        print(f"✗ Error sending event: {e}")
+        raise
+    finally:
+        await producer.close()
+
+
+async def send_events_batch(num_events: int = 10) -> None:
+    """(Optional) Send a batch of dummy test events to Event Hub."""
+    if not CONNECTION_STRING:
+        raise ValueError(
+            "EVENTHUB_CONNECTION_STRING environment variable not set.\n"
+            "Set it in .env or export it in your shell."
+        )
+
+    if not EVENTHUB_NAME:
+        raise ValueError("EVENTHUB_NAME environment variable not set.")
+
+    print(f"Connecting to EventHub: {EVENTHUB_NAME}")
+    print(f"Namespace: {EVENTHUB_NAMESPACE}")
+    print(f"Preparing to send {num_events} test events...")
+
+    producer = EventHubProducerClient.from_connection_string(
+        conn_str=CONNECTION_STRING,
+        eventhub_name=EVENTHUB_NAME,
+    )
+
+    try:
+        async with producer:
+            event_data_batch = await producer.create_batch()
+            events_sent = 0
+
+            for i in range(num_events):
+                event_payload = create_sample_weather_event(i + 1)
+                event_json = json.dumps(event_payload)
+
+                try:
+                    event_data_batch.add(EventData(event_json))
+                    events_sent += 1
+                    print(f"✓ Added test event {i + 1} to batch: {event_payload['location']['city']}")
+                except ValueError:
+                    print(f"Batch full. Sending {events_sent} events...")
+                    await producer.send_batch(event_data_batch)
+                    print("✓ Batch sent successfully!")
+
+                    event_data_batch = await producer.create_batch()
+                    event_data_batch.add(EventData(event_json))
+                    events_sent = 1
+
+            if events_sent > 0:
+                print(f"Sending final batch of {events_sent} events...")
+                await producer.send_batch(event_data_batch)
+                print("✓ Final batch sent successfully!")
+
+        print("=" * 60)
+        print(f"✓ Successfully sent {num_events} test events to EventHub")
 
     except Exception as e:
-        print(f"   ❌ Error processing email: {e}")
-        return None
+        print(f"✗ Error sending test events: {e}")
+        raise
+    finally:
+        await producer.close()
 
 
-def process_all_emails():
-    if not IS_LOCAL_ENV:
-        print("❌ File creation only available in local environment (ENV=local)")
-        return 0, 0
+# ------------------ EMAIL → JSON → EVENT PIPELINE ------------------
 
+def collect_weather_advisories_from_email() -> List[Dict]:
+    """
+    Use your email-extractor script to:
+      - Fetch emails via Graph
+      - Extract per-email advisory JSON (station list, etc.)
+      - Optionally create & store JSON files (only in ENV=local)
+    Returns:
+      List of advisory dicts (one per email where extraction succeeded)
+    """
     print("=" * 60)
-    print("🌤️  WEATHER ADVISORY EMAIL PROCESSOR – NLP VERSION")
+    print("📥 Collecting Weather Advisories from Emails (via Graph)")
+    print(f"Environment mode: {ENV} (IS_LOCAL_ENV={IS_LOCAL_ENV})")
     print("=" * 60)
-    print("🔍 Uses label detection + NLP-style window parsing around station codes.")
-    print("🚫 No artificial defaults – only values present in mail are used\n")
 
     all_messages = get_all_messages(page_size=50)
-    successful_extractions = 0
-    skipped_emails = 0
+    total_emails = len(all_messages)
+
+    advisories: List[Dict] = []
+
+    print(f"Total emails fetched from Graph: {total_emails}")
 
     for idx, message in enumerate(all_messages):
-        subject = message.get('subject', 'No Subject')[:80]
-        print(f"\nProcessing email {idx + 1}/{len(all_messages)}: {subject}...")
+        subject = message.get("subject", "No Subject")
+        short_subject = subject[:80]
+        print(f"\nProcessing email {idx + 1}/{total_emails}: {short_subject!r}")
 
         weather_advisory = process_single_email(message)
 
-        if weather_advisory:
-            if IS_LOCAL_ENV:
-                subject_clean = sanitize_filename(message.get("subject", "No_Subject")[:30])
-                date_clean = message.get("receivedDateTime", "")[:10].replace("-", "_")
-                filename = f"{idx + 1:03d}_{date_clean}_{subject_clean}.json"
-                filepath = os.path.join(OUTPUT_DIR, filename)
+        if not weather_advisory:
+            print("   ↳ Skipped (no valid advisory extracted).")
+            continue
 
+        # If ENV=local → save JSON file per email
+        if IS_LOCAL_ENV:
+            received_dt = message.get("receivedDateTime", "")[:10].replace("-", "_")
+            subject_clean = sanitize_filename(subject[:30] or "No_Subject")
+            filename = f"{idx + 1:03d}_{received_dt}_{subject_clean}.json"
+            filepath = os.path.join(OUTPUT_DIR, filename)
+
+            try:
                 with open(filepath, "w", encoding="utf-8") as f:
                     json.dump(weather_advisory, f, indent=2, ensure_ascii=False)
+                station_count = len(weather_advisory.get("stations", []))
+                print(f"   ✓ Saved advisory JSON ({station_count} station(s)) to {filepath}")
+            except Exception as e:
+                print(f"   ✗ Error saving JSON file {filepath}: {e}")
 
-                station_count = len(weather_advisory["stations"])
-                print(f"   ✅ Extracted {station_count} station(s) – Saved to {filename}")
-
-            successful_extractions += 1
         else:
-            skipped_emails += 1
+            print("   (global ENV) Not writing JSON file, only sending to EventHub.")
 
-        time.sleep(0.2)
+        advisories.append(weather_advisory)
+
+    print("\nSummary:")
+    print(f"  Emails scanned: {total_emails}")
+    print(f"  Advisories extracted: {len(advisories)}")
+    if IS_LOCAL_ENV:
+        print(f"  JSON files directory: {OUTPUT_DIR}")
+
+    return advisories
+
+
+async def send_all_advisories_from_email() -> None:
+    """
+    High-level pipeline:
+      1) Extract advisories from email body (using your existing script)
+      2) If ENV=local → also save JSON files
+      3) Send each advisory as an Event to Azure Event Hub
+    """
+    advisories = collect_weather_advisories_from_email()
+
+    if not advisories:
+        print("No advisories to send. Exiting.")
+        return
 
     print("\n" + "=" * 60)
-    print("🎯 EMAIL PROCESSING SUMMARY")
+    print(f"🚀 Sending {len(advisories)} advisory event(s) to EventHub: {EVENTHUB_NAME}")
     print("=" * 60)
-    print(f"📧 Total emails processed: {len(all_messages)}")
-    print(f"✅ Successful extractions: {successful_extractions}")
-    print(f"⏭️  Skipped emails: {skipped_emails}")
-    print(f"📁 Files saved in: {OUTPUT_DIR}/")
 
-    return len(all_messages), successful_extractions
+    for i, advisory in enumerate(advisories, start=1):
+        print(f"\nEvent {i}/{len(advisories)}:")
+        await send_single_event(advisory)
+
+    print("\n✅ All advisory events sent successfully.")
 
 
-def main():
+# ------------------ Entrypoint ------------------
+
+def main() -> None:
+    import sys
+
+    print("=" * 60)
+    print("Azure EventHub Weather Advisory Sender (Email → Events)")
+    print("=" * 60)
+    print(f"ENV = {ENV}")
+    print(f"EVENTHUB_NAME = {EVENTHUB_NAME}")
+    print(f"EVENTHUB_NAMESPACE = {EVENTHUB_NAMESPACE}")
+    print("=" * 60)
+
+    # If you still want a CLI flag to send dummy test events:
+    # python send_events.py test 5
+    if len(sys.argv) > 1 and sys.argv[1] == "test":
+        num_events = 5
+        if len(sys.argv) > 2:
+            try:
+                num_events = int(sys.argv[2])
+            except ValueError:
+                print(f"Invalid num_events: {sys.argv[2]} (using default 5)")
+        try:
+            asyncio.run(send_events_batch(num_events))
+        except KeyboardInterrupt:
+            print("Interrupted by user")
+        except Exception as e:
+            print(f"Failed to send test events: {e}")
+            sys.exit(1)
+        return
+
+    # Default behavior: email → JSON → EventHub (with ENV-based behavior)
     try:
-        process_all_emails()
-    except requests.HTTPError as e:
-        print(f"❌ HTTP Error: {e}")
+        asyncio.run(send_all_advisories_from_email())
+    except KeyboardInterrupt:
+        print("Interrupted by user")
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Failed to process/send advisory events: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
