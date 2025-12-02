@@ -1,0 +1,16 @@
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> .\enva2a\Scripts\activate
+(enva2a) PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> python run.py
+Host Agent Response:
+📧 Email Writing Error: Missing key inputs argument! To use the Google AI API, provide (api_key) arguments. To use the Google Cloud API, provide (vertexai, project & location) arguments.
+🔍 Email Review Error: Model gpt-4o not found.
+
+(enva2a) PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent>
+
+all 3 terminals are running but still issue with azure credentails ,is it like that since a2a is developed by gooogle it wont work with azure credentail;s?
+
+my mnagaer toild to use sematic kernel ,maybe that would help run -i am attaching the official documenetation-
+https://learn.microsoft.com/en-us/semantic-kernel/get-started/quick-start-guide?pivots=programming-language-python
+
+github repo also - https://github.com/microsoft/semantic-kernel
+
+or this - https://github.com/microsoft/semantic-kernel/tree/main/python/samples/getting_started_with_agents/multi_agent_orchestration
