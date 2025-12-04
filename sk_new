@@ -1,20 +1,23 @@
-(venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic_a2a> python host.py                                       
-Enter instructions for the email:
-> weather delhi
+# writer_service.py (bottom part)
 
-[Host] Calling Writer Agent at http://localhost:8801/invoke
-[Host] http://localhost:8801/invoke -> status 500
-[Host] Response content: Internal Server Error
-[Error] Failed to call http://localhost:8801/invoke: 500 Server Error: Internal Server Error for url: http://localhost:8801/invoke
-Traceback (most recent call last):
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic_a2a\host.py", line 50, in <module>
-    main()
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic_a2a\host.py", line 35, in main
-    draft = call_agent(WRITER_URL, instruction)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic_a2a\host.py", line 15, in call_agent
-    resp.raise_for_status()
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic_a2a\venv\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: http://localhost:8801/invoke        
-(venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic_a2a> 
+from fastapi import HTTPException
+import traceback
+
+@app.post("/invoke", response_model=AgentResponse)
+async def invoke_writer(payload: AgentRequest):
+    print(f"[WriterService] Received request: {payload.input}")
+    try:
+        output = await writer_agent.run(payload.input)
+        print(f"[WriterService] Generated output: {output}")
+        return AgentResponse(agent="writer", output=output)
+    except Exception as e:
+        # Print full stacktrace in the writer terminal
+        print("[WriterService] ERROR while generating email:")
+        traceback.print_exc()
+        # Bubble up message so host can see it
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "writer"}
