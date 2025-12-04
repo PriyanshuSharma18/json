@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from semantic_kernel import Kernel
@@ -85,6 +86,15 @@ class AgentResponse(BaseModel):
 
 app = FastAPI(title="Writer Agent Service")
 
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, be more specific
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 print("[WriterService] Building kernel...")
 kernel = build_kernel()
 writer_agent = WriterAgent(kernel)
@@ -93,6 +103,261 @@ print("[WriterService] Ready.")
 
 @app.post("/invoke", response_model=AgentResponse)
 async def invoke_writer(payload: AgentRequest):
-    print("[WriterService] Received request")
+    print(f"[WriterService] Received request: {payload.input}")
     output = await writer_agent.run(payload.input)
+    print(f"[WriterService] Generated output: {output}")
     return AgentResponse(agent="writer", output=output)
+
+
+# Add a health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "writer"}
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+# reviewer_service.py
+import os
+from dataclasses import dataclass
+
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+from semantic_kernel import Kernel
+from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
+from semantic_kernel.functions import KernelFunctionFromPrompt
+
+
+# =============================
+#  SK + AZURE SETUP
+# =============================
+
+def build_kernel() -> Kernel:
+    load_dotenv()
+
+    api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
+    deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+
+    if not api_key or not endpoint or not deployment_name:
+        raise RuntimeError(
+            "Missing Azure env vars: AZURE_OPENAI_API_KEY / AZURE_OPENAI_ENDPOINT / AZURE_OPENAI_DEPLOYMENT_NAME"
+        )
+
+    kernel = Kernel()
+
+    chat_service = AzureChatCompletion(
+        service_id="azure-gpt4o",
+        api_key=api_key,
+        endpoint=endpoint,
+        deployment_name=deployment_name,
+        api_version=api_version,
+    )
+
+    kernel.add_service(chat_service)
+    return kernel
+
+
+@dataclass
+class ReviewerAgent:
+    kernel: Kernel
+
+    def __post_init__(self):
+        # SK function acting as the reviewer agent
+        self._func = KernelFunctionFromPrompt(
+            function_name="reviewer_agent",
+            plugin_name="email_agents",
+            prompt=(
+                "You are an email reviewer and improver agent.\n"
+                "You will receive a draft email between triple backticks.\n\n"
+                "Draft email:\n"
+                "```{{ $input }}```\n\n"
+                "Your job:\n"
+                "- Fix grammar, tone, and clarity.\n"
+                "- Keep the original intent.\n"
+                "- Improve professionalism but stay human.\n"
+                "- Output ONLY the improved email body, no explanations."
+            ),
+        )
+
+    async def run(self, draft_email: str) -> str:
+        result = await self.kernel.invoke(self._func, input=draft_email)
+        return str(result)
+
+
+# =============================
+#  FASTAPI APP
+# =============================
+
+class AgentRequest(BaseModel):
+    input: str
+
+
+class AgentResponse(BaseModel):
+    agent: str
+    output: str
+
+
+app = FastAPI(title="Reviewer Agent Service")
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, be more specific
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+kernel = build_kernel()
+reviewer_agent = ReviewerAgent(kernel)
+
+
+@app.post("/invoke", response_model=AgentResponse)
+async def invoke_reviewer(payload: AgentRequest):
+    """
+    HTTP endpoint for Host → ReviewerAgent.
+    Expects JSON: { "input": "<draft email>" }
+    Returns: { "agent": "reviewer", "output": "<improved email>" }
+    """
+    print(f"[ReviewerService] Received request: {payload.input}")
+    output = await reviewer_agent.run(payload.input)
+    print(f"[ReviewerService] Generated output: {output}")
+    return AgentResponse(agent="reviewer", output=output)
+
+
+# Add a health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "reviewer"}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+# host_orchestrator.py
+import sys
+import requests
+
+WRITER_URL = "http://localhost:8002/invoke"
+REVIEWER_URL = "http://localhost:8802/invoke"
+
+
+def call_agent(url: str, text: str) -> str:
+    try:
+        resp = requests.post(url, json={"input": text}, timeout=60)
+        print(f"[Debug] Response status: {resp.status_code}")
+        if resp.status_code != 200:
+            print(f"[Debug] Response content: {resp.text}")
+        resp.raise_for_status()
+        data = resp.json()
+        return data["output"]
+    except requests.exceptions.RequestException as e:
+        print(f"[Error] Failed to call {url}: {e}")
+        raise
+
+
+def main():
+    if len(sys.argv) > 1:
+        instruction = " ".join(sys.argv[1:])
+    else:
+        print("Enter instructions for the email (e.g. 'Explain today's POC status to my manager'):")
+        instruction = input("> ").strip()
+
+    if not instruction:
+        print("No instruction provided. Exiting.")
+        return
+
+    print("\n[Host] Calling Writer Agent at", WRITER_URL)
+    draft = call_agent(WRITER_URL, instruction)
+    print("\n[Host] Writer Agent draft:\n")
+    print(draft)
+
+    print("\n[Host] Calling Reviewer Agent at", REVIEWER_URL)
+    final_email = call_agent(REVIEWER_URL, draft)
+    print("\n[Host] Reviewer Agent final email:\n")
+    print(final_email)
+
+    print("\n================ FINAL EMAIL (READY TO SEND) ================\n")
+    print(final_email)
+    print("\n=============================================================\n")
+
+
+if __name__ == "__main__":
+    main()
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+writer terminal - (venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic> uvicorn writer_service:app --host 0.0.0.0 --port 8002
+[WriterService] Building kernel...
+[WriterService] Using endpoint: https://6e-openai-sandbox-aops.openai.azure.com/
+[WriterService] Using deployment: gpt-4-deployment
+[WriterService] Ready.
+INFO:     Started server process [30916]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+
+
+
+but 
+
+
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> code .
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> Invoke-RestMethod -Uri "http://localhost:8002/health" -Method Get
+Invoke-RestMethod : Not Found
+At line:1 char:1
++ Invoke-RestMethod -Uri "http://localhost:8002/health" -Method Get
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> netstat -an | findstr "8002"
+  TCP    0.0.0.0:8002           0.0.0.0:0              LISTENING
+  TCP    127.0.0.1:8002         0.0.0.0:0              LISTENING
+  TCP    [::1]:8002             [::]:0                 LISTENING
+  TCP    [::1]:8002             [::1]:51936            TIME_WAIT
+  TCP    [::1]:8002             [::1]:54420            FIN_WAIT_2
+  TCP    [::1]:8002             [::1]:60404            TIME_WAIT
+  TCP    [::1]:54420            [::1]:8002             CLOSE_WAIT
+  TCP    [::1]:63501            [::1]:8002             TIME_WAIT
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> netstat -an | findstr "8802"
+  TCP    0.0.0.0:8802           0.0.0.0:0              LISTENING
+  TCP    127.0.0.1:8802         127.0.0.1:60394        TIME_WAIT
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent>
+---------------------------------------------------------------------------------------------------------------------------------------------
+reviewr terminal - (venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic> uvicorn reviewer_service:app --host 0.0.0.0 --port 8802
+INFO:     Started server process [30348]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8802 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60386 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60394 - "GET /health HTTP/1.1" 200 OK
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+host terminal - python host_orchestrator.py "Write an email to my manager about today's Semantic Kernel + A2A POC progress"
+                                    a1\Downloads\semantic>
+[Host] Calling Writer Agent at http://localhost:8002/invoke
+[Debug] Response status: 404
+[Debug] Response content: Not Found
+[Error] Failed to call http://localhost:8002/invoke: 404 Client Error: Not Found for url: http://localhost:8002/invoke
+Traceback (most recent call last):
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 50, in <module>
+    main()
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 35, in main
+    draft = call_agent(WRITER_URL, instruction)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 15, in call_agent
+    resp.raise_for_status()
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: http://localhost:8002/invoke
+(venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic> 
