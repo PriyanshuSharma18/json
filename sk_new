@@ -1,341 +1,80 @@
-Nice, this is exactly the kind of thing SK + Azure is good at 😄
-Let’s turn your two agents into separate FastAPI microservices and have a host script do HTTP A2A-style routing between them.
-
-We’ll build 3 files:
-
-writer_service.py – Writer Agent (SK + Azure) on :8001
-
-reviewer_service.py – Reviewer Agent (SK + Azure) on :8002
-
-host_orchestrator.py – CLI “host agent” that calls Writer → Reviewer over HTTP
-
-0. Install dependencies
-
-Inside enva2a:
-
-pip install fastapi uvicorn requests semantic-kernel openai python-dotenv
-
-
-Put your secrets in .env (at the root):
-
-AZURE_OPENAI_API_KEY=YOUR_REAL_KEY_HERE
-AZURE_OPENAI_ENDPOINT=https://6e-openai-sandbox-aops.openai.azure.com/
-AZURE_OPENAI_API_VERSION=2024-12-01-preview
-AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4o
-
-
-(Don’t commit this file.)
-
-1. Writer Agent microservice – writer_service.py
-# writer_service.py
-import os
-from dataclasses import dataclass
-
-from dotenv import load_dotenv
-from fastapi import FastAPI
-from pydantic import BaseModel
-
-from semantic_kernel import Kernel
-from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
-from semantic_kernel.functions import KernelFunctionFromPrompt
-
-
-# =============================
-#  SK + AZURE SETUP
-# =============================
-
-def build_kernel() -> Kernel:
-    load_dotenv()  # load .env if present
-
-    api_key = os.getenv("AZURE_OPENAI_API_KEY")
-    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
-    deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
-
-    if not api_key or not endpoint or not deployment_name:
-        raise RuntimeError(
-            "Missing Azure env vars: AZURE_OPENAI_API_KEY / AZURE_OPENAI_ENDPOINT / AZURE_OPENAI_DEPLOYMENT_NAME"
-        )
-
-    kernel = Kernel()
-
-    chat_service = AzureChatCompletion(
-        service_id="azure-gpt4o",
-        api_key=api_key,
-        endpoint=endpoint,
-        deployment_name=deployment_name,
-        api_version=api_version,
-    )
-
-    kernel.add_service(chat_service)
-    return kernel
-
-
-@dataclass
-class WriterAgent:
-    kernel: Kernel
-
-    def __post_init__(self):
-        # SK function acting as the writer agent
-        self._func = KernelFunctionFromPrompt(
-            function_name="writer_agent",
-            plugin_name="email_agents",
-            prompt=(
-                "You are an expert email writer agent.\n"
-                "Task: Write a clear, concise, professional email.\n\n"
-                "User intent / instructions:\n"
-                "{{ $input }}\n\n"
-                "Constraints:\n"
-                "- Polite, professional tone.\n"
-                "- Under 250 words.\n"
-                "- Output ONLY the email body, no explanations."
-            ),
-        )
-
-    async def run(self, instruction: str) -> str:
-        result = await self.kernel.invoke(self._func, input=instruction)
-        return str(result)
-
-
-# =============================
-#  FASTAPI APP
-# =============================
-
-class AgentRequest(BaseModel):
-    input: str
-
-
-class AgentResponse(BaseModel):
-    agent: str
-    output: str
-
-
-app = FastAPI(title="Writer Agent Service")
-
-# Single kernel + agent instance reused across requests
-kernel = build_kernel()
-writer_agent = WriterAgent(kernel)
-
-
-@app.post("/invoke", response_model=AgentResponse)
-async def invoke_writer(payload: AgentRequest):
-    """
-    HTTP endpoint for Host → WriterAgent.
-    Expects JSON: { "input": "..." }
-    Returns: { "agent": "writer", "output": "<draft email>" }
-    """
-    output = await writer_agent.run(payload.input)
-    return AgentResponse(agent="writer", output=output)
-
-
-Run it:
-
-uvicorn writer_service:app --host 0.0.0.0 --port 8001
-
-2. Reviewer Agent microservice – reviewer_service.py
-# reviewer_service.py
-import os
-from dataclasses import dataclass
-
-from dotenv import load_dotenv
-from fastapi import FastAPI
-from pydantic import BaseModel
-
-from semantic_kernel import Kernel
-from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
-from semantic_kernel.functions import KernelFunctionFromPrompt
-
-
-# =============================
-#  SK + AZURE SETUP
-# =============================
-
-def build_kernel() -> Kernel:
-    load_dotenv()
-
-    api_key = os.getenv("AZURE_OPENAI_API_KEY")
-    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
-    deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
-
-    if not api_key or not endpoint or not deployment_name:
-        raise RuntimeError(
-            "Missing Azure env vars: AZURE_OPENAI_API_KEY / AZURE_OPENAI_ENDPOINT / AZURE_OPENAI_DEPLOYMENT_NAME"
-        )
-
-    kernel = Kernel()
-
-    chat_service = AzureChatCompletion(
-        service_id="azure-gpt4o",
-        api_key=api_key,
-        endpoint=endpoint,
-        deployment_name=deployment_name,
-        api_version=api_version,
-    )
-
-    kernel.add_service(chat_service)
-    return kernel
-
-
-@dataclass
-class ReviewerAgent:
-    kernel: Kernel
-
-    def __post_init__(self):
-        # SK function acting as the reviewer agent
-        self._func = KernelFunctionFromPrompt(
-            function_name="reviewer_agent",
-            plugin_name="email_agents",
-            prompt=(
-                "You are an email reviewer and improver agent.\n"
-                "You will receive a draft email between triple backticks.\n\n"
-                "Draft email:\n"
-                "```{{ $input }}```\n\n"
-                "Your job:\n"
-                "- Fix grammar, tone, and clarity.\n"
-                "- Keep the original intent.\n"
-                "- Improve professionalism but stay human.\n"
-                "- Output ONLY the improved email body, no explanations."
-            ),
-        )
-
-    async def run(self, draft_email: str) -> str:
-        result = await self.kernel.invoke(self._func, input=draft_email)
-        return str(result)
-
-
-# =============================
-#  FASTAPI APP
-# =============================
-
-class AgentRequest(BaseModel):
-    input: str
-
-
-class AgentResponse(BaseModel):
-    agent: str
-    output: str
-
-
-app = FastAPI(title="Reviewer Agent Service")
-
-kernel = build_kernel()
-reviewer_agent = ReviewerAgent(kernel)
-
-
-@app.post("/invoke", response_model=AgentResponse)
-async def invoke_reviewer(payload: AgentRequest):
-    """
-    HTTP endpoint for Host → ReviewerAgent.
-    Expects JSON: { "input": "<draft email>" }
-    Returns: { "agent": "reviewer", "output": "<improved email>" }
-    """
-    output = await reviewer_agent.run(payload.input)
-    return AgentResponse(agent="reviewer", output=output)
-
-
-Run it:
-
-uvicorn reviewer_service:app --host 0.0.0.0 --port 8002
-
-
-Now you have two remote SK agents, each on its own port, both using your Azure GPT-4o deployment.
-
-3. Host “A2A router” – host_orchestrator.py
-
-This script:
-
-Takes high-level instructions from CLI.
-
-Calls Writer microservice (:8001/invoke) to get a draft.
-
-Calls Reviewer microservice (:8002/invoke) with that draft.
-
-Prints both draft and final email.
-
-# host_orchestrator.py
-import sys
-import requests
-
-WRITER_URL = "http://localhost:8001/invoke"
-REVIEWER_URL = "http://localhost:8002/invoke"
-
-
-def call_agent(url: str, text: str) -> str:
-    resp = requests.post(url, json={"input": text}, timeout=60)
-    resp.raise_for_status()
-    data = resp.json()
-    return data["output"]
-
-
-def main():
-    if len(sys.argv) > 1:
-        instruction = " ".join(sys.argv[1:])
-    else:
-        print("Enter instructions for the email (e.g. 'Explain today’s POC status to my manager'):")
-        instruction = input("> ").strip()
-
-    if not instruction:
-        print("No instruction provided. Exiting.")
-        return
-
-    print("\n[Host] Calling Writer Agent at", WRITER_URL)
-    draft = call_agent(WRITER_URL, instruction)
-    print("\n[Host] Writer Agent draft:\n")
-    print(draft)
-
-    print("\n[Host] Calling Reviewer Agent at", REVIEWER_URL)
-    final_email = call_agent(REVIEWER_URL, draft)
-    print("\n[Host] Reviewer Agent final email:\n")
-    print(final_email)
-
-    print("\n================ FINAL EMAIL (READY TO SEND) ================\n")
-    print(final_email)
-    print("\n=============================================================\n")
-
-
-if __name__ == "__main__":
+(venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic> python host_orchestrator.py "Write an email to my manager about today's Semantic Kernel + A2A POC progress"
+
+[Host] Calling Writer Agent at http://localhost:8801/invoke
+Traceback (most recent call last):
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen      
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+  File "C:\Users\Priyanshu.x.Sharma1\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1326, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Users\Priyanshu.x.Sharma1\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1085, in _send_output
+    self.send(msg)
+  File "C:\Users\Priyanshu.x.Sharma1\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1029, in send
+    self.connect()
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn        
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x00000194012A6F00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen      
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8801): Max retries exceeded with url: /invoke (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000194012A6F00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 43, in <module>
     main()
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 28, in main
+    draft = call_agent(WRITER_URL, instruction)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 10, in call_agent
+    resp = requests.post(url, json={"input": text}, timeout=60)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8801): Max retries exceeded with url: /invoke (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000194012A6F00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+(venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic>
 
 
-Run the full flow:
 
-# Terminal 1
-uvicorn writer_service:app --host 0.0.0.0 --port 8001
-
-# Terminal 2
-uvicorn reviewer_service:app --host 0.0.0.0 --port 8002
-
-# Terminal 3
-python host_orchestrator.py "Write an email to my manager about today's Semantic Kernel + A2A POC progress"
-
-
-You’ll see:
-
-Host logs + draft email
-
-Then reviewer’s improved version
-
-Finally the “FINAL EMAIL” block.
-
-How this matches “A2A + SK using my Azure cred”
-
-Each agent is its own microservice (FastAPI), just like your Google A2A sample but:
-
-Internally using Semantic Kernel.
-
-Internally calling Azure OpenAI GPT-4o via AzureChatCompletion.
-
-Host does A2A-style routing:
-
-It doesn’t call Azure directly.
-
-It only talks to agents via HTTP JSON.
-
-Agents themselves handle all SK + LLM logic.
-
-If you want next, we can:
-
-Add a third “Planner” agent service (planner_service.py) and let the host route Planner → Writer → Reviewer.
-
-Or make the host itself a FastAPI Orchestrator service that your front-end or another system calls.
