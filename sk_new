@@ -1,80 +1,98 @@
-(venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic> python host_orchestrator.py "Write an email to my manager about today's Semantic Kernel + A2A POC progress"
+# writer_service.py
+import os
+from dataclasses import dataclass
 
-[Host] Calling Writer Agent at http://localhost:8801/invoke
-Traceback (most recent call last):
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen      
-    response = self._make_request(
-               ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
-    conn.request(
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 494, in request
-    self.endheaders()
-  File "C:\Users\Priyanshu.x.Sharma1\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1326, in endheaders
-    self._send_output(message_body, encode_chunked=encode_chunked)
-  File "C:\Users\Priyanshu.x.Sharma1\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1085, in _send_output
-    self.send(msg)
-  File "C:\Users\Priyanshu.x.Sharma1\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1029, in send
-    self.connect()
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
-    self.sock = self._new_conn()
-                ^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn        
-    raise NewConnectionError(
-urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x00000194012A6F00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\adapters.py", line 644, in send
-    resp = conn.urlopen(
-           ^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen      
-    retries = retries.increment(
-              ^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
-    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8801): Max retries exceeded with url: /invoke (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000194012A6F00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 43, in <module>
-    main()
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 28, in main
-    draft = call_agent(WRITER_URL, instruction)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\host_orchestrator.py", line 10, in call_agent
-    resp = requests.post(url, json={"input": text}, timeout=60)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\api.py", line 115, in post
-    return request("post", url, data=data, json=json, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\api.py", line 59, in request
-    return session.request(method=method, url=url, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\sessions.py", line 589, in request
-    resp = self.send(prep, **send_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\sessions.py", line 703, in send
-    r = adapter.send(request, **kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Priyanshu.x.Sharma1\Downloads\semantic\venv\Lib\site-packages\requests\adapters.py", line 677, in send
-    raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8801): Max retries exceeded with url: /invoke (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000194012A6F00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
-(venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic>
+from semantic_kernel import Kernel
+from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
+from semantic_kernel.functions import KernelFunctionFromPrompt
 
 
+# =============================
+#  SK + AZURE SETUP
+# =============================
 
+def build_kernel() -> Kernel:
+    load_dotenv()  # loads .env in the same folder
+
+    api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
+    deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+
+    if not api_key or not endpoint or not deployment_name:
+        raise RuntimeError(
+            "Missing Azure env vars: AZURE_OPENAI_API_KEY / AZURE_OPENAI_ENDPOINT / AZURE_OPENAI_DEPLOYMENT_NAME"
+        )
+
+    print("[WriterService] Using endpoint:", endpoint)
+    print("[WriterService] Using deployment:", deployment_name)
+
+    kernel = Kernel()
+
+    chat_service = AzureChatCompletion(
+        service_id="azure-gpt4o",
+        api_key=api_key,
+        endpoint=endpoint,
+        deployment_name=deployment_name,
+        api_version=api_version,
+    )
+
+    kernel.add_service(chat_service)
+    return kernel
+
+
+@dataclass
+class WriterAgent:
+    kernel: Kernel
+
+    def __post_init__(self):
+        self._func = KernelFunctionFromPrompt(
+            function_name="writer_agent",
+            plugin_name="email_agents",
+            prompt=(
+                "You are an expert email writer agent.\n"
+                "Task: Write a clear, concise, professional email.\n\n"
+                "User intent / instructions:\n"
+                "{{ $input }}\n\n"
+                "Constraints:\n"
+                "- Polite, professional tone.\n"
+                "- Under 250 words.\n"
+                "- Output ONLY the email body, no explanations."
+            ),
+        )
+
+    async def run(self, instruction: str) -> str:
+        result = await self.kernel.invoke(self._func, input=instruction)
+        return str(result)
+
+
+# =============================
+#  FASTAPI APP
+# =============================
+
+class AgentRequest(BaseModel):
+    input: str
+
+
+class AgentResponse(BaseModel):
+    agent: str
+    output: str
+
+
+app = FastAPI(title="Writer Agent Service")
+
+print("[WriterService] Building kernel...")
+kernel = build_kernel()
+writer_agent = WriterAgent(kernel)
+print("[WriterService] Ready.")
+
+
+@app.post("/invoke", response_model=AgentResponse)
+async def invoke_writer(payload: AgentRequest):
+    print("[WriterService] Received request")
+    output = await writer_agent.run(payload.input)
+    return AgentResponse(agent="writer", output=output)
