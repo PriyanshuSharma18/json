@@ -1,4 +1,4 @@
-# writer_service.py
+-# writer_service.py
 import os
 from dataclasses import dataclass
 
@@ -361,3 +361,59 @@ Traceback (most recent call last):
     raise HTTPError(http_error_msg, response=self)
 requests.exceptions.HTTPError: 404 Client Error: Not Found for url: http://localhost:8002/invoke
 (venv) PS C:\Users\Priyanshu.x.Sharma1\Downloads\semantic> 
+--------------------------------------------------------------------------------------------------------------------------------------------
+in cmd-
+Invoke-RestMethod : Not Found
+At line:1 char:1
++ Invoke-RestMethod -Uri "http://localhost:8002/health" -Method Get
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> netstat -an | findstr "8002"
+  TCP    0.0.0.0:8002           0.0.0.0:0              LISTENING
+  TCP    127.0.0.1:8002         0.0.0.0:0              LISTENING
+  TCP    [::1]:8002             [::]:0                 LISTENING
+  TCP    [::1]:8002             [::1]:51936            TIME_WAIT
+  TCP    [::1]:8002             [::1]:54420            FIN_WAIT_2
+  TCP    [::1]:8002             [::1]:60404            TIME_WAIT
+  TCP    [::1]:54420            [::1]:8002             CLOSE_WAIT
+  TCP    [::1]:63501            [::1]:8002             TIME_WAIT
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> netstat -an | findstr "8802"
+  TCP    0.0.0.0:8802           0.0.0.0:0              LISTENING
+  TCP    127.0.0.1:8802         127.0.0.1:60394        TIME_WAIT
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> Invoke-RestMethod -Uri "http://localhost:8002/health" -Method Get
+Invoke-RestMethod : Not Found
+At line:1 char:1
++ Invoke-RestMethod -Uri "http://localhost:8002/health" -Method Get
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> Invoke-RestMethod -Uri "http://localhost:8802/health" -Method Get
+
+status  service
+------  -------
+healthy reviewer
+
+
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> # Test writer service
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> Invoke-RestMethod -Uri "http://localhost:8002/invoke" -Method Post -Body '{"input": "Write a test email"}' -ContentType "application/json"
+Invoke-RestMethod : Not Found
+At line:1 char:1
++ Invoke-RestMethod -Uri "http://localhost:8002/invoke" -Method Post -B ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent>
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> # Test reviewer service
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent> Invoke-RestMethod -Uri "http://localhost:8802/invoke" -Method Post -Body '{"input": "This is a test email to review"}' -ContentType "application/json"
+Invoke-RestMethod : Internal Server Error
+At line:1 char:1
++ Invoke-RestMethod -Uri "http://localhost:8802/invoke" -Method Post -B ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+PS C:\Users\Priyanshu.x.Sharma1\Downloads\agent_to_agent>
