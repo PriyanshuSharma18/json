@@ -1,584 +1,997 @@
-{
-  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('metstratosphere%40goIndiGo.in')/messages",
-  "value": [
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbm26\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAAAOvcdV-dBT6UGKiOiQMB-AAAlcT55AAA=",
-      "createdDateTime": "2025-12-12T06:39:07Z",
-      "lastModifiedDateTime": "2025-12-12T06:40:23Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbm26",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T06:39:07Z",
-      "sentDateTime": "2025-12-12T06:39:05Z",
-      "hasAttachments": false,
-      "internetMessageId": "<BM1PR01MB2898708FF6A1D62530753771A5AEA@BM1PR01MB2898.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "Met Advisory for OPS SOLVER (Stratosphere)  12/12/2025 @ 1200 IST",
-      "bodyPreview": "Dear Team,\r\n\r\nMet Advisory is as below:\r\n\r\nWeather Advisory Domestic stations\r\nStation\r\nAdvisory Time Period Start (UTC)\r\nAdvisory Time Period Start (LT)\r\nAdvisory Time Period End (UTC)\r\nAdvisory Time Period End (LT)\r\nWeather Phenomenon\r\nOperational Proba",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQACWilncWdSFIsW8XqNvxgk8=",
-      "conversationIndex": "AQHcazIDJaKWdxZ1IUixbxeo2/GCTw==",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAhCGOAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcT55AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\"><style>\r\n<!--\r\n@font-face\r\n\t{font-family:\"Cambria Math\"}\r\n@font-face\r\n\t{font-family:Calibri}\r\n@font-face\r\n\t{font-family:Aptos}\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:12.0pt;\r\n\tfont-family:\"Aptos\",sans-serif}\r\nspan.EmailStyle19\r\n\t{font-family:\"Aptos\",sans-serif;\r\n\tcolor:windowtext}\r\n.MsoChpDefault\r\n\t{font-size:10.0pt}\r\n@page WordSection1\r\n\t{margin:1.0in 1.0in 1.0in 1.0in}\r\ndiv.WordSection1\r\n\t{}\r\n-->\r\n</style></head><body lang=\"EN-US\" link=\"#467886\" vlink=\"#96607D\" style=\"word-wrap:break-word\"><div class=\"WordSection1\"><p class=\"MsoNormal\"><i><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Dear Team,</span></i></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met Advisory is as below:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><table class=\"MsoNormalTable\" border=\"1\" cellspacing=\"3\" cellpadding=\"0\" width=\"635\" style=\"width:476.35pt; border:solid windowtext 1.0pt\"><tbody><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory Domestic stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Station</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Phenomenon</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Probability</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NIL</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NOSIG</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td></tr><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory International stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NIL</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NOSIG</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td></tr></tbody></table><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Severity Matrix:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">CAT-III stations to have maximum Probability in 31%-70% block</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">. For CAT-II Stations, it can be above 70% in case weather expected to be non-operatable.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Above Weather Advisory is not for Fog/mist occurrence <b>but for expected Visibility/RVR below respective station minima</b>.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><br>Probability 71%-100% ---- Severity High ( Red)<br>Probability 31%-70% ----- Severity Medium (Amber)<br>Probability 0%-30% ------ Severity Low (Green)</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Regards,</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met</span></p><p class=\"MsoNormal\"><span lang=\"EN-IN\" style=\"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-serif\">&nbsp;</span></p><p class=\"MsoNormal\">&nbsp;</p></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "Met",
-          "address": "Met@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "Met",
-          "address": "Met@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "metstratosphere",
-            "address": "metstratosphere@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [
-        {
-          "emailAddress": {
-            "name": "Santosh Kumar Prasad (OCC,ISC)",
-            "address": "SANTOSH.PRASAD@goIndiGo.in"
-          }
-        },
-        {
-          "emailAddress": {
-            "name": "Sunil Anto Fernandes (OCC,ISC)",
-            "address": "Sunil.Fernandes@goIndiGo.in"
-          }
-        },
-        {
-          "emailAddress": {
-            "name": "#Met",
-            "address": "#Met@GOINDIGO.IN"
-          }
-        }
-      ],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbm29\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAAAOvcdV-dBT6UGKiOiQMB-AAAlcVP2AAA=",
-      "createdDateTime": "2025-12-12T06:40:21Z",
-      "lastModifiedDateTime": "2025-12-12T06:40:23Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbm29",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T06:40:22Z",
-      "sentDateTime": "2025-12-12T06:40:21Z",
-      "hasAttachments": false,
-      "internetMessageId": "<PN0PR01MB6267E966542F93E9BAF7148EB3AEA@PN0PR01MB6267.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "RE: Met Advisory for OPS SOLVER (Stratosphere)  12/12/2025 @ 1200 IST",
-      "bodyPreview": "Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Invalid / improperly formatted parameter(s): - station - advisoryTimePeriodStartUTC - weatherPhenomenon",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQACWilncWdSFIsW8XqNvxgk8=",
-      "conversationIndex": "AQHcazIDJaKWdxZ1IUixbxeo2/GCT7UdjfzR",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAAAEJAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcVP2AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\"><style>\r\n<!--\r\n@font-face\r\n\t{font-family:\"Cambria Math\"}\r\n@font-face\r\n\t{font-family:Calibri}\r\n@font-face\r\n\t{font-family:Aptos}\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:12.0pt;\r\n\tfont-family:\"Aptos\",sans-serif}\r\nspan.EmailStyle19\r\n\t{font-family:\"Aptos\",sans-serif;\r\n\tcolor:windowtext}\r\n.MsoChpDefault\r\n\t{font-size:10.0pt}\r\n@page WordSection1\r\n\t{margin:1.0in 1.0in 1.0in 1.0in}\r\n-->\r\n</style></head><body lang=\"EN-US\" link=\"#467886\" vlink=\"#96607D\" style=\"word-wrap:break-word\">Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Invalid / improperly formatted parameter(s): - station - advisoryTimePeriodStartUTC - weatherPhenomenon - operationProbability - advisoryTimePeriodEndUTC Additional details: - Field labels are present, but values are missing or not in the expected format. Required parameters are: - station - advisoryTimePeriodStartUTC - weatherPhenomenon - operationProbability - advisoryTimePeriodEndUTC Please ensure all required parameters are present and in the correct format, then resend the advisory email so that it can be processed and forwarded to Event Hub. This is an automated notification. No reply is necessary. <hr tabindex=\"-1\" style=\"display:inline-block; width:98%\"><div id=\"divRplyFwdMsg\" dir=\"ltr\"><font face=\"Calibri, sans-serif\" color=\"#000000\" style=\"font-size:11pt\"><b>From:</b> Met &lt;Met@goIndiGo.in&gt;<br><b>Sent:</b> Friday, December 12, 2025 6:39:05 AM<br><b>To:</b> metstratosphere &lt;metstratosphere@goIndiGo.in&gt;<br><b>Cc:</b> Santosh Kumar Prasad (OCC,ISC) &lt;SANTOSH.PRASAD@goIndiGo.in&gt;; Sunil Anto Fernandes (OCC,ISC) &lt;Sunil.Fernandes@goIndiGo.in&gt;; #Met &lt;#Met@GOINDIGO.IN&gt;<br><b>Subject:</b> Met Advisory for OPS SOLVER (Stratosphere) 12/12/2025 @ 1200 IST</font> <div>&nbsp;</div></div><div><div class=\"WordSection1\"><p class=\"MsoNormal\"><i><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Dear Team,</span></i></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met Advisory is as below:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><table class=\"MsoNormalTable\" border=\"1\" cellspacing=\"3\" cellpadding=\"0\" width=\"635\" style=\"width:476.35pt; border:solid windowtext 1.0pt\"><tbody><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory Domestic stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Station</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Phenomenon</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Probability</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NIL</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NOSIG</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td></tr><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory International stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NIL</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NOSIG</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td></tr></tbody></table><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Severity Matrix:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">CAT-III stations to have maximum Probability in 31%-70% block</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">. For CAT-II Stations, it can be above 70% in case weather expected to be non-operatable.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Above Weather Advisory is not for Fog/mist occurrence <b>but for expected Visibility/RVR below respective station minima</b>.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><br>Probability 71%-100% ---- Severity High ( Red)<br>Probability 31%-70% ----- Severity Medium (Amber)<br>Probability 0%-30% ------ Severity Low (Green)</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Regards,</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met</span></p><p class=\"MsoNormal\"><span lang=\"EN-IN\" style=\"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-serif\">&nbsp;</span></p><p class=\"MsoNormal\">&nbsp;</p></div></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "Met",
-            "address": "Met@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbm3w\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAAAOvcdV-dBT6UGKiOiQMB-AAAlcVP3AAA=",
-      "createdDateTime": "2025-12-12T07:44:39Z",
-      "lastModifiedDateTime": "2025-12-12T07:45:09Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbm3w",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T07:44:51Z",
-      "sentDateTime": "2025-12-12T07:44:50Z",
-      "hasAttachments": false,
-      "internetMessageId": "<PN0PR01MB626774A9C6E8A1CBD61F1920B3AEA@PN0PR01MB6267.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "Fw: Met Advisory for OPS SOLVER",
-      "bodyPreview": "Get Outlook for iOS\r\n________________________________\r\nFrom: Dipanjan Chowdhury (OCC,ISC) <Dipanjan.chowdhury@goIndiGo.in>\r\nSent: Thursday, December 11, 2025 7:51:36 PM\r\nTo: metstratosphere <metstratosphere@goIndiGo.in>\r\nCc: Deepak Lamba (OCC,ISC) <De",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAFNtCDUKGEPinqcHR1rZUZA=",
-      "conversationIndex": "AdxqqWZ4U20INQoYQ+KepwdHWtlRkAAkcUT9",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAAAEJAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcVP3AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body><div dir=\"ltr\" style=\"font-family:Aptos,Aptos_MSFontService,-apple-system,Roboto,Arial,Helvetica,sans-serif; font-size:12pt\"><br></div><div id=\"ms-outlook-mobile-body-separator-line\" data-applydefaultfontstyles=\"true\" dir=\"ltr\" style=\"font-family:Aptos,Aptos_MSFontService,-apple-system,Roboto,Arial,Helvetica,sans-serif; font-size:12pt\"><div dir=\"ltr\" style=\"font-family:Aptos,Aptos_MSFontService,-apple-system,Roboto,Arial,Helvetica,sans-serif; font-size:12pt\"><br></div></div><div id=\"ms-outlook-mobile-signature\" style=\"font-family:Aptos,Aptos_MSFontService,-apple-system,Roboto,Arial,Helvetica,sans-serif; font-size:12pt\"><span style=\"font-family:Aptos,Aptos_MSFontService,-apple-system,Roboto,Arial,Helvetica,sans-serif; font-size:12pt\">Get <a href=\"https://aka.ms/o0ukef\">Outlook for iOS</a></span></div><hr tabindex=\"-1\" style=\"display:inline-block; width:98%\"><div id=\"divRplyFwdMsg\" dir=\"ltr\"><font face=\"Calibri, sans-serif\" color=\"#000000\" style=\"font-size:11pt\"><b>From:</b> Dipanjan Chowdhury (OCC,ISC) &lt;Dipanjan.chowdhury@goIndiGo.in&gt;<br><b>Sent:</b> Thursday, December 11, 2025 7:51:36 PM<br><b>To:</b> metstratosphere &lt;metstratosphere@goIndiGo.in&gt;<br><b>Cc:</b> Deepak Lamba (OCC,ISC) &lt;Deepak.Lamba@goIndiGo.in&gt;; Shaik, Tanveer &lt;tanveer.shaik@jepp.org&gt;; nikhil.deshmukh2@jepp.org &lt;nikhil.deshmukh2@jepp.org&gt;; Rajat . (Digital,ISC) &lt;Rajat@goIndiGo.in&gt;; Parminder Singh (OCC,ISC) &lt;PARMINDER.SINGH1@goIndiGo.in&gt;<br><b>Subject:</b> Met Advisory for OPS SOLVER</font> <div>&nbsp;</div></div><style>\r\n<!--\r\n@font-face\r\n\t{font-family:\"Cambria Math\"}\r\n@font-face\r\n\t{font-family:Calibri}\r\n@font-face\r\n\t{font-family:Aptos}\r\n@font-face\r\n\t{font-family:\"Aptos Narrow\"}\r\np.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal\r\n\t{margin:0cm;\r\n\tfont-size:10.0pt;\r\n\tfont-family:\"Aptos\",sans-serif}\r\nspan.x_EmailStyle17\r\n\t{font-family:\"Calibri\",sans-serif;\r\n\tcolor:windowtext}\r\n.x_MsoChpDefault\r\n\t{font-size:11.0pt}\r\n.x_MsoPapDefault\r\n\t{margin-bottom:8.0pt;\r\n\tline-height:107%}\r\n@page WordSection1\r\n\t{margin:72.0pt 72.0pt 72.0pt 72.0pt}\r\n-->\r\n</style><div lang=\"EN-US\" style=\"word-wrap:break-word\"><div class=\"x_WordSection1\"><table class=\"x_MsoNormalTable\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\" width=\"775\" style=\"width:581.0pt; border-collapse:collapse; border:none\"><tbody><tr style=\"height:43.2pt\"><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Station</span></b></p></td><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-left:none; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Advisory Time period Start (UTC)</span></b></p></td><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-left:none; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Advisory Time period Start (LT)</span></b></p></td><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-left:none; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Advisory Time period End (UTC)</span></b></p></td><td width=\"93\" style=\"width:70.0pt; border:solid windowtext 1.0pt; border-left:none; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Advisory Time period End (LT)</span></b></p></td><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-left:none; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Weather Phenomenon</span></b></p></td><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-left:none; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Operational Probability</span></b></p></td><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-left:none; padding:0cm 5.4pt 0cm 5.4pt; height:43.2pt\"><p class=\"x_MsoNormal\" align=\"center\" style=\"text-align:center\"><b><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">Status</span></b></p></td></tr><tr style=\"height:14.4pt\"><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-top:none; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">PAT<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">1330/11 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">1900/11 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">1930/11 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"93\" style=\"width:70.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">0100/12 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">FG<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">100%<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" valign=\"bottom\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\"><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">CANCEL</span></p></td></tr><tr style=\"height:14.4pt\"><td width=\"97\" valign=\"bottom\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-top:none; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\"><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">PAT</span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">1530/11 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">2100/11 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">2030/11 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"93\" style=\"width:70.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">0200/12 Dec<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">FG<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">100%<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" valign=\"bottom\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\"><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">NEW</span></p></td></tr><tr style=\"height:14.4pt\"><td width=\"97\" style=\"width:73.0pt; border:solid windowtext 1.0pt; border-top:none; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">GAU<span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\"></span></p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">1530/11 Dec</p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">2100/11 Dec</p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">0200/12 Dec</p></td><td width=\"93\" style=\"width:70.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">0730/12 Dec</p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">FG</p></td><td width=\"97\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\">100%</p></td><td width=\"97\" valign=\"bottom\" style=\"width:73.0pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt; height:14.4pt\"><p class=\"x_MsoNormal\"><span style=\"font-size:11.0pt; font-family:&quot;Aptos Narrow&quot;,sans-serif; color:black\">CANCEL</span></p></td></tr></tbody></table><p class=\"x_MsoNormal\"><span style=\"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-serif\">&nbsp;</span></p><p class=\"x_MsoNormal\"><span style=\"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-serif\">&nbsp;</span></p><p class=\"x_MsoNormal\"><span style=\"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-serif\">&nbsp;</span></p></div></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "Bhavish Makkar (Digital,ISC) (X-AIONOS)",
-            "address": "Bhavish.x.Makkar@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnOq\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAAAOvcdV-dBT6UGKiOiQMB-AAAlcT57AAA=",
-      "createdDateTime": "2025-12-12T09:21:22Z",
-      "lastModifiedDateTime": "2025-12-12T11:04:49Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnOq",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T09:21:22Z",
-      "sentDateTime": "2025-12-12T09:21:20Z",
-      "hasAttachments": false,
-      "internetMessageId": "<MAZPR01MB87743C268E630057772A3E17E7AEA@MAZPR01MB8774.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "Test Purpose",
-      "bodyPreview": "Station\r\n\r\nAdvisory Time period Start (UTC)\r\n\r\nAdvisory Time period Start (LT)\r\n\r\nAdvisory Time period End (UTC)\r\n\r\nAdvisory Time period End (LT)\r\n\r\nWeather Phenomenon\r\n\r\nOperational Probability\r\n\r\nStatus\r\n\r\nJFK\r\n\r\n1430/11 Dec\r\n\r\n1900/11 Dec\r\n\r\n1930/11 De",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAEV82fatWOVDt1wF2F4csak=",
-      "conversationIndex": "AQHca0d1RXzZ9q1Y5UO3XAXYXhyxqQ==",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAhCGOAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcT57AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><style type=\"text/css\" style=\"display:none\">\r\n<!--\r\np\r\n\t{margin-top:0;\r\n\tmargin-bottom:0}\r\n-->\r\n</style></head><body dir=\"ltr\"><table data-olk-copy-source=\"MessageBody\" cellpadding=\"0\" cellspacing=\"0\" style=\"text-align:left; background-color:rgb(255,255,255); width:581pt; color:rgb(36,36,36); border-collapse:collapse; border-spacing:0px; box-sizing:border-box\"><tbody><tr><td style=\"text-align:left; border-width:1pt; border-style:solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Station</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Weather Phenomenon</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Operational Probability</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Status</b></span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">JFK</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1430/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1900/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1930/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0100/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">45%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">DFW</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1630/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2030/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">75%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">NEW</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">SFO</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0730/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr></tbody></table><div class=\"elementToProof\"><br></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-          "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-          "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "metstratosphere",
-            "address": "metstratosphere@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnOS\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAAAOvcdV-dBT6UGKiOiQMB-AAAlcT56AAA=",
-      "createdDateTime": "2025-12-12T09:31:58Z",
-      "lastModifiedDateTime": "2025-12-12T11:04:42Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnOS",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T09:31:58Z",
-      "sentDateTime": "2025-12-12T09:31:56Z",
-      "hasAttachments": false,
-      "internetMessageId": "<MAZPR01MB8774F63C046D9F778240F272E7AEA@MAZPR01MB8774.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "test",
-      "bodyPreview": "\r\n\r\nStation\r\n\r\nAdvisory Time period Start (UTC)\r\n\r\nAdvisory Time period Start (LT)\r\n\r\nAdvisory Time period End (UTC)\r\n\r\nAdvisory Time period End (LT)\r\n\r\nWeather Phenomenon\r\n\r\nOperational Probability\r\n\r\nStatus\r\n\r\nDTW\r\n\r\n1330/11 Dec\r\n\r\n1900/11 Dec\r\n\r\n1930/",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAOnL9RRIDXBIhbG2N_MwefA=",
-      "conversationIndex": "AQHca0oC6cv1FEgNcEiFsbY34zB58A==",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAhCGOAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcT56AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><style type=\"text/css\" style=\"display:none\">\r\n<!--\r\np\r\n\t{margin-top:0;\r\n\tmargin-bottom:0}\r\n-->\r\n</style></head><body dir=\"ltr\"><div class=\"elementToProof\" style=\"text-align:left; text-indent:0px; background-color:rgb(255,255,255); margin:0px; font-family:FluentSystemIcons; font-size:20px; color:currentcolor\"><span style=\"background-color:rgb(245,245,245); line-height:1em\">&#57613;</span></div><table cellpadding=\"0\" cellspacing=\"0\" style=\"text-align:left; background-color:rgb(255,255,255); width:581pt; color:rgb(36,36,36); border-collapse:collapse; border-spacing:0px; box-sizing:border-box\"><tbody><tr><td style=\"text-align:left; border-width:1pt; border-style:solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Station</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Weather Phenomenon</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Operational Probability</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Status</b></span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">DTW</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1330/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1900/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1930/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0100/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">NEW</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">ATL</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2030/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">ORD</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0730/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">NEW</span></p></td></tr></tbody></table><div class=\"elementToProof\" style=\"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)\"><br></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-          "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-          "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "metstratosphere",
-            "address": "metstratosphere@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnPe\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAAAOvcdV-dBT6UGKiOiQMB-AAAlcVP4AAA=",
-      "createdDateTime": "2025-12-12T11:04:39Z",
-      "lastModifiedDateTime": "2025-12-12T12:38:13Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnPe",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T11:04:40Z",
-      "sentDateTime": "2025-12-12T11:04:39Z",
-      "hasAttachments": false,
-      "internetMessageId": "<PN0PR01MB6267F75E4B8F0B47E7F99A1CB3AEA@PN0PR01MB6267.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "RE: test",
-      "bodyPreview": "Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Invalid / improperly formatted parameter(s): - operationProbability - station - weatherPhenomenon - adv",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAOnL9RRIDXBIhbG2N_MwefA=",
-      "conversationIndex": "AQHca0oC6cv1FEgNcEiFsbY34zB58LUd16S4",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAAAEJAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcVP4AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><style type=\"text/css\" style=\"display:none\">\r\n<!--\r\np\r\n\t{margin-top:0;\r\n\tmargin-bottom:0}\r\n-->\r\n</style></head><body dir=\"ltr\">Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Invalid / improperly formatted parameter(s): - operationProbability - station - weatherPhenomenon - advisoryTimePeriodEndUTC - advisoryTimePeriodStartUTC Additional details: - Field labels are present, but values are missing or not in the expected format. Required parameters are: - operationProbability - station - weatherPhenomenon - advisoryTimePeriodEndUTC - advisoryTimePeriodStartUTC Please ensure all required parameters are present and in the correct format, then resend the advisory email so that it can be processed and forwarded to Event Hub. This is an automated notification. No reply is necessary. <hr tabindex=\"-1\" style=\"display:inline-block; width:98%\"><div id=\"divRplyFwdMsg\" dir=\"ltr\"><font face=\"Calibri, sans-serif\" color=\"#000000\" style=\"font-size:11pt\"><b>From:</b> Priyanshu Sharma (Digital,ISC) (X-AIONOS) &lt;Priyanshu.x.Sharma1@goIndiGo.in&gt;<br><b>Sent:</b> Friday, December 12, 2025 9:31:56 AM<br><b>To:</b> metstratosphere &lt;metstratosphere@goIndiGo.in&gt;<br><b>Subject:</b> test</font> <div>&nbsp;</div></div><div><div class=\"elementToProof\" style=\"text-align:left; text-indent:0px; background-color:rgb(255,255,255); margin:0px; font-family:FluentSystemIcons; font-size:20px; color:currentcolor\"><span style=\"background-color:rgb(245,245,245); line-height:1em\">&#57613;</span></div><table cellpadding=\"0\" cellspacing=\"0\" style=\"text-align:left; background-color:rgb(255,255,255); width:581pt; color:rgb(36,36,36); border-collapse:collapse; border-spacing:0px; box-sizing:border-box\"><tbody><tr><td style=\"text-align:left; border-width:1pt; border-style:solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Station</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Weather Phenomenon</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Operational Probability</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Status</b></span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">DTW</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1330/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1900/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1930/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0100/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">NEW</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">ATL</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2030/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">ORD</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0730/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">NEW</span></p></td></tr></tbody></table><div class=\"elementToProof\" style=\"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)\"><br></div></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-            "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnOo\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAAAOvcdV-dBT6UGKiOiQMB-AAAlcVP5AAA=",
-      "createdDateTime": "2025-12-12T11:04:45Z",
-      "lastModifiedDateTime": "2025-12-12T11:04:47Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnOo",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T11:04:46Z",
-      "sentDateTime": "2025-12-12T11:04:45Z",
-      "hasAttachments": false,
-      "internetMessageId": "<PN0PR01MB62670B9D0699AD5527DBB9A2B3AEA@PN0PR01MB6267.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "RE: Test Purpose",
-      "bodyPreview": "Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Invalid / improperly formatted parameter(s): - operationProbability - station - weatherPhenomenon - adv",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAEV82fatWOVDt1wF2F4csak=",
-      "conversationIndex": "AQHca0d1RXzZ9q1Y5UO3XAXYXhyxqbUd17Fc",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAAAEJAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcVP5AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><style type=\"text/css\" style=\"display:none\">\r\n<!--\r\np\r\n\t{margin-top:0;\r\n\tmargin-bottom:0}\r\n-->\r\n</style></head><body dir=\"ltr\">Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Invalid / improperly formatted parameter(s): - operationProbability - station - weatherPhenomenon - advisoryTimePeriodEndUTC - advisoryTimePeriodStartUTC Additional details: - Field labels are present, but values are missing or not in the expected format. Required parameters are: - operationProbability - station - weatherPhenomenon - advisoryTimePeriodEndUTC - advisoryTimePeriodStartUTC Please ensure all required parameters are present and in the correct format, then resend the advisory email so that it can be processed and forwarded to Event Hub. This is an automated notification. No reply is necessary. <hr tabindex=\"-1\" style=\"display:inline-block; width:98%\"><div id=\"divRplyFwdMsg\" dir=\"ltr\"><font face=\"Calibri, sans-serif\" color=\"#000000\" style=\"font-size:11pt\"><b>From:</b> Priyanshu Sharma (Digital,ISC) (X-AIONOS) &lt;Priyanshu.x.Sharma1@goIndiGo.in&gt;<br><b>Sent:</b> Friday, December 12, 2025 9:21:20 AM<br><b>To:</b> metstratosphere &lt;metstratosphere@goIndiGo.in&gt;<br><b>Subject:</b> Test Purpose</font> <div>&nbsp;</div></div><div><table cellpadding=\"0\" cellspacing=\"0\" style=\"text-align:left; background-color:rgb(255,255,255); width:581pt; color:rgb(36,36,36); border-collapse:collapse; border-spacing:0px; box-sizing:border-box\"><tbody><tr><td style=\"text-align:left; border-width:1pt; border-style:solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Station</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (UTC)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (LT)</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Weather Phenomenon</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Operational Probability</b></span></p></td><td style=\"text-align:left; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:43.2pt\"><p class=\"elementToProof\" style=\"text-align:center; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Status</b></span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">JFK</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1430/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1900/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1930/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0100/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">45%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:22px; box-sizing:border-box\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">DFW</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1630/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2030/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">75%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">NEW</span></p></td></tr><tr><td style=\"text-align:left; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">SFO</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0730/12 Dec</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"text-align:left; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt; height:14.4pt\"><p class=\"elementToProof\" style=\"text-align:left; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr></tbody></table><div class=\"elementToProof\"><br></div></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-            "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAl5OBm\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAAAOvcdV-dBT6UGKiOiQMB-AAAl59wZAAA=",
-      "createdDateTime": "2025-12-12T11:16:50Z",
-      "lastModifiedDateTime": "2025-12-12T18:41:10Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAl5OBm",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T11:16:50Z",
-      "sentDateTime": "2025-12-12T11:16:48Z",
-      "hasAttachments": false,
-      "internetMessageId": "<MAZPR01MB87747FDDB7DF0934FF6B73B2E7AEA@MAZPR01MB8774.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "testing",
-      "bodyPreview": "\r\n\r\nStation\r\n\r\nAdvisory Time period Start (UTC)\r\n\r\nAdvisory Time period Start (LT)\r\n\r\nAdvisory Time period End (UTC)\r\n\r\nAdvisory Time period End (LT)\r\n\r\nWeather Phenomenon\r\n\r\nOperational Probability\r\n\r\nStatus\r\n\r\nPAT\r\n\r\n1330/11 Dec\r\n\r\n1900/11 Dec\r\n\r\n193",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAPb2vV-DNTBAiPh4EifPXrc=",
-      "conversationIndex": "AQHca1jH9va9X8M1MECI+HgSJ89etw==",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAhCGOAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAl59wZAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><style type=\"text/css\" style=\"display:none\">\r\n<!--\r\np\r\n\t{margin-top:0;\r\n\tmargin-bottom:0}\r\n-->\r\n</style></head><body dir=\"ltr\"><div class=\"elementToProof\" id=\"x_x_divRplyFwdMsg\" style=\"background-color:rgb(255,255,255); margin:0px\"><div class=\"elementToProof\" style=\"direction:ltr; text-align:left; text-indent:0px; margin:0px; font-family:&quot;Segoe UI&quot;,&quot;Segoe UI Web (West European)&quot;,-apple-system,BlinkMacSystemFont,Roboto,&quot;Helvetica Neue&quot;,sans-serif; font-size:15px; color:rgb(36,36,36)\">&nbsp;</div></div><div class=\"elementToProof\" style=\"background-color:rgb(255,255,255); margin:0px\"><div class=\"elementToProof\" style=\"margin:0px\"><div class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:FluentSystemIcons; font-size:20px; color:currentcolor\"><span style=\"background-color:rgb(66,66,66); line-height:1em\">&#57613;</span></div><table cellpadding=\"0\" cellspacing=\"0\" style=\"text-align:left; text-indent:0px; width:581pt; border-collapse:collapse; border-spacing:0px; box-sizing:border-box\"><tbody><tr><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Station</b></span></p></td><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (UTC)</b></span></p></td><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period Start (LT)</b></span></p></td><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (UTC)</b></span></p></td><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:70pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Advisory Time period End (LT)</b></span></p></td><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Weather Phenomenon</b></span></p></td><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Operational Probability</b></span></p></td><td style=\"height:43.2pt; text-align:left; text-indent:0px; border-width:1pt; border-style:solid solid solid none; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:center; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\"><b>Status</b></span></p></td></tr><tr><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">PAT</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1330/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1900/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1930/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0100/12 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr><tr><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">PAT</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2030/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">NEW</span></p></td></tr><tr><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-width:1pt; border-style:none solid solid; border-color:initial; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">GAU</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">1530/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">2100/11 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0200/12 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:70pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">0730/12 Dec</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">FG</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"color:rgb(36,36,36)\">100%</span></p></td><td style=\"height:14.4pt; text-align:left; text-indent:0px; border-right:1pt solid; border-bottom:1pt solid; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom; width:73pt\"><p class=\"elementToProof\" style=\"text-align:left; text-indent:0px; margin:0px; font-family:Aptos,sans-serif; font-size:10pt\"><span style=\"font-family:&quot;Aptos Narrow&quot;,sans-serif; font-size:11pt; color:black\">CANCEL</span></p></td></tr></tbody></table></div></div><div class=\"elementToProof\"><span style=\"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)\"></span><br></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-          "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "Priyanshu Sharma (Digital,ISC) (X-AIONOS)",
-          "address": "Priyanshu.x.Sharma1@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "metstratosphere",
-            "address": "metstratosphere@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnPa\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAAAOvcdV-dBT6UGKiOiQMB-AAAlcT58AAA=",
-      "createdDateTime": "2025-12-12T12:00:04Z",
-      "lastModifiedDateTime": "2025-12-12T12:06:45Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnPa",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T12:00:04Z",
-      "sentDateTime": "2025-12-12T12:00:03Z",
-      "hasAttachments": false,
-      "internetMessageId": "<BM1PR01MB2898A1D979E59BAFBFE0CCCFA5AEA@BM1PR01MB2898.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "Met Advisory for OPS SOLVER (Stratosphere)  12/12/2025 @ 1730 IST",
-      "bodyPreview": "Dear Team,\r\n\r\nMet Advisory is as below:\r\n\r\nWeather Advisory Domestic stations\r\nStation\r\nAdvisory Time Period Start (UTC)\r\nAdvisory Time Period Start (LT)\r\nAdvisory Time Period End (UTC)\r\nAdvisory Time Period End (LT)\r\nWeather Phenomenon\r\nOperational Proba",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAhCGOAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAEk7FXt1TMpGnW_7zVIo898=",
-      "conversationIndex": "AQHca17aSTsVe3VMykadb7vNUijz3w==",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAhCGOAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcT58AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\"><style>\r\n<!--\r\n@font-face\r\n\t{font-family:\"Cambria Math\"}\r\n@font-face\r\n\t{font-family:Calibri}\r\n@font-face\r\n\t{font-family:Aptos}\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:12.0pt;\r\n\tfont-family:\"Aptos\",sans-serif}\r\nspan.EmailStyle19\r\n\t{font-family:\"Aptos\",sans-serif;\r\n\tcolor:windowtext}\r\n.MsoChpDefault\r\n\t{font-size:10.0pt}\r\n@page WordSection1\r\n\t{margin:1.0in 1.0in 1.0in 1.0in}\r\ndiv.WordSection1\r\n\t{}\r\n-->\r\n</style></head><body lang=\"EN-US\" link=\"#467886\" vlink=\"#96607D\" style=\"word-wrap:break-word\"><div class=\"WordSection1\"><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Dear Team,</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met Advisory is as below:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><table class=\"MsoNormalTable\" border=\"1\" cellspacing=\"3\" cellpadding=\"0\" width=\"635\" style=\"width:476.35pt; border:solid windowtext 1.0pt\"><tbody><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory Domestic stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Station</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Phenomenon</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Probability</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">VNS</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">2030/12 Dec</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">0200/13 Dec</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">0330/13 Dec</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">0900/13 Dec</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">FG</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">80%</span></p></td></tr><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory International stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NIL</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td></tr></tbody></table><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Severity Matrix:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">CAT-III stations to have maximum Probability in 31%-70% block</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">. For CAT-II Stations, it can be above 70% in case weather expected to be non-operatable.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Above Weather Advisory is not for Fog/mist occurrence <b>but for expected Visibility/RVR below respective station minima</b>.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><br>Probability 71%-100% ---- Severity High ( Red)<br>Probability 31%-70% ----- Severity Medium (Amber)<br>Probability 0%-30% ------ Severity Low (Green)</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Regards,</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met</span></p><p class=\"MsoNormal\"><span lang=\"EN-IN\" style=\"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-serif\">&nbsp;</span></p><p class=\"MsoNormal\">&nbsp;</p></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "Met",
-          "address": "Met@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "Met",
-          "address": "Met@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "metstratosphere",
-            "address": "metstratosphere@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [
-        {
-          "emailAddress": {
-            "name": "Santosh Kumar Prasad (OCC,ISC)",
-            "address": "SANTOSH.PRASAD@goIndiGo.in"
-          }
-        },
-        {
-          "emailAddress": {
-            "name": "Sunil Anto Fernandes (OCC,ISC)",
-            "address": "Sunil.Fernandes@goIndiGo.in"
-          }
-        },
-        {
-          "emailAddress": {
-            "name": "#Met",
-            "address": "#Met@GOINDIGO.IN"
-          }
-        }
-      ],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
-    },
-    {
-      "@odata.etag": "W/\"CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnPg\"",
-      "id": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAAAOvcdV-dBT6UGKiOiQMB-AAAlcVP6AAA=",
-      "createdDateTime": "2025-12-12T12:06:43Z",
-      "lastModifiedDateTime": "2025-12-12T12:38:13Z",
-      "changeKey": "CQAAABYAAAAAOvcdV/dBT6UGKiOiQMB/AAAlbnPg",
-      "categories": [],
-      "receivedDateTime": "2025-12-12T12:06:44Z",
-      "sentDateTime": "2025-12-12T12:06:43Z",
-      "hasAttachments": false,
-      "internetMessageId": "<PN0PR01MB626703F0B86BD9C26B88F50DB3AEA@PN0PR01MB6267.INDPRD01.PROD.OUTLOOK.COM>",
-      "subject": "RE: Met Advisory for OPS SOLVER (Stratosphere)  12/12/2025 @ 1730 IST",
-      "bodyPreview": "Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Missing parameter(s): - status Required parameters are: - advisoryTimePeriodEndUTC - advisoryTimePeriod",
-      "importance": "normal",
-      "parentFolderId": "AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAuAAAAAADfmr9FIDguQLRzJqpBYww2AQAAOvcdV-dBT6UGKiOiQMB-AAAAAAEJAAA=",
-      "conversationId": "AAQkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NAAQAEk7FXt1TMpGnW_7zVIo898=",
-      "conversationIndex": "AQHca17aSTsVe3VMykadb7vNUijz37Ud6NJ2",
-      "isDeliveryReceiptRequested": false,
-      "isReadReceiptRequested": false,
-      "isRead": true,
-      "isDraft": false,
-      "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkADkxY2Q5ODIxLTZjM2EtNDA1NC1hZWNlLTI1ZWQyY2YwMjc0NABGAAAAAADfmr9FIDguQLRzJqpBYww2BwAAOvcdV%2FdBT6UGKiOiQMB%2FAAAAAAEJAAAAOvcdV%2FdBT6UGKiOiQMB%2FAAAlcVP6AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
-      "inferenceClassification": "focused",
-      "body": {
-        "contentType": "html",
-        "content": "<html><head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\"><style>\r\n<!--\r\n@font-face\r\n\t{font-family:\"Cambria Math\"}\r\n@font-face\r\n\t{font-family:Calibri}\r\n@font-face\r\n\t{font-family:Aptos}\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:12.0pt;\r\n\tfont-family:\"Aptos\",sans-serif}\r\nspan.EmailStyle19\r\n\t{font-family:\"Aptos\",sans-serif;\r\n\tcolor:windowtext}\r\n.MsoChpDefault\r\n\t{font-size:10.0pt}\r\n@page WordSection1\r\n\t{margin:1.0in 1.0in 1.0in 1.0in}\r\n-->\r\n</style></head><body lang=\"EN-US\" link=\"#467886\" vlink=\"#96607D\" style=\"word-wrap:break-word\">Dear Sender, We attempted to process your recent weather advisory email, but could not extract the required JSON payload due to the following issue(s): Missing parameter(s): - status Required parameters are: - advisoryTimePeriodEndUTC - advisoryTimePeriodStartUTC - operationProbability - weatherPhenomenon - station - status Please ensure all required parameters are present and in the correct format, then resend the advisory email so that it can be processed and forwarded to Event Hub. This is an automated notification. No reply is necessary. <hr tabindex=\"-1\" style=\"display:inline-block; width:98%\"><div id=\"divRplyFwdMsg\" dir=\"ltr\"><font face=\"Calibri, sans-serif\" color=\"#000000\" style=\"font-size:11pt\"><b>From:</b> Met &lt;Met@goIndiGo.in&gt;<br><b>Sent:</b> Friday, December 12, 2025 12:00:03 PM<br><b>To:</b> metstratosphere &lt;metstratosphere@goIndiGo.in&gt;<br><b>Cc:</b> Santosh Kumar Prasad (OCC,ISC) &lt;SANTOSH.PRASAD@goIndiGo.in&gt;; Sunil Anto Fernandes (OCC,ISC) &lt;Sunil.Fernandes@goIndiGo.in&gt;; #Met &lt;#Met@GOINDIGO.IN&gt;<br><b>Subject:</b> Met Advisory for OPS SOLVER (Stratosphere) 12/12/2025 @ 1730 IST</font> <div>&nbsp;</div></div><div><div class=\"WordSection1\"><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Dear Team,</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met Advisory is as below:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><table class=\"MsoNormalTable\" border=\"1\" cellspacing=\"3\" cellpadding=\"0\" width=\"635\" style=\"width:476.35pt; border:solid windowtext 1.0pt\"><tbody><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory Domestic stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Station</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period Start (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (UTC)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Advisory Time Period End (LT)</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Phenomenon</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Probability</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">VNS</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">2030/12 Dec</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">0200/13 Dec</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">0330/13 Dec</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">0900/13 Dec</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">FG</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif; background:red\">80%</span></p></td></tr><tr><td width=\"629\" colspan=\"7\" style=\"width:471.95pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Weather Advisory International stations</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\"></span></p></td></tr><tr><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">NIL</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.15pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"93\" style=\"width:69.8pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td width=\"94\" style=\"width:70.2pt; border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td><td style=\"border:solid windowtext 1.0pt; padding:.75pt .75pt .75pt .75pt\"><p class=\"MsoNormal\" style=\"line-height:115%\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p></td></tr></tbody></table><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Operational Severity Matrix:</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">CAT-III stations to have maximum Probability in 31%-70% block</span></b><span style=\"font-family:&quot;Times New Roman&quot;,serif\">. For CAT-II Stations, it can be above 70% in case weather expected to be non-operatable.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Above Weather Advisory is not for Fog/mist occurrence <b>but for expected Visibility/RVR below respective station minima</b>.</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><br>Probability 71%-100% ---- Severity High ( Red)<br>Probability 31%-70% ----- Severity Medium (Amber)<br>Probability 0%-30% ------ Severity Low (Green)</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Regards,</span></p><p class=\"MsoNormal\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">Met</span></p><p class=\"MsoNormal\"><span lang=\"EN-IN\" style=\"font-size:11.0pt; font-family:&quot;Calibri&quot;,sans-serif\">&nbsp;</span></p><p class=\"MsoNormal\">&nbsp;</p></div></div></body></html>"
-      },
-      "sender": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "from": {
-        "emailAddress": {
-          "name": "metstratosphere",
-          "address": "metstratosphere@goIndiGo.in"
-        }
-      },
-      "toRecipients": [
-        {
-          "emailAddress": {
-            "name": "Met",
-            "address": "Met@goIndiGo.in"
-          }
-        }
-      ],
-      "ccRecipients": [],
-      "bccRecipients": [],
-      "replyTo": [],
-      "flag": {
-        "flagStatus": "notFlagged"
-      }
+import requests
+from bs4 import BeautifulSoup
+import json
+from datetime import datetime, timezone, timedelta
+import time
+import os
+import re
+import logging
+ 
+# ===================== LOGGING CONFIG =====================
+ 
+ 
+LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
+LOG_FILE = os.environ.get("PIPELINE_LOG_FILE", "weather_pipeline.log")
+ 
+from token_store import get_access_token
+ 
+from logging_config import get_email_logger
+logger = get_email_logger()
+ 
+# ===================== ENV LOADING =====================
+ 
+def load_env(path: str = ".env") -> None:
+    """Minimal .env loader (no external dependency)."""
+    if not os.path.exists(path):
+        logger.debug("No .env file found at %s, skipping env load.", path)
+        return
+ 
+    logger.debug("Loading environment variables from %s", path)
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+ 
+            if '=' in line:
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip().strip('"\'')
+                if key not in os.environ:
+                    os.environ[key] = value
+                    logger.debug("Loaded env var: %s", key)
+ 
+# Load .env early
+load_env()
+ 
+ENV = os.environ.get("ENV", "").lower()
+IS_LOCAL_ENV = (ENV == "local")
+logger.info("ENV=%s | IS_LOCAL_ENV=%s", ENV, IS_LOCAL_ENV)
+ 
+# ===================== CONFIG =====================
+ 
+  # <--- or keep your hardcoded token
+USER_EMAIL = os.environ.get("USER_EMAIL")      # mailbox you are operating on
+ 
+ 
+if not USER_EMAIL:
+    logger.critical("USER_EMAIL is not set. Please set it in .env or code.")
+    raise RuntimeError("USER_EMAIL is not set. Please set it in .env or code.")
+ 
+logger.info("Configured USER_EMAIL=%s", USER_EMAIL)
+ 
+def build_headers():
+    """Always use latest access token from token_store."""
+    access_token = "eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRZWZLQUl5bkVTS0s2QVh3UVZMamNRcmJhZW1pZDFwU21Zai1LQV9wS28iLCJhbGciOiJSUzI1NiIsIng1dCI6InJ0c0ZULWItN0x1WTdEVlllU05LY0lKN1ZuYyIsImtpZCI6InJ0c0ZULWItN0x1WTdEVlllU05LY0lKN1ZuYyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83M2YyZTcxNC1hMzJlLTQ2OTctOTQ0OS1kZmZlMWRmOGE1ZDUvIiwiaWF0IjoxNzY1Nzc5NDM3LCJuYmYiOjE3NjU3Nzk0MzcsImV4cCI6MTc2NTc4MzMzNywiYWlvIjoiazJKZ1lEaTlqWmRaOStPRkMvcVNsaE1xaW92ZkFRQT0iLCJhcHBfZGlzcGxheW5hbWUiOiJPQ0Mgb25lIGFwcCAtIFBPQyIsImFwcGlkIjoiMzhhZTcyYjUtNzMxNi00YzkxLTk4ZjgtMDEzZTQ2MjcyMjA5IiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvNzNmMmU3MTQtYTMyZS00Njk3LTk0NDktZGZmZTFkZjhhNWQ1LyIsImlkdHlwIjoiYXBwIiwib2lkIjoiMDRhYWRlZmMtNGI2Zi00OGQxLWE5OTEtOTFjMDFkM2M0NTg0IiwicmgiOiIxLkFWTUFGT2Z5Y3k2amwwYVVTZF8tSGZpbDFRTUFBQUFBQUFBQXdBQUFBQUFBQUFERkFBQlRBQS4iLCJyb2xlcyI6WyJQcmVzZW5jZS5SZWFkLkFsbCIsIk1haWwuUmVhZFdyaXRlIiwiVXNlci5SZWFkLkFsbCIsIk1haWwuUmVhZCIsIk1haWwuU2VuZCJdLCJzdWIiOiIwNGFhZGVmYy00YjZmLTQ4ZDEtYTk5MS05MWMwMWQzYzQ1ODQiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiQVMiLCJ0aWQiOiI3M2YyZTcxNC1hMzJlLTQ2OTctOTQ0OS1kZmZlMWRmOGE1ZDUiLCJ1dGkiOiJaaGVtN0VTOV9FU2tNaGJlSkQwSUFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyIwOTk3YTFkMC0wZDFkLTRhY2ItYjQwOC1kNWNhNzMxMjFlOTAiXSwieG1zX2FjZCI6MTc0MDExMDYxNCwieG1zX2FjdF9mY3QiOiI5IDMiLCJ4bXNfZnRkIjoiMHlOOEJUMzd3M2R4X0preU1zM0dMV3hvM2phalA0VXBfcVl6dXA5UkMwZ0JhMjl5WldGalpXNTBjbUZzTFdSemJYTSIsInhtc19pZHJlbCI6IjEyIDciLCJ4bXNfcmQiOiIwLjQyTGxZQkppREJZUzRXQVhFcmhwRWg5WE5udUc5emJET00tb1JOdnJRRkZPSVlGVHNfTFlKUU9kUERaZkxXbzZtYVExRFNqS0lTVEF6QUFCQjZBMEFBIiwieG1zX3N1Yl9mY3QiOiIzIDkiLCJ4bXNfdGNkdCI6MTUxMDgyMTQ0NywieG1zX3RudF9mY3QiOiIxMCAzIn0.pNxcivUnFCIVyFtL99WLvcb-PNAuNnHVv97yWzody80HZKGs5DCjjRc5bW_UQhH0Sy3nFWni_hv9pmCrYlnFUOvkQiB12-Q2XNJZTyTsvsJW04t8ekUx_5HJAGSQtqCBG00BeB9oaFMoSPCx9C1hAChrdK1z16r8r8RBaZ4z33JP0kNspUe7ZUKrKYTucgaAdE_P7jzvp3SLHdtJA8aGvjr8A_hxCrPnfKKh7JL7oCOKw48sPaXMca6gYohKzQz9N01_lQLPbLcd6dvwfyi3pEBFlWCQS26w1xcMv_K23v-72A3ruN0uyb_dt86JrTYiQqpTCWUgHkO13mblLlY8ow"
+    return {
+        "Authorization": f"Bearer {access_token}",
+        "Prefer": 'outlook.body-content-type="html"',
     }
-  ],
-  "@odata.nextLink": "https://graph.microsoft.com/v1.0/users/metstratosphere@goIndiGo.in/messages?%24filter=receivedDateTime+ge+2025-12-12T00%3a00%3a00Z+and+receivedDateTime+lt+2025-12-13T00%3a00%3a00Z&%24top=10&%24skip=10"
+ 
+def build_archive_headers():
+    """Headers for JSON POST calls (move, reply, etc.)."""
+    access_token = "eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRZWZLQUl5bkVTS0s2QVh3UVZMamNRcmJhZW1pZDFwU21Zai1LQV9wS28iLCJhbGciOiJSUzI1NiIsIng1dCI6InJ0c0ZULWItN0x1WTdEVlllU05LY0lKN1ZuYyIsImtpZCI6InJ0c0ZULWItN0x1WTdEVlllU05LY0lKN1ZuYyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83M2YyZTcxNC1hMzJlLTQ2OTctOTQ0OS1kZmZlMWRmOGE1ZDUvIiwiaWF0IjoxNzY1Nzc5NDM3LCJuYmYiOjE3NjU3Nzk0MzcsImV4cCI6MTc2NTc4MzMzNywiYWlvIjoiazJKZ1lEaTlqWmRaOStPRkMvcVNsaE1xaW92ZkFRQT0iLCJhcHBfZGlzcGxheW5hbWUiOiJPQ0Mgb25lIGFwcCAtIFBPQyIsImFwcGlkIjoiMzhhZTcyYjUtNzMxNi00YzkxLTk4ZjgtMDEzZTQ2MjcyMjA5IiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvNzNmMmU3MTQtYTMyZS00Njk3LTk0NDktZGZmZTFkZjhhNWQ1LyIsImlkdHlwIjoiYXBwIiwib2lkIjoiMDRhYWRlZmMtNGI2Zi00OGQxLWE5OTEtOTFjMDFkM2M0NTg0IiwicmgiOiIxLkFWTUFGT2Z5Y3k2amwwYVVTZF8tSGZpbDFRTUFBQUFBQUFBQXdBQUFBQUFBQUFERkFBQlRBQS4iLCJyb2xlcyI6WyJQcmVzZW5jZS5SZWFkLkFsbCIsIk1haWwuUmVhZFdyaXRlIiwiVXNlci5SZWFkLkFsbCIsIk1haWwuUmVhZCIsIk1haWwuU2VuZCJdLCJzdWIiOiIwNGFhZGVmYy00YjZmLTQ4ZDEtYTk5MS05MWMwMWQzYzQ1ODQiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiQVMiLCJ0aWQiOiI3M2YyZTcxNC1hMzJlLTQ2OTctOTQ0OS1kZmZlMWRmOGE1ZDUiLCJ1dGkiOiJaaGVtN0VTOV9FU2tNaGJlSkQwSUFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyIwOTk3YTFkMC0wZDFkLTRhY2ItYjQwOC1kNWNhNzMxMjFlOTAiXSwieG1zX2FjZCI6MTc0MDExMDYxNCwieG1zX2FjdF9mY3QiOiI5IDMiLCJ4bXNfZnRkIjoiMHlOOEJUMzd3M2R4X0preU1zM0dMV3hvM2phalA0VXBfcVl6dXA5UkMwZ0JhMjl5WldGalpXNTBjbUZzTFdSemJYTSIsInhtc19pZHJlbCI6IjEyIDciLCJ4bXNfcmQiOiIwLjQyTGxZQkppREJZUzRXQVhFcmhwRWg5WE5udUc5emJET00tb1JOdnJRRkZPSVlGVHNfTFlKUU9kUERaZkxXbzZtYVExRFNqS0lTVEF6QUFCQjZBMEFBIiwieG1zX3N1Yl9mY3QiOiIzIDkiLCJ4bXNfdGNkdCI6MTUxMDgyMTQ0NywieG1zX3RudF9mY3QiOiIxMCAzIn0.pNxcivUnFCIVyFtL99WLvcb-PNAuNnHVv97yWzody80HZKGs5DCjjRc5bW_UQhH0Sy3nFWni_hv9pmCrYlnFUOvkQiB12-Q2XNJZTyTsvsJW04t8ekUx_5HJAGSQtqCBG00BeB9oaFMoSPCx9C1hAChrdK1z16r8r8RBaZ4z33JP0kNspUe7ZUKrKYTucgaAdE_P7jzvp3SLHdtJA8aGvjr8A_hxCrPnfKKh7JL7oCOKw48sPaXMca6gYohKzQz9N01_lQLPbLcd6dvwfyi3pEBFlWCQS26w1xcMv_K23v-72A3ruN0uyb_dt86JrTYiQqpTCWUgHkO13mblLlY8ow"
+    return {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json",
+    }
+ 
+GRAPH_BASE = "https://graph.microsoft.com/v1.0"
+ 
+OUTPUT_DIR = "email_extracts -1"
+ 
+# Only create directory upfront if ENV=local (global mode won't save files)
+if IS_LOCAL_ENV and not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
+    logger.info("Created output directory: %s", OUTPUT_DIR)
+ 
+IST_OFFSET = timezone(timedelta(hours=5, minutes=30))
+ 
+MONTH_MAP = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4,
+    "may": 5, "jun": 6, "jul": 7, "aug": 8,
+    "sep": 9, "oct": 10, "nov": 11, "dec": 12
 }
+ 
+# Canonical required fields (used for error reporting + checks)
+REQUIRED_FIELDS = {
+    "station",
+    "weatherPhenomenon",
+    "operationProbability",
+    "advisoryTimePeriodStartUTC",
+    "advisoryTimePeriodEndUTC",
+}
+ 
+# ===================== UTILS =====================
+ 
+def sanitize_filename(filename: str) -> str:
+    safe_name = re.sub(r'[<>:"/\\|?*]', '_', filename)
+    logger.debug("Sanitized filename '%s' -> '%s'", filename, safe_name)
+    return safe_name
+ 
+def convert_to_ist_format(utc_datetime_str: str) -> str:
+    try:
+        utc_dt = datetime.fromisoformat(utc_datetime_str.replace('Z', '+00:00'))
+        ist_dt = utc_dt.astimezone(IST_OFFSET)
+        formatted = ist_dt.strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+        logger.debug("Converted UTC '%s' -> IST formatted '%s'", utc_datetime_str, formatted)
+        return formatted
+    except Exception as e:
+        logger.warning("Failed to convert '%s' to IST, using now. Error: %s", utc_datetime_str, e)
+        ist_dt = datetime.now(IST_OFFSET)
+        return ist_dt.strftime("%Y-%m-%dT%H:%M:%SZ+05:30")
+ 
+def parse_mail_received_datetime(dt_str: str):
+    if not dt_str:
+        logger.debug("parse_mail_received_datetime called with empty string.")
+        return None
+    try:
+        dt = datetime.fromisoformat(dt_str.replace('Z', '+00:00')).astimezone(timezone.utc)
+        logger.debug("Parsed mail received datetime '%s' -> %s", dt_str, dt)
+        return dt
+    except Exception as e:
+        logger.warning("Failed to parse mail received datetime '%s': %s", dt_str, e)
+        return None
+ 
+def build_utc_from_dd_mon_hhmm(match_obj, mail_dt_utc):
+    try:
+        if not match_obj:
+            logger.debug("build_utc_from_dd_mon_hhmm called with None match_obj.")
+            return None
+ 
+        hhmm = match_obj.group(1)   # 1500
+        day = int(match_obj.group(2))  # 23
+        mon_abbr = match_obj.group(3).lower()  # nov
+ 
+        if len(hhmm) == 4:
+            hour = int(hhmm[:2])
+            minute = int(hhmm[2:])
+        elif len(hhmm) == 3:
+            hour = int(hhmm[:1])
+            minute = int(hhmm[1:])
+        else:
+            logger.warning("Unexpected hhmm format: '%s'", hhmm)
+            return None
+ 
+        month = MONTH_MAP.get(mon_abbr)
+        if not month:
+            logger.warning("Unknown month abbreviation: '%s'", mon_abbr)
+            return None
+ 
+        if mail_dt_utc is None:
+            year = datetime.now(timezone.utc).year
+        else:
+            year = mail_dt_utc.year
+            if mail_dt_utc.month == 12 and month == 1:
+                year += 1
+ 
+        dt_utc = datetime(year, month, day, hour, minute, 0, tzinfo=timezone.utc)
+        logger.debug(
+            "Built UTC datetime from '%s %d %s' with mail_dt=%s -> %s",
+            hhmm, day, mon_abbr, mail_dt_utc, dt_utc
+        )
+        return dt_utc
+    except Exception as e:
+        logger.error("Error in build_utc_from_dd_mon_hhmm: %s", e)
+        return None
+ 
+def parse_advisory_times(window_lines, mail_received_dt_str):
+    """
+    Extract raw Start UTC and raw End UTC from table.
+    Column mapping in text:
+      1) Start UTC
+      2) Start LT
+      3) End UTC
+      4) End LT
+    """
+    pattern = re.compile(r'(\d{3,4}/\d{1,2}\s*[A-Za-z]{3})')
+    matches = []
+ 
+    for line in window_lines:
+        for m in pattern.finditer(line):
+            matches.append(m.group(1).strip())
+ 
+    logger.debug("parse_advisory_times found matches: %s", matches)
+ 
+    # We need at least 3 matches (index 0 = start UTC, index 2 = end UTC)
+    if len(matches) < 3:
+        logger.warning("Insufficient advisory time matches (found %d, need >=3).", len(matches))
+        return None
+ 
+    start_raw = matches[0]    # Start UTC
+    end_raw = matches[2]      # End UTC (correct column)
+ 
+    logger.debug("Advisory times parsed: start_raw='%s', end_raw='%s'", start_raw, end_raw)
+    return start_raw, end_raw
+ 
+# ===================== FIELD LABEL CHECK =====================
+ 
+def check_mandatory_fields_in_html(html_content: str):
+    """
+    Returns list of missing required field labels (by name from REQUIRED_FIELDS).
+    """
+    required_keys = REQUIRED_FIELDS
+ 
+    if not html_content or not html_content.strip():
+        logger.warning("HTML content empty while checking mandatory fields.")
+        return list(required_keys)
+ 
+    html_lower = html_content.lower()
+    simple = re.sub(r'[^a-z0-9]', '', html_lower)
+ 
+    present = set()
+ 
+    if 'station' in html_lower or 'station' in simple:
+        present.add("station")
+ 
+    cond_weather = (
+        ('weather' in html_lower and ('phenomenon' in html_lower or 'phenom' in html_lower))
+        or 'weatherphenomenon' in simple
+        or 'weatherphenom' in simple
+    )
+    if cond_weather:
+        present.add("weatherPhenomenon")
+ 
+    cond_op_prob = (
+        (('operation' in html_lower or 'operational' in html_lower)
+         and ('probability' in html_lower or 'probab' in html_lower))
+        or 'operationprobability' in simple
+        or 'operationalprobability' in simple
+        or 'operationprobab' in simple
+    )
+    if cond_op_prob:
+        present.add("operationProbability")
+ 
+    cond_start_utc = (
+        ('advisory' in html_lower and 'start' in html_lower and 'utc' in html_lower)
+        or 'advisorytimeperiodstartutc' in simple
+        or 'timeperiodstartutc' in simple
+        or 'periodstartutc' in simple
+    )
+    if cond_start_utc:
+        present.add("advisoryTimePeriodStartUTC")
+ 
+    cond_end_utc = (
+        ('advisory' in html_lower and 'end' in html_lower and 'utc' in html_lower)
+        or 'advisorytimeperiodendutc' in simple
+        or 'timeperiodendutc' in simple
+        or 'periodendutc' in simple
+    )
+    if cond_end_utc:
+        present.add("advisoryTimePeriodEndUTC")
+ 
+    missing = [k for k in required_keys if k not in present]
+    if missing:
+        logger.info("Mandatory fields missing in HTML: %s", missing)
+    else:
+        logger.debug("All mandatory fields present in HTML.")
+ 
+    return missing
+ 
+# ===================== NLP-STYLE EXTRACTION =====================
+ 
+def extract_weather_stations_nlp(html_content: str, mail_received_dt: str = None):
+    logger.debug("Starting NLP extraction of weather stations.")
+    soup = BeautifulSoup(html_content, "html.parser")
+    text = soup.get_text("\n", strip=True)
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+ 
+    stations = []
+    n = len(lines)
+    i = 0
+ 
+    logger.debug("Total lines extracted from HTML: %d", n)
+ 
+    while i < n:
+        line = lines[i]
+ 
+        # Station code = exactly 3 uppercase letters
+        if re.fullmatch(r"[A-Z]{3}", line):
+            station_code = line
+            logger.debug("Found potential station code at line %d: %s", i, station_code)
+            entry = {"station": station_code}
+ 
+            window = lines[i + 1: i + 15]
+ 
+            # ---------- operationProbability (FIXED) ----------
+            prob_val = None
+ 
+            for w in window:
+                m = re.search(r"(\d{1,3})\s*%", w)
+                if m:
+                    val = int(m.group(1))
+                    if 0 <= val <= 100:
+                        prob_val = val
+                        logger.debug("Found operationProbability=%d for station=%s", prob_val, station_code)
+                        break
+ 
+            if prob_val is not None:
+                entry["operationProbability"] = prob_val
+ 
+            # ---------- weatherPhenomenon ----------
+            for w in window:
+                if re.fullmatch(r"[A-Z]{2,6}", w) and w != station_code:
+                    entry["weatherPhenomenon"] = w
+                    logger.debug("Found weatherPhenomenon=%s for station=%s", w, station_code)
+                    break
+ 
+            # ---------- advisory times (UTC only) ----------
+            time_result = parse_advisory_times(window, mail_received_dt)
+ 
+            if time_result:
+                start_utc_str, end_utc_str = time_result
+                start_utc_formatted = build_utc_from_dd_mon_hhmm(
+                    re.match(r'(\d{3,4})/(\d{1,2})\s*([A-Za-z]{3})', start_utc_str),
+                    parse_mail_received_datetime(mail_received_dt)
+                )
+                end_utc_formatted = build_utc_from_dd_mon_hhmm(
+                    re.match(r'(\d{3,4})/(\d{1,2})\s*([A-Za-z]{3})', end_utc_str),
+                    parse_mail_received_datetime(mail_received_dt)
+                )
+                entry["advisoryTimePeriodStartUTC"] = (
+                    start_utc_formatted.strftime("%Y-%m-%dT%H:%M:%S")
+                    if start_utc_formatted else start_utc_str
+                )
+                entry["advisoryTimePeriodEndUTC"] = (
+                    end_utc_formatted.strftime("%Y-%m-%dT%H:%M:%S")
+                    if end_utc_formatted else end_utc_str
+                )
+                logger.debug(
+                    "Station=%s advisory times: start=%s end=%s",
+                    station_code,
+                    entry["advisoryTimePeriodStartUTC"],
+                    entry["advisoryTimePeriodEndUTC"],
+                )
+ 
+            # Mandatory 5 fields only
+            mandatory = [
+                "station",
+                "weatherPhenomenon",
+                "operationProbability",
+                "advisoryTimePeriodStartUTC",
+                "advisoryTimePeriodEndUTC",
+            ]
+            if all(k in entry for k in mandatory):
+                stations.append(entry)
+                logger.info(
+                    "Completed station entry: %s", entry
+                )
+            else:
+                logger.info(
+                    "Incomplete station entry for '%s', missing fields, ignoring: %s",
+                    station_code,
+                    [k for k in mandatory if k not in entry],
+                )
+ 
+        i += 1
+ 
+    logger.info("NLP extraction complete. Total valid stations: %d", len(stations))
+    return stations
+
+def _norm_header(s: str) -> str:
+    s = (s or "").strip().lower()
+    s = re.sub(r"\s+", " ", s)
+    return s
+ 
+def _header_to_key(header_text: str) -> str | None:
+    """
+    Convert table header -> canonical json key
+    """
+    h = _norm_header(header_text)
+ 
+    # station
+    if "station" in h:
+        return "station"
+ 
+    # weather phenomenon
+    if ("weather" in h and "phenomen" in h) or "wx" == h:
+        return "weatherPhenomenon"
+ 
+    # operational probability
+    if ("operat" in h and "prob" in h) or ("operation" in h and "prob" in h):
+        return "operationProbability"
+ 
+    # advisory time period start/end UTC
+    if "advisory" in h and "time" in h and "start" in h and "utc" in h:
+        return "advisoryTimePeriodStartUTC"
+    if "advisory" in h and "time" in h and "end" in h and "utc" in h:
+        return "advisoryTimePeriodEndUTC"
+ 
+    # (LT columns intentionally ignored, but you can map if needed)
+    return None
+ 
+def _extract_table_headers(tr) -> list[str]:
+    """
+    Get header texts from a <tr>
+    """
+    cells = tr.find_all(["th", "td"])
+    headers = []
+    for c in cells:
+        txt = c.get_text(" ", strip=True)
+        headers.append(txt)
+    return headers
+ 
+def _extract_row_cells(tr) -> list[str]:
+    cells = tr.find_all(["td", "th"])
+    return [c.get_text(" ", strip=True) for c in cells]
+ 
+def _looks_like_section_row(tr) -> bool:
+    """
+    Rows like "Weather Advisory Domestic Stations" (colspan) etc.
+    """
+    tds = tr.find_all("td")
+    if not tds:
+        return False
+    if any((td.get("colspan") or "") for td in tds) and len(tds) == 1:
+        return True
+    # also treat as section row if it contains "Weather Advisory"
+    text = tr.get_text(" ", strip=True).lower()
+    return "weather advisory" in text
+ 
+def _parse_ddmon_time_cell(cell_text: str, mail_received_dt_str: str) -> str | None:
+    """
+    Parses '2330/14 Dec' or '1100/15Dec' into 'YYYY-MM-DDTHH:MM:SS' (UTC).
+    """
+    if not cell_text:
+        return None
+ 
+    # allow optional space between day and month: 15Dec or 15 Dec
+    m = re.search(r"(\d{3,4})/(\d{1,2})\s*([A-Za-z]{3})", cell_text.strip())
+    if not m:
+        return None
+ 
+    mail_dt_utc = parse_mail_received_datetime(mail_received_dt_str)
+    dt_utc = build_utc_from_dd_mon_hhmm(m, mail_dt_utc)
+    if not dt_utc:
+        return None
+    return dt_utc.strftime("%Y-%m-%dT%H:%M:%S")
+ 
+def extract_weather_stations_from_tables(html_content: str, mail_received_dt: str = "") -> list[dict]:
+    """
+    Table-first extraction:
+    - Identify table row headers
+    - Build header->canonicalKey mapping
+    - Extract each data row using that mapping
+    - Only return entries that satisfy REQUIRED_FIELDS
+    """
+    soup = BeautifulSoup(html_content, "html.parser")
+    tables = soup.find_all("table")
+    if not tables:
+        logger.info("No HTML tables found.")
+        return []
+ 
+    best_stations: list[dict] = []
+ 
+    for t_index, table in enumerate(tables):
+        rows = table.find_all("tr")
+        if not rows:
+            continue
+ 
+        header_map = None
+        header_keys = None
+ 
+        # Find the header row: must contain "Station" + "Operational Probability" etc.
+        for r_index, tr in enumerate(rows[:10]):  # search early rows only
+            hdrs = _extract_table_headers(tr)
+            norm_join = " | ".join(_norm_header(h) for h in hdrs)
+ 
+            if "station" in norm_join and "prob" in norm_join and "advisory" in norm_join:
+                # Build header map: col_index -> canonicalKey
+                mapped = {}
+                keys = []
+                for ci, htxt in enumerate(hdrs):
+                    key = _header_to_key(htxt)
+                    keys.append(key)
+                    if key:
+                        mapped[ci] = key
+ 
+                # Need at least these columns mapped
+                needed = {"station", "weatherPhenomenon", "operationProbability",
+                          "advisoryTimePeriodStartUTC", "advisoryTimePeriodEndUTC"}
+                if needed.issubset(set(mapped.values())):
+                    header_map = mapped
+                    header_keys = keys
+                    header_row_index = r_index
+                    logger.info("Using table #%d header row at tr index %d", t_index, r_index)
+                    break
+ 
+        if not header_map:
+            continue
+ 
+        # Extract data rows after header row
+        stations = []
+        for tr in rows[header_row_index + 1:]:
+            if _looks_like_section_row(tr):
+                continue
+ 
+            cells = _extract_row_cells(tr)
+            if not cells or len(cells) < 3:
+                continue
+ 
+            entry = {}
+ 
+            # Use header_map to pick right columns
+            for ci, key in header_map.items():
+                if ci >= len(cells):
+                    continue
+                raw_val = (cells[ci] or "").strip()
+                if not raw_val:
+                    continue
+ 
+                if key == "station":
+                    # Station should be 3 uppercase letters (strict)
+                    if re.fullmatch(r"[A-Z]{3}", raw_val):
+                        entry["station"] = raw_val
+                    else:
+                        # if first column isn't a station, this row isn't a data row
+                        entry = {}
+                        break
+ 
+                elif key == "operationProbability":
+                    m = re.search(r"(\d{1,3})\s*%", raw_val)
+                    if m:
+                        v = int(m.group(1))
+                        if 0 <= v <= 100:
+                            entry["operationProbability"] = v
+ 
+                elif key == "weatherPhenomenon":
+                    # Phenomenon can be FG / TSRA / MOSTLY COVERED PASSES etc.
+                    entry["weatherPhenomenon"] = raw_val
+ 
+                elif key == "advisoryTimePeriodStartUTC":
+                    parsed = _parse_ddmon_time_cell(raw_val, mail_received_dt)
+                    if parsed:
+                        entry["advisoryTimePeriodStartUTC"] = parsed
+ 
+                elif key == "advisoryTimePeriodEndUTC":
+                    parsed = _parse_ddmon_time_cell(raw_val, mail_received_dt)
+                    if parsed:
+                        entry["advisoryTimePeriodEndUTC"] = parsed
+ 
+            if not entry:
+                continue
+ 
+            # Required fields check
+            if all(k in entry for k in REQUIRED_FIELDS):
+                stations.append(entry)
+            else:
+                missing = [k for k in REQUIRED_FIELDS if k not in entry]
+                logger.debug("Skipping incomplete row. Missing=%s row=%s", missing, cells)
+ 
+        if stations:
+            logger.info("Table #%d extracted %d valid station rows.", t_index, len(stations))
+            # choose the biggest successful table
+            if len(stations) > len(best_stations):
+                best_stations = stations
+ 
+    return best_stations
+ 
+# ===================== GRAPH API EMAIL FUNCTIONS =====================
+ 
+def get_all_messages(page_size: int = 50, max_pages: int = None):
+    url = (
+        f"{GRAPH_BASE}/users/{USER_EMAIL}/mailFolders/Inbox/messages"
+        f"?$top={page_size}"
+        "&$orderby=receivedDateTime desc"
+        "&$select=id,subject,receivedDateTime,from"
+    )
+ 
+    all_messages = []
+    page_count = 0
+ 
+    logger.info("Starting fetch of messages from Inbox with page_size=%d", page_size)
+ 
+    while url and (max_pages is None or page_count < max_pages):
+        logger.info("Fetching page %d...", page_count + 1)
+        resp = requests.get(url, headers=build_headers())
+ 
+        if resp.status_code != 200:
+            logger.error("Error fetching messages: %s", resp.status_code)
+            logger.error("Response: %s", resp.text)
+            break
+ 
+        data = resp.json()
+        messages = data.get("value", [])
+        all_messages.extend(messages)
+ 
+        logger.info(
+            "Retrieved %d messages from page %d",
+            len(messages),
+            page_count + 1
+        )
+ 
+        url = data.get("@odata.nextLink")
+        page_count += 1
+        time.sleep(0.5)
+ 
+    logger.info("Total messages retrieved: %d", len(all_messages))
+    return all_messages
+ 
+def get_message_body_html(message_id: str) -> str:
+    url = (
+        f"{GRAPH_BASE}/users/{USER_EMAIL}/messages/{message_id}"
+        "?$select=subject,body"
+    )
+ 
+    logger.debug("Fetching message body for message_id=%s", message_id)
+    resp = requests.get(url, headers=build_headers())
+    if resp.status_code != 200:
+        logger.error(
+            "Error fetching message body for %s: %s | Response: %s",
+            message_id,
+            resp.status_code,
+            resp.text,
+        )
+        return ""
+ 
+    data = resp.json()
+    body = data.get("body", {})
+    return body.get("content", "")
+ 
+# ===================== SEND ERROR EMAIL TO SENDER (NOW AS REPLY) =====================
+ 
+def send_advisory_error_email(message, missing_fields, invalid_fields, extra_reason: str | None = None):
+    """
+    Reply back to the SAME wrong email (not a new email).
+    Uses:
+      POST /users/{USER_EMAIL}/messages/{message_id}/reply
+    """
+    try:
+        from_obj = message.get("from") or {}
+        email_addr_obj = from_obj.get("emailAddress") or {}
+        sender_address = email_addr_obj.get("address")
+        message_id = message.get("id")
+ 
+        if not message_id:
+            logger.error("Cannot send reply: message id missing in message object.")
+            return
+ 
+        original_subject = message.get("subject") or "your weather advisory email"
+        logger.info(
+            "Sending advisory error email as reply for message_id=%s subject='%s'",
+            message_id,
+            original_subject,
+        )
+ 
+        lines: list[str] = []
+        lines.append("Dear Sender,")
+        lines.append("")
+        lines.append("We attempted to process your recent weather advisory email,")
+        lines.append("but could not extract the required JSON payload due to the following issue(s):")
+        lines.append("")
+ 
+        if missing_fields:
+            lines.append("Missing parameter(s):")
+            for f in missing_fields:
+                lines.append(f"  - " + f)
+            lines.append("")
+ 
+        if invalid_fields:
+            lines.append("Invalid / improperly formatted parameter(s):")
+            for f in invalid_fields:
+                lines.append(f"  - " + f)
+            lines.append("")
+ 
+        if extra_reason:
+            lines.append("Additional details:")
+            lines.append(f"  - {extra_reason}")
+            lines.append("")
+ 
+        lines.append("Required parameters are:")
+        for f in REQUIRED_FIELDS:
+            lines.append(f"  - {f}")
+        lines.append("")
+        lines.append("Please ensure all required parameters are present and in the correct format,")
+        lines.append("then resend the advisory email so that it can be processed and forwarded to Event Hub.")
+        lines.append("")
+        lines.append("This is an automated notification. No reply is necessary.")
+ 
+        body_text = "\n".join(lines)
+ 
+        url = f"{GRAPH_BASE}/users/{USER_EMAIL}/messages/{message_id}/reply"
+        payload = {
+            "comment": body_text
+        }
+ 
+        resp = requests.post(url, headers=build_archive_headers(), json=payload)
+        if resp.status_code == 202:
+            if sender_address:
+                logger.info(
+                    "Replied with parameter error notification to %s for message_id=%s",
+                    sender_address,
+                    message_id,
+                )
+            else:
+                logger.info(
+                    "Replied with parameter error notification to original message (sender address not resolved). message_id=%s",
+                    message_id,
+                )
+        else:
+            logger.error(
+                "Failed to send parameter error reply. Status=%s Response=%s",
+                resp.status_code,
+                resp.text,
+            )
+    except Exception as e:
+        logger.exception("Exception while sending error reply: %s", e)
+ 
+# ===================== ARCHIVE HELPERS =====================
+ 
+def get_archive_folder_id() -> str | None:
+    """
+    Fetch the Archive folder and return its id for USER_EMAIL.
+    Uses the well-known 'Archive' folder name.
+    """
+    url = f"{GRAPH_BASE}/users/{USER_EMAIL}/mailFolders/Archive"
+    logger.debug("Fetching Archive folder id for user %s", USER_EMAIL)
+    resp = requests.get(url, headers=build_archive_headers())
+ 
+    if resp.status_code == 200:
+        data = resp.json()
+        folder_id = data.get("id")
+        if folder_id:
+            logger.debug("Archive folder id=%s", folder_id)
+            return folder_id
+        else:
+            logger.error("Archive folder found but no id field present.")
+            return None
+    else:
+        logger.error(
+            "Failed to get Archive folder. Status=%s Response=%s",
+            resp.status_code,
+            resp.text,
+        )
+        return None
+ 
+def move_message_to_archive(message_id: str) -> bool:
+    """
+    Move the given message to the Archive folder.
+    Returns True if moved successfully, False otherwise.
+    """
+    logger.info("Attempting to move message_id=%s to Archive.", message_id)
+    archive_id = get_archive_folder_id()
+    if not archive_id:
+        logger.error("Could not resolve Archive folder id. Skipping archive move.")
+        return False
+ 
+    url = f"{GRAPH_BASE}/users/{USER_EMAIL}/messages/{message_id}/move"
+    body = {"destinationId": archive_id}
+ 
+    resp = requests.post(url, headers=build_archive_headers(), json=body)
+ 
+    if resp.status_code == 201:  # Created = moved successfully
+        moved_msg = resp.json()
+        logger.info(
+            "Message moved to Archive. New folder id=%s New message id=%s",
+            moved_msg.get("parentFolderId"),
+            moved_msg.get("id"),
+        )
+        return True
+    else:
+        logger.error(
+            "Failed to move message to Archive. Status=%s Response=%s",
+            resp.status_code,
+            resp.text,
+        )
+        return False
+ 
+# ===================== MAIN PROCESSING =====================
+ 
+def process_single_email(message):
+    try:
+        logger.info("Processing single email id=%s subject='%s'",
+                    message.get("id"), (message.get("subject") or "")[:80])
+        body_html = get_message_body_html(message["id"])
+        if not body_html:
+            logger.warning("No HTML body found – Skipping this email (id=%s).", message.get("id"))
+            try:
+                send_advisory_error_email(
+                    message,
+                    missing_fields=list(REQUIRED_FIELDS),
+                    invalid_fields=[],
+                    extra_reason="Email body did not contain any HTML content or could not be read."
+                )
+            except Exception as notify_err:
+                logger.exception("Failed to send parameter error email: %s", notify_err)
+ 
+            try:
+                moved = move_message_to_archive(message["id"])
+                if not moved:
+                    logger.error("Could not move this message to Archive after error email.")
+            except Exception as arch_err:
+                logger.exception("Exception while moving to Archive after error email: %s", arch_err)
+ 
+            return None
+ 
+        # 1) Check mandatory field labels
+        missing_fields = check_mandatory_fields_in_html(body_html)
+        if missing_fields:
+            logger.info(
+                "Missing mandatory field(s) in mail body for id=%s: %s – Skipping this email.",
+                message.get("id"),
+                ", ".join(missing_fields),
+            )
+            try:
+                send_advisory_error_email(
+                    message,
+                    missing_fields=missing_fields,
+                    invalid_fields=[],
+                    extra_reason=None
+                )
+            except Exception as notify_err:
+                logger.exception("Failed to send parameter error email: %s", notify_err)
+ 
+            try:
+                moved = move_message_to_archive(message["id"])
+                if not moved:
+                    logger.error("Could not move this message to Archive after error email.")
+            except Exception as arch_err:
+                logger.exception("Exception while moving to Archive after error email: %s", arch_err)
+ 
+            return None
+ 
+        logger.info("All 5 mandatory field labels found in body – trying TABLE extractor first...")
+ 
+        mail_dt = message.get("receivedDateTime", "")
+        
+        stations = extract_weather_stations_from_tables(body_html, mail_received_dt=mail_dt)
+        
+        if stations:
+            logger.info("✅ Extracted using TABLE headers (%d stations).", len(stations))
+        else:
+            logger.info("TABLE extractor found nothing – falling back to NLP extractor...")
+            stations = extract_weather_stations_nlp(body_html, mail_received_dt=mail_dt)
+ 
+        if not stations:
+            logger.info(
+                "NLP extractor could not find any complete stations – Skipping this email id=%s.",
+                message.get("id"),
+            )
+            try:
+                send_advisory_error_email(
+                    message,
+                    missing_fields=[],
+                    invalid_fields=list(REQUIRED_FIELDS),
+                    extra_reason="Field labels are present, but values are missing or not in the expected format."
+                )
+            except Exception as notify_err:
+                logger.exception("Failed to send parameter error email: %s", notify_err)
+ 
+            try:
+                moved = move_message_to_archive(message["id"])
+                if not moved:
+                    logger.error("Could not move this message to Archive after error email.")
+            except Exception as arch_err:
+                logger.exception("Exception while moving to Archive after error email: %s", arch_err)
+ 
+            return None
+ 
+        weather_advisory = {
+            "createdAt": convert_to_ist_format(message.get("receivedDateTime", "")),
+            "stations": stations
+        }
+        logger.info(
+            "Successfully built weather_advisory for message_id=%s with %d station(s).",
+            message.get("id"),
+            len(stations),
+        )
+        return weather_advisory
+ 
+    except Exception as e:
+        logger.exception("Error processing email id=%s: %s", message.get("id"), e)
+        try:
+            send_advisory_error_email(
+                message,
+                missing_fields=[],
+                invalid_fields=[],
+                extra_reason=f"Internal processing error: {e}"
+            )
+        except Exception as notify_err:
+            logger.exception("Failed to send parameter error email: %s", notify_err)
+ 
+        try:
+            moved = move_message_to_archive(message["id"])
+            if not moved:
+                logger.error("Could not move this message to Archive after error email.")
+        except Exception as arch_err:
+            logger.exception("Exception while moving to Archive after error email: %s", arch_err)
+ 
+        return None
+ 
+def process_all_emails(save_files: bool | None = None):
+    """
+    When imported by send_events.py:
+      - Typically you won't call this; you'll use process_single_email.
+    When run directly (python info_table.py):
+      - save_files=True  -> JSON files created in OUTPUT_DIR
+      - save_files=False -> no files created, just extraction + logs
+ 
+    If save_files is None, we default to ENV:
+      - ENV=local  -> save_files=True
+      - ENV=global -> save_files=False
+    """
+    if save_files is None:
+        save_files = IS_LOCAL_ENV
+ 
+    logger.info("=" * 60)
+    logger.info("  WEATHER ADVISORY EMAIL PROCESSOR – NLP VERSION")
+    logger.info("=" * 60)
+    logger.info("ENV = %s | save_files = %s", ENV, save_files)
+    logger.info("Uses label detection + NLP-style window parsing around station codes.")
+    if save_files:
+        logger.info("JSON files WILL be created in %s/", OUTPUT_DIR)
+    else:
+        logger.info("JSON will NOT be saved, only extracted in memory.")
+ 
+    all_messages = get_all_messages(page_size=50)
+    successful_extractions = 0
+    skipped_emails = 0
+ 
+    for idx, message in enumerate(all_messages):
+        subject = message.get('subject', 'No Subject')[:80]
+        logger.info(
+            "Processing email %d/%d: %s",
+            idx + 1,
+            len(all_messages),
+            subject,
+        )
+ 
+        weather_advisory = process_single_email(message)
+ 
+        if weather_advisory:
+            if save_files:
+                if not os.path.exists(OUTPUT_DIR):
+                    os.makedirs(OUTPUT_DIR, exist_ok=True)
+                    logger.info("Created output directory during processing: %s", OUTPUT_DIR)
+ 
+                subject_clean = sanitize_filename(message.get("subject", "No_Subject")[:30])
+                date_clean = message.get("receivedDateTime", "")[:10].replace("-", "_")
+                filename = f"{idx + 1:03d}_{date_clean}_{subject_clean}.json"
+                filepath = os.path.join(OUTPUT_DIR, filename)
+ 
+                with open(filepath, "w", encoding="utf-8") as f:
+                    json.dump(weather_advisory, f, indent=2, ensure_ascii=False)
+ 
+                station_count = len(weather_advisory["stations"])
+                logger.info(
+                    "Extracted %d station(s) – Saved to %s",
+                    station_count,
+                    filename,
+                )
+            else:
+                station_count = len(weather_advisory["stations"])
+                logger.info(
+                    "Extracted %d station(s) – (not saving to disk, save_files=False)",
+                    station_count,
+                )
+ 
+            successful_extractions += 1
+        else:
+            skipped_emails += 1
+ 
+        time.sleep(0.2)
+ 
+    logger.info("=" * 60)
+    logger.info(" EMAIL PROCESSING SUMMARY")
+    logger.info("=" * 60)
+    logger.info(" Total emails processed: %d", len(all_messages))
+    logger.info(" Successful extractions: %d", successful_extractions)
+    logger.info(" Skipped emails: %d", skipped_emails)
+    if save_files:
+        logger.info(" Files saved in: %s/", OUTPUT_DIR)
+    else:
+        logger.info(" No files saved (save_files=False).")
+ 
+    return len(all_messages), successful_extractions
+ 
+def main():
+    try:
+        save_files = IS_LOCAL_ENV
+        process_all_emails(save_files=save_files)
+    except requests.HTTPError as e:
+        logger.exception("HTTP Error: %s", e)
+    except Exception as e:
+        logger.exception("Error: %s", e)
+ 
+if __name__ == "__main__":
+    main()
