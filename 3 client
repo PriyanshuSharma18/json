@@ -1,0 +1,128 @@
+import os
+import asyncio
+import json
+from fastmcp import Client
+from openai import AzureOpenAI
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+ 
+# Azure OpenAI setup
+endpoint = os.getenv("endpoint")
+model_name = os.getenv("model_name")
+deployment = os.getenv("deployment")
+subscription_key = os.getenv("subscription_key")
+api_version = os.getenv("api_version")
+
+ 
+llm = AzureOpenAI(
+    api_key=subscription_key,
+    api_version=api_version,
+    azure_endpoint=endpoint
+)
+ 
+ 
+async def interact_with_server(user_prompt: str):
+    print("🔌 Connecting to MCP Server...")
+    client = Client("..\\weather\\app.py")
+ 
+    try:
+        async with client:
+            print("✅ Connected to MCP Server")
+ 
+            # Step 1: Discover available tools
+            tool_descriptions = await client.list_tools()
+ 
+            openai_tools = [
+                {
+                    "type": "function",
+                    "function": {
+                        "name": tool.name,
+                        "description": tool.description,
+                        "parameters": tool.inputSchema
+                    }
+                }
+                for tool in tool_descriptions
+            ]
+ 
+            messages = [
+                {
+                    "role": "user",
+                    "content": f"""You are an intelligent agent capable of orchestrating multiple tools to assist users. Below is a list of available tools, each with a name, description of what it does, and the input it requires. When the user provides a request, your task is to:
+                   
+                    1. Identify which tools can be used to fulfill their request.
+                    2. Call one or more tools as needed.
+                    3. Explain how these tools will be used.
+                    4. Ask for any additional details if required.
+                    5. Dont Give any additional explaination, context, or interpretation. Do not hestitate or ask the follow up questions unless the User explicitly asks for explaination or interpretation of the Metar Data.
+                    6. If duplicate Mongo DB results are present, return only one. If there are differences, return all the unique values.
+                    7. If user specifically ask for Metar data just provide the Raw Metar Data Value.
+                    The user's request is: "{user_prompt}".
+                    """
+                }
+            ]
+ 
+            while True:
+                try:
+                    response = llm.chat.completions.create(
+                        model=deployment,
+                        messages=messages,
+                        tool_choice="auto",
+                        tools=openai_tools
+                    )
+
+                except Exception as e:
+                    print(f"❌ LLM Error: {e}")
+                    break
+ 
+                print("toooooool")
+ 
+                message = response.choices[0].message
+ 
+                # If tool calls are present
+                if message.tool_calls:
+                    for tool_call in message.tool_calls:
+                        tool_name = tool_call.function.name
+                        tool_args = json.loads(tool_call.function.arguments)
+                        print(f"🔧 Calling tool: {tool_name} with args: {tool_args}")
+ 
+                        result = await client.call_tool(tool_name, tool_args)
+ 
+                        # Append assistant tool call
+                        messages.append({
+                            "role": "assistant",
+                            "tool_calls": [  # mimic OpenAI format
+                                {
+                                    "id": tool_call.id,
+                                    "function": {
+                                        "name": tool_name,
+                                        "arguments": tool_call.function.arguments
+                                    },
+                                    "type": "function"
+                                }
+                            ]
+                        })
+ 
+                        # Append user tool result
+                        messages.append({
+                            "role": "tool",
+                            "tool_call_id": tool_call.id,
+                            "content": result["content"] if isinstance(result, dict) else str(result)
+                        })
+ 
+                else:
+                    # Final response from assistant
+                    print("💬 Assistant response:", message.content)
+                    print("final ans")
+                    break
+ 
+    except Exception as e:
+        print(f"❌ MCP Client Error: {e}")
+    finally:
+        print("🔚 Interaction complete.")
+ 
+ 
+if __name__ == "__main__":
+    user_prompt = input("🗣️ Enter your query: ")
+    asyncio.run(interact_with_server(user_prompt))
